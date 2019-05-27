@@ -1,0 +1,66 @@
+body {
+    margin: 0; 
+    padding: 0; 
+    height: 100vh; 
+    height: calc(var(--vh, 1vh) * 100); 
+    width: 100vw;   
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif; 
+} 
+
+#gridContainer {
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "header header"
+      "kanbanBox sidebar"
+      "footer footer";
+} 
+
+#gridContainer * {
+    border: 1px solid red; 
+}
+
+header {
+    grid-area: header; 
+    height: 8vh; 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center;
+  }
+
+#sidebar {
+    grid-area: sidebar; 
+    height: 86vh;
+  }
+
+#kanbanBox {
+    grid-area: kanbanBox; 
+    height: 86vh; 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr;   
+    grid-template-rows: 100%;
+}
+
+.taskCard { 
+    width: 90%; 
+    margin-top: 5px; 
+    margin-left: 5%; 
+    min-height: 90px;
+    background: #7aceda;
+} 
+
+.taskCard h4 {
+    text-align: center; 
+    margin-top: 4px;
+}
+
+.taskCard p {
+    
+}
+
+footer {
+    grid-area: footer; 
+    height: 6vh;
+} 
