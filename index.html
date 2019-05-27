@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kanban</title> 
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <title>Kanban</title>  
+    <link rel="stylesheet" href="./css/functionalstyle.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head> 
+
+<body onload="startApp()">
     
     <div id="gridContainer">
         <header>
             <h1>KanBarn</h1> 
 
+            <div id="toolBar">
+                <button id="addTaskBtn" onclick="addTask()">Add Task</button>
+            </div>
         </header> 
 
         <div id="sideHeader"></div>
@@ -30,9 +35,16 @@
                 <h3>Ferdig</h3>
             </div>
         </div> 
+    </div> 
+<!--
+    <div id="addCardModal" class="modal">
+        <form name="addCardForm">
+            
+        </form>
     </div>
-    <script src="tasks.js"></script>
-    <script src="script.js"></script> 
+-->
+    <script src="./script/tasks.js"></script>
+    <script src="./script/script.js"></script>  
 
 </body>
 </html>

@@ -1,4 +1,6 @@
-let tasks = [
+let tasks; 
+
+let defaultTasks = [
     {
         id: 0, 
         status: "todo", 
@@ -38,8 +40,37 @@ let tasks = [
         title: "Fourth task", 
         description: "Lorem ipsum dolor sit amet"
     }
-]; 
-
-let tasksInfo = [ 
-
 ];
+
+
+function saveToLocal() { 
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function getFromLocal() {
+     tasks = JSON.parse(localStorage.getItem("tasks")); 
+}
+
+
+// initializing webapp 
+function startApp() {
+    
+    // check if item tasks is saved in localstorage
+    if(localStorage.getItem("tasks") === null) {
+        tasks = defaultTasks; 
+        saveToLocal();
+    
+    } else {    
+        if(localStorage.getItem("tasks").length < 1) {
+            tasks = defaultTasks; 
+            console.log("localstorage defined but empty"); 
+            saveToLocal();
+        } else {
+        tasks = JSON.parse(localStorage.getItem("tasks")); 
+        }
+    }
+
+    
+    sortTasks(); 
+
+}

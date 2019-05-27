@@ -82,19 +82,17 @@ function renderTask(task, targetArea) {
     
 } 
 
-// Removes card from dom to be rendered again NOT DONE!
+// Removes card from dom to be rendered again
 function removeChildElements(area) {
  let i = area.childNodes.length; 
     while (i > 2) { 
         area.removeChild(area.lastChild); 
         i--
-    
     }
 }
 
-sortTasks();
-
-function addTask() {
+// add new task to task array NOT DONE!
+function addTask(title, description, checkList) {
     let newTask = {
             id: 4, 
             status: "doing", 
@@ -104,4 +102,13 @@ function addTask() {
 
     tasks.push(newTask); 
     sortTasks();
+}  
+
+function dragStart(ev) {
+    ev.dataTransfer.effectAllowed = 'move';
+    ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
+    ev.dataTransfer.setDragImage(ev.target,0,0);
+    
+    return true;
 }
+

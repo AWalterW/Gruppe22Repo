@@ -5,7 +5,6 @@ body {
     height: calc(var(--vh, 1vh) * 100); 
     width: 100vw;   
     overflow: hidden;
-    font-family: Arial, Helvetica, sans-serif; 
 } 
 
 #gridContainer {
@@ -22,13 +21,13 @@ header {
     height: 12vh; 
     display: flex; 
     flex-direction: row; 
-    justify-content: center;
+    justify-content: space-around;
   } 
 
   #sideheader {
       grid-area: sideHeader; 
       height: 12vh;
-  }
+  }     
 
 #sidebar {
     grid-area: sidebar; 
@@ -54,16 +53,25 @@ header {
     margin-right: auto;
     padding: 10px;
     min-height: 90px;
-    background: #7aceda; 
     cursor: move; 
 } 
 
 .listArea p {
-    display: inline;
+    display: inline; 
 }
 
 .taskCard h4 {
     text-align: center; 
     margin-top: -5px;
-}
+} 
+
+.modal {
+    position: absolute; 
+    width: 50%; 
+    height: 40%;
+    float: left;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 
