@@ -13,54 +13,57 @@ body {
     grid-template-columns: 4fr 2fr;
     grid-template-rows: auto;
     grid-template-areas: 
-      "header header"
-      "kanbanBox sidebar"
-      "footer footer";
+      "header sideHeader"
+      "kanbanBox sidebar";
 } 
-
-#gridContainer * {
-    border: 1px solid red; 
-}
 
 header {
     grid-area: header; 
-    height: 8vh; 
+    height: 12vh; 
     display: flex; 
     flex-direction: row; 
     justify-content: center;
+  } 
+
+  #sideheader {
+      grid-area: sideHeader; 
+      height: 12vh;
   }
 
 #sidebar {
     grid-area: sidebar; 
-    height: 86vh;
+    height: 88vh;
   }
 
 #kanbanBox {
     grid-area: kanbanBox; 
-    height: 86vh; 
+    height: 88vh; 
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr;   
     grid-template-rows: 100%;
+} 
+
+#kanbanBox h3 {
+    text-align: center; 
 }
 
 .taskCard { 
     width: 90%; 
-    margin-top: 5px; 
-    margin-left: 5%; 
+    margin-top: 10px; 
+    margin-left: auto; 
+    margin-right: auto;
+    padding: 10px;
     min-height: 90px;
-    background: #7aceda;
+    background: #7aceda; 
+    cursor: move; 
 } 
+
+.listArea p {
+    display: inline;
+}
 
 .taskCard h4 {
     text-align: center; 
-    margin-top: 4px;
+    margin-top: -5px;
 }
 
-.taskCard p {
-    
-}
-
-footer {
-    grid-area: footer; 
-    height: 6vh;
-} 

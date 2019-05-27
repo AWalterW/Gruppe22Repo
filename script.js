@@ -13,12 +13,12 @@ window.addEventListener('resize', () => {
   });
  
 
-
+  //sorts all tasks and render them in the correct category
   function sortTasks() { 
 
-   // removeChildElements(todoArea); 
-   // removeChildElements(doingArea); 
-   // removeChildElements(completedArea);
+    removeChildElements(todoArea); 
+    removeChildElements(doingArea); 
+    removeChildElements(completedArea);
 
     tasks.forEach((task) => {
         switch(task.status) {
@@ -35,6 +35,7 @@ window.addEventListener('resize', () => {
     });
 } 
 
+// Renders each task
 function renderTask(task, targetArea) {
     let cardDiv = document.createElement('div'); 
     cardDiv.className = "taskCard";               
@@ -49,18 +50,58 @@ function renderTask(task, targetArea) {
     carddescription.innerText = task.description; 
     cardDiv.appendChild(carddescription);
 
+   // check if task has checklist and render it
+    if(task.checkList) { 
+
+        let listArea = document.createElement("div");  
+        listArea.className = "listArea";
+        cardDiv.appendChild(listArea);
+
+        task.checkList.forEach((task) => {
+           let checkbox = document.createElement("input"); 
+           checkbox.type = "checkbox";  
+
+           let checkboxText = document.createElement("p"); 
+           checkboxText.innerText = task.listTask; 
+
+            if(task.isDone) {
+                checkbox.checked = true; 
+                checkboxText.style.textDecoration = "line-through";
+            }
+
+
+           listArea.appendChild(checkbox); 
+           listArea.appendChild(checkboxText); 
+
+            let br = document.createElement("br"); 
+            listArea.appendChild(br);
+        });
+    }
+
     targetArea.appendChild(cardDiv);  
     
 } 
 
-
+// Removes card from dom to be rendered again NOT DONE!
 function removeChildElements(area) {
  let i = area.childNodes.length; 
-    while (i > 1) { 
-        console.log(area);
-        area.removeChild(area.lastChild);
+    while (i > 2) { 
+        area.removeChild(area.lastChild); 
+        i--
     
     }
 }
 
 sortTasks();
+
+function addTask() {
+    let newTask = {
+            id: 4, 
+            status: "doing", 
+            title: "Fifth task", 
+            description: "Lorem ipsum dolor sit amet"
+        } 
+
+    tasks.push(newTask); 
+    sortTasks();
+}

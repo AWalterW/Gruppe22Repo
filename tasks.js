@@ -3,7 +3,22 @@ let tasks = [
         id: 0, 
         status: "todo", 
         title: "First task", 
-        description: "Lorem ipsum dolor sit amet"
+        description: "Lorem ipsum dolor sit amet", 
+        category: "school", 
+        checkList: [
+            {
+                listTask: "Noe du må gjøre", 
+                isDone: false
+            }, 
+            {
+                listTask: "Noe du må gjøre", 
+                isDone: false
+            }, 
+            {
+                listTask: "Noe du må gjøre", 
+                isDone: true
+            }
+        ]
     }, 
     {
         id: 1, 
@@ -23,4 +38,8 @@ let tasks = [
         title: "Fourth task", 
         description: "Lorem ipsum dolor sit amet"
     }
+]; 
+
+let tasksInfo = [ 
+
 ];
