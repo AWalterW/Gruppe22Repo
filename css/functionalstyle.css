@@ -25,6 +25,8 @@ header {
     flex-direction: row; 
     justify-content: space-around;
     background-color: #FFCCCC;
+    border: 1px solid black;
+    border-right: 0px;
   } 
 
 header h1{
@@ -37,6 +39,7 @@ header h1{
     grid-area: sideHeader; 
     height: 12vh;
     background-color: #CCFFCC;
+    border: 1px solid black;
 }     
 
 /*A circle with a picture that represents you, with access to your personal profile*/
@@ -57,6 +60,8 @@ header h1{
     grid-area: sidebar; 
     height: 88vh;
     background-color: #CCFFFF;
+    border: 1px solid black;
+    border-top: 0px;
 }
 
 
@@ -81,7 +86,7 @@ header h1{
 /*Lists that will contain task cards*/
 .kanbanList {
     background-color: #FFFFCC;
-    min-height: 80px;
+    height: 95%;
     width: 90%;
     padding: 2px 2px 2px 2px;
     align-content: center;
