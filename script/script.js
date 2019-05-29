@@ -1,7 +1,6 @@
 const todoArea = document.getElementById("todo"); 
 const doingArea = document.getElementById("doing"); 
 const completedArea = document.getElementById("completed"); 
-const dropArea = document.querySelectorAll(".kanbanList");
 
 // calculate fluid fullscreen size
 
@@ -96,18 +95,6 @@ function removeChildElements(area) {
     }
 }
 
-// add new task to task array NOT DONE!
-function addTask(title, description, checkList) {
-    let newTask = {
-            id: 4, 
-            status: "doing", 
-            title: "Fifth task", 
-            description: "Lorem ipsum dolor sit amet"
-        } 
-
-    tasks.push(newTask); 
-    sortTasks();
-}  
 
 // Drag and Drop here! 
 
@@ -121,7 +108,6 @@ function addDropListener(area) {
         const taskId = e.dataTransfer.getData("text"); 
         const target = e.target.id; 
 
-        console.log(e.target);
         if(target === "todo" || target === "doing" || target === "completed") {
             changeTaskStatus(taskId, target);
         } 
@@ -129,12 +115,48 @@ function addDropListener(area) {
       });
 } 
 
-
 function changeTaskStatus(taskId, target) {
     if(tasks[taskId]) { 
         let task = tasks[taskId]; 
-        task.status = target;
+        task.status = target; 
+        taskUpdated(); 
     } 
 
-    sortTasks();
+} 
+
+// Set min duedate to today 
+
+function fixDueDate() {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth()+1;
+    let yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+        } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("datefield").setAttribute("min", today);
 }
+
+// Modals 
+
+function openModal(target) {
+    const modal = document.getElementById(target);
+    modal.style.display = "block";
+} 
+
+function closeModal(target, form) {
+    const modal = document.getElementById(target); 
+    const formToClear = document.getElementById(form).children; 
+
+    formToClear[1].value = "";  
+    formToClear[4].value = "";  
+    formToClear[7].value = ""; 
+
+    modal.style.display = "none";
+} 
+

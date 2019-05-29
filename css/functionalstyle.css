@@ -92,7 +92,7 @@ header h1{
 .taskCard { 
     width: 85%; 
     border: solid black 1px;
-    margin: 0 5px 0 5px;
+    margin: 0 auto 0;
     padding: 10px;
     min-height: 20px;
     cursor: move; 
@@ -113,6 +113,34 @@ header h1{
     height: 40%;
     float: left;
     left: 50%;
-    top: 50%;
+    top: 50%; 
     transform: translate(-50%, -50%);
+  } 
+
+  .modalHeader {  
+      background: rgb(16, 16, 187); 
+      height: 50px; 
+      width: 100%;
+  }
+
+  .modalHeader h4 {
+    display: inline-block; 
+    color: white;
+  }
+
+  .modalHeader button {
+      float: right;
+      background: none; 
+      border: none; 
+      color: white; 
+      cursor: pointer;
+  }
+
+
+  #addTaskModal {
+      display: none;
+  }
+
+  #addTaskForm {
+      padding: 10px 30px;
   }

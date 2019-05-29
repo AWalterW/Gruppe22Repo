@@ -16,7 +16,7 @@
             <h1>KanBarn</h1> 
 
             <div id="toolBar">
-                <button id="addTaskBtn" onclick="addTask()">Add Task</button>
+                <button id="addTaskBtn" onclick="openModal('addTaskModal')">Add Task</button>
             </div>
         </header> 
 
@@ -38,15 +38,26 @@
             </div>
         </div> 
     </div> 
-<!--
-    <div id="addCardModal" class="modal">
-        <form name="addCardForm">
-            
+
+    <div id="addTaskModal" class="modal"> 
+        <div class="modalHeader">
+            <h4>Legg til oppgave</h4> 
+            <button class="closeModalBtn" onclick="closeModal('addTaskModal', 'addTaskForm')">Lukk</button>
+        </div>
+
+        <form id="addTaskForm" onsubmit="return false">
+                Tittel:<br>
+                <input type="text" name="title"><br>
+                Beskrivelse:<br>
+                <textarea name="description"  cols="40" rows="8"></textarea> <br>
+                Frist:<br>
+                <input id="datefield" type='date' min='1899-01-01' max='2000-13-13' name="dateDue"></input> <br> <br>
+                <input type="button" value="Legg til" onclick="addTask('addTaskForm')">
         </form>
     </div>
--->
+
     <script src="./script/tasks.js"></script>
-    <script src="./script/script.js"></script>  
+    <script src="./script/script.js"></script>  a
 
 </body>
 </html>
