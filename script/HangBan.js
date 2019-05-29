@@ -5,13 +5,13 @@ let word;
 let guess;
 let guesses = [];
 let lives;
-let counter;
 let space;
 
 let buttons = function () {
     myButtons = document.getElementById('buttons');
     letters = document.createElement('ul');
 
+}
 for (i = 0; i < alphabet.length; i++) {
     letters.id = 'alphabet';
     list = document.createElement('li');
