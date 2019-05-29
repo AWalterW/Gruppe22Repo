@@ -1,6 +1,7 @@
 const todoArea = document.getElementById("todo"); 
 const doingArea = document.getElementById("doing"); 
-const completedArea = document.getElementById("completed");
+const completedArea = document.getElementById("completed"); 
+const dropArea = document.querySelectorAll(".kanbanList");
 
 // calculate fluid fullscreen size
 
@@ -45,6 +46,10 @@ function renderTask(task, targetArea) {
     let cardTitle = document.createElement('h4'); 
     cardTitle.innerText = task.title; 
     cardDiv.appendChild(cardTitle); 
+
+    cardDiv.addEventListener("dragstart", e => {
+        e.dataTransfer.setData("text", task.id);
+    });
 
     let carddescription = document.createElement('p'); 
     carddescription.innerText = task.description; 
@@ -104,11 +109,32 @@ function addTask(title, description, checkList) {
     sortTasks();
 }  
 
-function dragStart(ev) {
-    ev.dataTransfer.effectAllowed = 'move';
-    ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
-    ev.dataTransfer.setDragImage(ev.target,0,0);
-    
-    return true;
-}
+// Drag and Drop here! 
 
+function addDropListener(area) {
+    area.addEventListener("dragover", e => {
+        e.dataTransfer.dropEffect = "move";
+        e.preventDefault(); 
+    });
+    
+    area.addEventListener("drop", e => {
+        const taskId = e.dataTransfer.getData("text"); 
+        const target = e.target.id; 
+
+        console.log(e.target);
+        if(target === "todo" || target === "doing" || target === "completed") {
+            changeTaskStatus(taskId, target);
+        } 
+         // e.target.classList.remove("dragging");
+      });
+} 
+
+
+function changeTaskStatus(taskId, target) {
+    if(tasks[taskId]) { 
+        let task = tasks[taskId]; 
+        task.status = target;
+    } 
+
+    sortTasks();
+}

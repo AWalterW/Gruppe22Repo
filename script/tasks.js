@@ -70,7 +70,12 @@ function startApp() {
         }
     }
 
-    
+    addDropListener(todoArea); 
+    addDropListener(doingArea); 
+    addDropListener(completedArea);
+
+
+    // sorts and renders tasks to the site
     sortTasks(); 
 
 }
