@@ -1,4 +1,4 @@
-let tasks; 
+let tasks = []; 
 
 let defaultTasks = [
     {
@@ -44,20 +44,25 @@ let defaultTasks = [
 
 
 function saveToLocal() { 
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.removeItem("tasks"); 
+    localStorage.setItem("tasks", JSON.stringify(tasks)); 
 }
 
 function getFromLocal() {
      tasks = JSON.parse(localStorage.getItem("tasks")); 
 }
 
+function taskUpdated() {
+    saveToLocal(); 
+    sortTasks(); 
+}
 
 // initializing webapp 
 function startApp() {
     
     // check if item tasks is saved in localstorage
     if(localStorage.getItem("tasks") === null) {
-        tasks = defaultTasks; 
+       
         saveToLocal();
     
     } else {    
@@ -70,6 +75,53 @@ function startApp() {
         }
     }
 
+    fixDueDate();
+
+    addDropListener(todoArea); 
+    addDropListener(doingArea); 
+    addDropListener(completedArea);
+
+
+    // sorts and renders tasks to the site
     sortTasks(); 
 
+} 
+
+// add new task to task array
+
+function addTask(form) { 
+    const newTask = {};
+
+    const formData = document.getElementById(form).children; 
+    const taskTitle = formData[1].value;  
+    const taskDescription = formData[4].value; 
+    const taskDueDate = formData[7].value; 
+
+    if(taskTitle.length > 0) {
+        newTask.title = taskTitle; 
+        if(taskDescription.length > 0) {
+            newTask.description = taskDescription;
+            if(taskDueDate.length > 0) {
+                newTask.dueDate = taskDueDate; 
+                submitTask(newTask); 
+                closeModal('addTaskModal', 'addTaskForm');
+            } else {
+                submitTask(newTask); 
+                closeModal('addTaskModal', 'addTaskForm');
+            }
+        } else {
+            alert("Du må ha en beskrivelse");
+        }
+    } else {
+        alert("Du må ha en tittel");
+    }
+    
+} 
+
+function submitTask(newTask) {
+    const task = newTask; 
+    task.status = "todo"; 
+    task.id = tasks.length; 
+    tasks.push(task); 
+    taskUpdated();
 }

@@ -7,6 +7,7 @@ body {
     overflow: hidden;
 } 
 
+/*A container for the grid areas, splits the page in 4 pieces*/
 #gridContainer {
     display: grid;
     grid-template-columns: 4fr 2fr;
@@ -16,43 +17,89 @@ body {
       "kanbanBox sidebar";
 } 
 
+/******** HEADER (TOP LEFT) *********/
 header {
     grid-area: header; 
     height: 12vh; 
     display: flex; 
     flex-direction: row; 
     justify-content: space-around;
+    background-color: #FFCCCC;
+    border: 1px solid black;
+    border-right: 0px;
   } 
 
-  #sideheader {
-      grid-area: sideHeader; 
-      height: 12vh;
-  }     
+header h1{
+    background-color: #DDBBBB;
+}
 
-#sidebar {
+/********** SIDEHEADER(TOP RIGHT) *********/
+
+#sideHeader {
+    grid-area: sideHeader; 
+    height: 12vh;
+    background-color: #CCFFCC;
+    border: 1px solid black;
+}     
+
+/*A circle with a picture that represents you, with access to your personal profile*/
+#userBubble {
+    width: 10vh;
+    height: 10vh;
+    background-color: hotpink;
+    position: absolute;
+    top:8px;
+    right:8px;
+    border-radius: 50%;
+
+}
+
+/********** SIDEBAR (BOTTOM RIGHT) *********/
+
+#sideBar {
     grid-area: sidebar; 
     height: 88vh;
-  }
+    background-color: #CCFFFF;
+    border: 1px solid black;
+    border-top: 0px;
+}
+
+
+
+/********** KANBAN BOX (BOTTOM LEFT) ********/
 
 #kanbanBox {
     grid-area: kanbanBox; 
     height: 88vh; 
     display: grid; 
+    padding: 10px 10px 10px 10px;
     grid-template-columns: 1fr 1fr 1fr;   
     grid-template-rows: 100%;
+    background-color: #CCCCFF;
+    align-content: center;
 } 
 
 #kanbanBox h3 {
     text-align: center; 
 }
 
+/*Lists that will contain task cards*/
+.kanbanList {
+    background-color: #FFFFCC;
+    height: 95%;
+    width: 90%;
+    padding: 2px 2px 2px 2px;
+    align-content: center;
+    border: solid 1px black;
+}
+
+/*Task cards that contain information about the task*/
 .taskCard { 
-    width: 90%; 
-    margin-top: 10px; 
-    margin-left: auto; 
-    margin-right: auto;
+    width: 85%; 
+    border: solid black 1px;
+    margin: 0 auto 0;
     padding: 10px;
-    min-height: 90px;
+    min-height: 20px;
     cursor: move; 
 } 
 
@@ -71,7 +118,34 @@ header {
     height: 40%;
     float: left;
     left: 50%;
-    top: 50%;
+    top: 50%; 
     transform: translate(-50%, -50%);
+  } 
+
+  .modalHeader {  
+      background: rgb(16, 16, 187); 
+      height: 50px; 
+      width: 100%;
   }
 
+  .modalHeader h4 {
+    display: inline-block; 
+    color: white;
+  }
+
+  .modalHeader button {
+      float: right;
+      background: none; 
+      border: none; 
+      color: white; 
+      cursor: pointer;
+  }
+
+
+  #addTaskModal {
+      display: none;
+  }
+
+  #addTaskForm {
+      padding: 10px 30px;
+  }
