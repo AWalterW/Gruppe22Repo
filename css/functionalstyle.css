@@ -30,7 +30,7 @@ header {
   } 
 
 header h1{
-    background-color: #DDBBBB;
+    background-color: #FFCCCC;
 }
 
 /********** SIDEHEADER(TOP RIGHT) *********/
@@ -167,3 +167,44 @@ header h1{
       color: white;
       cursor: pointer;
   }
+  
+  /* Buttons for adding task and grp */
+
+#addTaskBtn{
+    position: relative;
+    background: none;
+    border: none;
+    font-size: 150%;
+    top: 20%;
+    
+}
+#taskBtnText{
+    position: relative;
+    font-size: 75%;
+    left: 10px;
+    top: -3px;
+    font-style: normal;
+}
+#addTaskBtn:hover{
+    color: red;
+    cursor: pointer;
+}
+#addGrpBtn{
+    position: relative;
+    background: none;
+    border: none;
+    font-size: 110%;
+    top: 20%;
+}
+#grpBtnText{
+    position: relative;
+    font-size: 100%;
+    left: 10px;
+    top: -2px;
+    font-style: normal;
+}
+#addGrpBtn:hover{ 
+    color: red;
+    cursor: pointer;
+}
+
