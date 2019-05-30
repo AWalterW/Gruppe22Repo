@@ -63,7 +63,8 @@ function renderTask(task, targetArea) {
 
         task.checkList.forEach((task) => {
            let checkbox = document.createElement("input"); 
-           checkbox.type = "checkbox";  
+           checkbox.type = "checkbox";   
+           checkbox.onchange =`checkboxChange(${task.id})`;
 
            let checkboxText = document.createElement("p"); 
            checkboxText.innerText = task.listTask; 
@@ -122,7 +123,9 @@ function changeTaskStatus(taskId, target) {
         taskUpdated(); 
     } 
 
-} 
+}  
+
+
 
 // Set min duedate to today 
 
@@ -151,12 +154,10 @@ function openModal(target) {
 
 function closeModal(target, form) {
     const modal = document.getElementById(target); 
-    const formToClear = document.getElementById(form).children; 
 
-    formToClear[1].value = "";  
-    formToClear[4].value = "";  
-    formToClear[7].value = ""; 
-
+    document.getElementById("addTitle").value = "";  
+    document.getElementById("addDescription").value = "";
+    document.getElementById("datefield").value = ""; 
     modal.style.display = "none";
 } 
 

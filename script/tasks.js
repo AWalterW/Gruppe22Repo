@@ -87,15 +87,19 @@ function startApp() {
 
 } 
 
+function checkboxChange(id) {
+    console.log(id);
+}
+
 // add new task to task array
 
 function addTask(form) { 
     const newTask = {};
+    const newTaskList = [];
 
-    const formData = document.getElementById(form).children; 
-    const taskTitle = formData[1].value;  
-    const taskDescription = formData[4].value; 
-    const taskDueDate = formData[7].value; 
+    const taskTitle = document.getElementById("addTitle");  
+    const taskDescription = document.getElementById("addDescription");
+    const taskDueDate = document.getElementById("datefield"); 
 
     if(taskTitle.length > 0) {
         newTask.title = taskTitle; 
@@ -115,7 +119,6 @@ function addTask(form) {
     } else {
         alert("Du må ha en tittel");
     }
-    
 } 
 
 function submitTask(newTask) {
