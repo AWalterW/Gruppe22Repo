@@ -55,7 +55,7 @@ function renderTask(task, targetArea) {
     editBtn.className = "fas fa-edit edit";
     cardDiv.appendChild(editBtn); 
 
-    // Eventlistener for
+    // Eventlistener for click inside taskcards ADD FOR RADIOBUTTONS!
     cardDiv.addEventListener("click", (e) => {
         if(e.target.classList.contains('close')) {
             const taskId = e.target.dataset.taskId;  
@@ -103,8 +103,6 @@ function renderTask(task, targetArea) {
             let br = document.createElement("br"); 
             listArea.appendChild(br);
         });
-
-
     }  
     targetArea.appendChild(cardDiv);  
     } 
@@ -148,8 +146,6 @@ function changeTaskStatus(taskId, target) {
     } 
 
 }  
-
-
 
 // Set min duedate to today 
 

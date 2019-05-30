@@ -1,5 +1,6 @@
 let tasks = []; 
 
+
 let defaultTasks = [
     {
         id: 0, 
@@ -108,14 +109,15 @@ function addTask(form) {
     if(taskTitle.length > 0) { 
         newTask.title = taskTitle; 
         if(taskDescription.length > 0) {
-            newTask.description = taskDescription;
+            newTask.description = taskDescription; 
+            newTask.deleted = false; 
+            newTask.project = currentProject;
             if(taskDueDate.length > 0) {
                 newTask.dueDate = taskDueDate; 
-                newTask.deleted = false;
                 submitTask(newTask); 
                 closeModal('addTaskModal', 'addTaskForm');
             } else {
-                newTask.deleted = false;
+
                 submitTask(newTask); 
                 closeModal('addTaskModal', 'addTaskForm'); 
             }
