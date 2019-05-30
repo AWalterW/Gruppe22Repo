@@ -101,7 +101,7 @@ header h1{
 .taskCard { 
     width: 85%; 
     border: solid black 1px;
-    margin: 0 auto 0;
+    margin: 0 auto ;
     padding: 10px;
     min-height: 20px;
     cursor: move; 
@@ -171,8 +171,7 @@ header h1{
   /* buttons for delete and edit */
 
   .close{
-      position: relative;
-      left: 270px;
+      float: right;
       top: 0px;
   }
   .close:hover{
@@ -180,8 +179,8 @@ header h1{
       cursor: pointer;
   }
   .edit{
-      position: relative;
-      left: 232px;
+      right: 3px;
+      float: right;
       top: 0px;
   }
   .edit:hover{
@@ -235,6 +234,6 @@ header h1{
     position: relative;
     background-color: transparent;
     font-weight: bold;
-    float: right;
-    bottom: 25px;
+    text-align: end;
+    bottom: -20px;
 }
