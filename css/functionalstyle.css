@@ -172,7 +172,7 @@ header h1{
 
   .close{
       position: relative;
-      left: 175px;
+      left: 270px;
       top: 0px;
   }
   .close:hover{
@@ -181,7 +181,7 @@ header h1{
   }
   .edit{
       position: relative;
-      left: 135px;
+      left: 232px;
       top: 0px;
   }
   .edit:hover{
@@ -229,3 +229,12 @@ header h1{
     cursor: pointer;
 }
 
+/* Deadline tag */
+
+.deadlineP{
+    position: relative;
+    background-color: transparent;
+    font-weight: bold;
+    float: right;
+    bottom: 25px;
+}

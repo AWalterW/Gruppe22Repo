@@ -100,6 +100,15 @@ function renderTask(task, targetArea) {
           listArea.appendChild(br);
         });
       }
+// adding dueDate to taskCard
+
+      if(task.dueDate){
+        let deadlineTag = document.createElement("p");
+        deadlineTag.className = "deadlineP";
+        deadlineTag.innerHTML = `<span style=font-weight:normal;>Gjøres innen:</span> ${task.dueDate}`;
+        cardDiv.appendChild(deadlineTag);
+      }
+
       targetArea.appendChild(cardDiv);
     }
   }
