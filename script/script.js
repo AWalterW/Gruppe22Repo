@@ -34,6 +34,25 @@ window.addEventListener('resize', () => {
         }
     });
 } 
+function deleteTask(id){
+    
+}
+/*
+// Eventlistner for target
+function addClickListener(target){
+    var targetBtns = document.getElementsByClassName(target);
+    console.log(targetBtns);
+    Array.from(targetBtns).forEach(function(element) {
+        element.addEventListener("click", (e) => {
+            console.log(e);
+        })
+    });
+    /*targetBtns.addEventListener("click", e=>{
+
+    })
+}
+addClickListener("close");
+*/
 
 // Renders each task
 function renderTask(task, targetArea) {
@@ -41,6 +60,26 @@ function renderTask(task, targetArea) {
     cardDiv.className = "taskCard";               
     cardDiv.dataset.taskId = task.id; 
     cardDiv.draggable = true;
+
+    //adding delete button to taskCard
+    let deleteBtn = document.createElement("i");
+    deleteBtn.className = "fas fa-trash-alt close";
+    cardDiv.appendChild(deleteBtn);
+    
+    //setting deleteBtn to close taskCard
+    /*var closeTask = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < closeTask.length; i++) {
+        closeTask[i].onclick = function() {
+            var div = this.parentElement;
+            tasks.slice(div)
+        }
+    }*/
+
+    //adding edit button to taskCard
+    let editBtn = document.createElement("i");
+    editBtn.className = "fas fa-edit edit";
+    cardDiv.appendChild(editBtn);
 
     let cardTitle = document.createElement('h4'); 
     cardTitle.innerText = task.title; 

@@ -140,12 +140,30 @@ header h1{
       color: white; 
       cursor: pointer;
   }
-
-
   #addTaskModal {
       display: none;
   }
 
   #addTaskForm {
       padding: 10px 30px;
+      background-color: #FFFFCC;
+      border: 1px solid black;
+  }
+  .close{
+      position: relative;
+      left: 175px;
+      top: 0px;
+  }
+  .close:hover{
+      color: white;
+      cursor: pointer;
+  }
+  .edit{
+      position: relative;
+      left: 135px;
+      top: 0px;
+  }
+  .edit:hover{
+      color: white;
+      cursor: pointer;
   }
