@@ -116,6 +116,8 @@ header h1{
     margin-top: -5px;
 } 
 
+/* modals */
+
 .modal {
     position: absolute; 
     width: 50%; 
@@ -143,16 +145,31 @@ header h1{
       border: none; 
       color: white; 
       cursor: pointer;
-  }
-  #addTaskModal {
+    }
+    #addTaskModal {
       display: none;
-  }
+    }
 
-  #addTaskForm {
+    #addTaskForm {
       padding: 10px 30px;
       background-color: #FFFFCC;
       border: 1px solid black;
-  }
+    }
+
+    #addGrpModal {
+    display: none;
+    background: none;
+    }
+
+    #addGrpForm {
+    padding: 10px 30px;
+    background-color: #FFFFCC;
+    border: 1px solid black;
+    }
+
+
+  /* buttons for delete and edit */
+
   .close{
       position: relative;
       left: 175px;

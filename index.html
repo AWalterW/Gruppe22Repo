@@ -18,9 +18,9 @@
             <h1>KanBarn</h1> 
 
             <div id="toolBar">
-                <button id="addTaskBtn" onclick="openModal('addTaskModal')" ><i class="fas fa-plus-square taskBtn"></i><i id = taskBtnText>Legg til oppgave</i></button>
+                <button id="addTaskBtn" onclick="openModal('addTaskModal'), closeModal('addGrpModal')"><i class="fas fa-plus-square taskBtn"></i><i id = taskBtnText>Legg til oppgave</i></button>
                 <br>
-                <button id="addGrpBtn" onclick=""><i class="fas fa-users grpBtn"></i><i id = grpBtnText >Legg til medlemmer</i></button>
+                <button id="addGrpBtn" onclick="openModal('addGrpModal'), closeModal('addTaskModal')"><i class="fas fa-users grpBtn"></i><i id = grpBtnText >Legg til medlemmer</i></button>
             </div>
         </header> 
 
@@ -68,6 +68,24 @@
                     <input type="button" value="Legg til" onclick="addTask('addTaskForm')">
             </div> 
             <div id="addTaskRight">
+                
+            </div>
+
+        </form>
+    </div>
+    <div id="addGrpModal" class="modal"> 
+        <div class="modalHeader">
+            <h4>Legg til medlemmer</h4> 
+            <button class="closeModalBtn" onclick="closeModal('addGrpModal', 'addGrpForm')">Lukk</button>
+        </div>
+
+        <form id="addGrpForm" onsubmit="return false">
+            <div id="addGrpLeft">
+                    Navn:<br>
+                    <input type="text" name="title" id="addMember"><br>
+                    <input type="button" value="Legg til" onclick="addTask('addGrpForm')">
+            </div> 
+            <div id="addGrpRight">
                 
             </div>
 
