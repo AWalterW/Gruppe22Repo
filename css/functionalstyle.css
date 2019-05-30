@@ -91,6 +91,10 @@ header h1{
     padding: 2px 2px 2px 2px;
     align-content: center;
     border: solid 1px black;
+} 
+
+#todo, #doing, #completed {
+    overflow-y: auto;
 }
 
 /*Task cards that contain information about the task*/

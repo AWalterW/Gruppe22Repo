@@ -20,25 +20,29 @@ let defaultTasks = [
                 listTask: "Noe du må gjøre", 
                 isDone: true
             }
-        ]
+        ], 
+        deleted: false
     }, 
     {
         id: 1, 
         status: "doing",  
         title: "Second task", 
-        description: "Lorem ipsum dolor sit amet"
+        description: "Lorem ipsum dolor sit amet", 
+        deleted: false
     }, 
     {
         id: 2, 
         status: "todo",  
         title: "Third task", 
-        description: "Lorem ipsum dolor sit amet"
+        description: "Lorem ipsum dolor sit amet", 
+        deleted: false
     }, 
     {
         id: 3, 
         status: "completed", 
         title: "Fourth task", 
-        description: "Lorem ipsum dolor sit amet"
+        description: "Lorem ipsum dolor sit amet", 
+        deleted: false
     }
 ];
 
@@ -54,7 +58,7 @@ function getFromLocal() {
 
 function taskUpdated() {
     saveToLocal(); 
-    sortTasks(); 
+    sortTasks();  
 }
 
 // initializing webapp 
@@ -62,7 +66,7 @@ function startApp() {
     
     // check if item tasks is saved in localstorage
     if(localStorage.getItem("tasks") === null) {
-       
+        tasks = defaultTasks;
         saveToLocal();
     
     } else {    
@@ -97,21 +101,23 @@ function addTask(form) {
     const newTask = {};
     const newTaskList = [];
 
-    const taskTitle = document.getElementById("addTitle");  
-    const taskDescription = document.getElementById("addDescription");
-    const taskDueDate = document.getElementById("datefield"); 
+    const taskTitle = document.getElementById("addTitle").value;  ;
+    const taskDescription = document.getElementById("addDescription").value;
+    const taskDueDate = document.getElementById("datefield").value; 
 
-    if(taskTitle.length > 0) {
+    if(taskTitle.length > 0) { 
         newTask.title = taskTitle; 
         if(taskDescription.length > 0) {
             newTask.description = taskDescription;
             if(taskDueDate.length > 0) {
                 newTask.dueDate = taskDueDate; 
+                newTask.deleted = false;
                 submitTask(newTask); 
                 closeModal('addTaskModal', 'addTaskForm');
             } else {
+                newTask.deleted = false;
                 submitTask(newTask); 
-                closeModal('addTaskModal', 'addTaskForm');
+                closeModal('addTaskModal', 'addTaskForm'); 
             }
         } else {
             alert("Du må ha en beskrivelse");
@@ -126,5 +132,10 @@ function submitTask(newTask) {
     task.status = "todo"; 
     task.id = tasks.length; 
     tasks.push(task); 
+    taskUpdated();
+}
+
+function deleteTask(taskId){ 
+    tasks[taskId].deleted = true; 
     taskUpdated();
 }
