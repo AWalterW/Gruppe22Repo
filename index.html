@@ -13,15 +13,31 @@
     <div class="container">
         <header>
            <div id="logoDiv">
-               <h1 id="logo"><i class="fas fa-circle" style="color: #4ad7d1;"></i>KanBarn</h1>
+               <h1 id="logo">KanBarn</h1>
            </div>  
            <span></span>
            <div id="headTools">
                 <button class="mainBtn"><i class="fas fa-user-friends"></i>ProsjektGruppe</button> 
-                <h3 id="projects">Prosjekt 1<i class="fas fa-angle-down"></i></h3>
+                <div class="dropdown">
+                    <h3 id="projects">Prosjekt 1<i class="fas fa-angle-down"></i></h3>
+                    <div class="dropdown-content">
+                        <a href="#">Prosjekt 1</a>
+                        <a href="#">Prosjekt 2</a>
+                        <a href="#">Prosjekt 3</a>
+                    </div>
+                </div>
+                
            </div> 
-           <div id="userTools">
+           <div id="userTools"> 
+
+            <div class="dropdown">
                 <p id="username">Ola Nordmann<i class="fas fa-angle-down"></i></p>
+                <div class="dropdown-content">
+                    <a href="#">Min bruker</a>
+                    <a href="./login.html">Logg ut</a>
+                </div>
+            </div>
+
                 <div id="profilePicture">
                     <img src="./images/user.png" alt="user profilepicture">
                 </div>

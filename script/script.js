@@ -41,15 +41,15 @@ function renderTask(task, targetArea) {
       let taskEditBtns = document.createElement("span");
       taskEditBtns.className = "taskEditBtns";
 
-      let deleteBtn = document.createElement("i");
-      deleteBtn.className = "fas fa-trash-alt close";
-      deleteBtn.dataset.taskId = task.id;
-      taskEditBtns.appendChild(deleteBtn);
-
       //adding edit button to taskCard
       let editBtn = document.createElement("i");
       editBtn.className = "fas fa-edit edit";
       taskEditBtns.appendChild(editBtn);
+
+      let deleteBtn = document.createElement("i");
+      deleteBtn.className = "fas fa-trash-alt close";
+      deleteBtn.dataset.taskId = task.id;
+      taskEditBtns.appendChild(deleteBtn);
 
       cardDiv.appendChild(taskEditBtns);
       //adding dscription to taskCard
