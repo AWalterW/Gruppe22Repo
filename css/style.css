@@ -1,0 +1,237 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Open Sans", sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+img {
+  max-width: 100%;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: 70px 100%;
+  grid-template-areas:
+    "header header"
+    "main sidebar";
+  overflow: hidden;
+}
+
+header {
+  grid-area: header;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #001730;
+  padding: 10px 20px;
+  color: #ffffff;
+}
+
+header * {
+  margin: auto;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#logoDiv {
+  width: 10%;
+}
+
+#headTools {
+  display: flex;
+}
+
+#userTools {
+  display: flex;
+}
+#profilePicture {
+  float: right;
+  background: #ffffff;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#profilePicture img {
+  width: 100%;
+  margin-left: 0;
+}
+
+main {
+  grid-area: main;
+}
+
+#kanbanTools {
+  height: 70px;
+  padding: 20px 100px;
+}
+
+#kanbanBox {
+  height: 100%;
+  display: grid;
+  padding: 10px 50px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 40px 100%;
+  grid-column-gap: 5%;
+  align-content: space-around;
+}
+
+.kanbanList {
+  background-color: #f7f7f7;
+  height: 80%;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 0 2px 0;
+  align-content: center;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.taskCard {
+  width: 90%;
+  min-height: 120px;
+  margin-left: 6%;
+  margin-bottom: 5px;
+  padding: 10px 15px 5px 15px;
+  background-color: #4ad7d1;
+  color: #ffffff;
+  cursor: move;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 20px auto auto;
+  grid-template-areas:
+    "taskTitle taskTitle taskEditBtns"
+    "taskDescription taskDescription taskDescription"
+    "taskWorker taskDate taskDate";
+}
+
+.taskTitle {
+  grid-area: taskTitle;
+  width: 80%;
+  margin: 0;
+}
+
+.taskEditBtns {
+  grid-area: taskEditBtns;
+  text-align: end;
+}
+
+.taskEditBtns * {
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.taskEditBtns *:hover {
+  color: #fe4a49;
+}
+
+.taskDescription {
+  grid-area: taskDescription;
+}
+
+.taskWorker {
+  grid-area: taskWorker;
+  margin: 0;
+  padding: 0;
+}
+
+.taskDate {
+  grid-area: taskDate;
+  margin: 0;
+  padding: 0;
+  text-align: end;
+}
+
+#sidebar {
+  grid-area: sidebar;
+  background-color: #fe4a49;
+}
+
+.mainBtn {
+  background: #001730;
+  padding: 10px 15px;
+  color: #ffffff;
+  border: 1px solid #4ad7d1;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  cursor: pointer;
+}
+
+.mainBtn:hover {
+  background-color: #365d88;
+}
+
+@media (max-width: 812px) {
+  #logoDiv {
+    display: none;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px 100vh 100vh;
+    grid-template-areas:
+      "header"
+      "main"
+      "sidebar";
+    overflow: auto;
+  }
+}
+
+/* modals */
+
+.modal {
+  position: absolute;
+  width: 50%;
+  height: 40%;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modalHeader {
+  background: rgb(16, 16, 187);
+  height: 50px;
+  width: 100%;
+}
+
+.modalHeader h4 {
+  display: inline-block;
+  color: white;
+}
+
+.modalHeader button {
+  float: right;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+#addTaskModal {
+  display: none;
+}
+
+#addTaskForm {
+  padding: 10px 30px;
+  background-color: #ffffcc;
+  border: 1px solid black;
+}

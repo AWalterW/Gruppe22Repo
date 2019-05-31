@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title> 
+    <link rel="stylesheet" href="./css/style.css"> 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+<body onload="startApp()">
+    <div class="container">
+        <header>
+           <div id="logoDiv">
+               <h1 id="logo"><i class="fas fa-circle" style="color: #4ad7d1;"></i>KanBarn</h1>
+           </div>  
+           <span></span>
+           <div id="headTools">
+                <button class="mainBtn"><i class="fas fa-user-friends"></i>ProsjektGruppe</button> 
+                <h3 id="projects">Prosjekt 1<i class="fas fa-angle-down"></i></h3>
+           </div> 
+           <div id="userTools">
+                <p id="username">Ola Nordmann<i class="fas fa-angle-down"></i></p>
+                <div id="profilePicture">
+                    <img src="./images/user.png" alt="user profilepicture">
+                </div>
+           </div>
+        </header> 
+
+        <main>
+            <div id="kanbanTools">
+                <button class="mainBtn" onclick="openModal('addTaskModal'), closeModal('addGrpModal')"><i class="fas fa-plus"></i> Legg til oppgave</button>
+            </div> 
+            <div id="kanbanBox"> 
+                <h3>Skal gjøres</h3> 
+                <h3>Holder på</h3> 
+                <h3>Ferdig</h3>
+                    <div id="todo" class="kanbanList"> 
+                    </div>
+
+                    <div id="doing" class="kanbanList">
+       
+                    </div> 
+
+                    <div id="completed" class="kanbanList">
+                                
+            </div>
+        </main> 
+        <div id="sidebar"></div>  
+
+            <div id="addTaskModal" class="modal">
+                <div class="modalHeader">
+                    <h4>Legg til oppgave</h4>
+                    <button class="closeModalBtn" onclick="closeModal('addTaskModal', 'addTaskForm')">Lukk</button>
+                </div>
+            
+                <form id="addTaskForm" onsubmit="return false">
+                    <div id="addTaskLeft">
+                        Tittel:<br>
+                        <input type="text" name="title" id="addTitle"><br>
+                        Beskrivelse:<br>
+                        <textarea name="description" cols="40" rows="8" id="addDescription"></textarea> <br>
+                        Frist:<br>
+                        <input id="datefield" type='date' min='1899-01-01' max='2000-13-13' name="dateDue"></input> <br> <br>
+                        <input type="button" value="Legg til" onclick="addTask('addTaskForm')">
+                    </div>
+                    <div id="addTaskRight">
+            
+                    </div>
+            
+                </form>
+            </div>
+
+        <script src="./script/tasks.js"></script>
+        <script src="./script/script.js"></script>
+
+</body>
+</html>
