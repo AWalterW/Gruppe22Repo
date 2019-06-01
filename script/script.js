@@ -184,6 +184,10 @@ function fixDueDate() {
 
 // Modals
 
+document.getElementById("saveModalInfo").addEventListener("click", function() {
+    addTask();
+});
+
 function openModal(target) {
   const modal = document.getElementById(target);
   modal.style.display = "block";
@@ -194,7 +198,7 @@ function closeModal(target, form) {
 
   document.getElementById("addTitle").value = "";
   document.getElementById("addDescription").value = "";
-  document.getElementById("datefield").value = "";
+  //document.getElementById("datefield").value = "";
   modal.style.display = "none";
 }
 

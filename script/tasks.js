@@ -104,7 +104,7 @@ function addTask(form) {
 
   const taskTitle = document.getElementById("addTitle").value;
   const taskDescription = document.getElementById("addDescription").value;
-  const taskDueDate = document.getElementById("datefield").value;
+  const taskDueDate = ""; // = document.getElementById("datefield").value;
 
   if (taskTitle.length > 0) {
     newTask.title = taskTitle;

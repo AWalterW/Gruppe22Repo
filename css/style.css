@@ -196,42 +196,4 @@ main {
   }
 }
 
-/* modals */
 
-.modal {
-  position: absolute;
-  width: 50%;
-  height: 40%;
-  float: left;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.modalHeader {
-  background: rgb(16, 16, 187);
-  height: 50px;
-  width: 100%;
-}
-
-.modalHeader h4 {
-  display: inline-block;
-  color: white;
-}
-
-.modalHeader button {
-  float: right;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-#addTaskModal {
-  display: none;
-}
-
-#addTaskForm {
-  padding: 10px 30px;
-  background-color: #ffffcc;
-  border: 1px solid black;
-}

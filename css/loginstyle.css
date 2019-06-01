@@ -1,5 +1,4 @@
 
-/* Set a background image by replacing the URL below */
 body {
     background: url('https://www.neeuro.com/wp-content/uploads/Depositphotos_8846425_original.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -14,7 +13,4 @@ body {
 
 #loginBox {
     background-color: rgba(10,10,10,0.7);
-}
-
-#kanBarnImagino {
 }
