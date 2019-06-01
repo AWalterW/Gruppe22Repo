@@ -31,6 +31,7 @@ function renderTask(task, targetArea) {
       let cardDiv = document.createElement("div");
       cardDiv.className = "taskCard";
       cardDiv.dataset.taskId = task.id;
+      cardDiv.dataset.categori = task.status;
       cardDiv.draggable = true;
 
       let taskTitle = document.createElement("h4");
@@ -41,15 +42,15 @@ function renderTask(task, targetArea) {
       let taskEditBtns = document.createElement("span");
       taskEditBtns.className = "taskEditBtns";
 
-      let deleteBtn = document.createElement("i");
-      deleteBtn.className = "fas fa-trash-alt close";
-      deleteBtn.dataset.taskId = task.id;
-      taskEditBtns.appendChild(deleteBtn);
-
       //adding edit button to taskCard
       let editBtn = document.createElement("i");
       editBtn.className = "fas fa-edit edit";
       taskEditBtns.appendChild(editBtn);
+
+      let deleteBtn = document.createElement("i");
+      deleteBtn.className = "fas fa-trash-alt close";
+      deleteBtn.dataset.taskId = task.id;
+      taskEditBtns.appendChild(deleteBtn);
 
       cardDiv.appendChild(taskEditBtns);
       //adding dscription to taskCard
@@ -114,9 +115,27 @@ function renderTask(task, targetArea) {
       cardDiv.addEventListener("click", e => {
         if (e.target.classList.contains("close")) {
           const taskId = e.target.dataset.taskId;
-          console.log(taskId);
           deleteTask(taskId);
         }
+      });
+
+      cardDiv.addEventListener("drop", e => {
+        const taskId = e.dataTransfer.getData("text");
+        let target;  
+        if (e.target.dataset.categori === "todo" || e.target.dataset.categori === "doing" || e.target.dataset.categori === "completed") {
+          target = e.target.dataset.categori;
+          changeTaskStatus(taskId, target);
+        } 
+        if (e.target.parentElement.parentElement.dataset.categori === "todo" || e.target.parentElement.parentElement.dataset.categori === "doing" || e.target.parentElement.parentElement.dataset.categori === "completed") {
+          target = e.target.parentElement.parentElement.dataset.categori;
+          changeTaskStatus(taskId, target);
+        } 
+
+        if (e.target.parentElement.dataset.categori === "todo" || e.target.parentElement.dataset.categori === "doing" || e.target.parentElement.dataset.categori === "completed") {
+          target = e.target.parentElement.dataset.categori;
+          changeTaskStatus(taskId, target);
+        }
+        // e.target.classList.remove("dragging");
       });
 
       cardDiv.addEventListener("dragstart", e => {
@@ -203,7 +222,6 @@ function closeModal(target, form) {
 }
 
 function formatDate(date) {
-  console.log(date);
   let dateArray = date.split("-");
   let month;
   switch (dateArray[1]) {
