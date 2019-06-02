@@ -115,7 +115,7 @@ function renderTask(task, targetArea) {
         cardDiv.appendChild(taskDueDate);
       }
 
-      // Eventlistener for click inside taskcards ADD FOR RADIOBUTTONS!
+      // Eventlistener for click inside taskcards
       cardDiv.addEventListener("click", e => {
         if (e.target.classList.contains("close")) {
           const taskId = e.target.dataset.taskId;
@@ -157,13 +157,45 @@ function renderTask(task, targetArea) {
 }
 
 // Removes cards from dom to be rendered again
-function removeChildElements(area) {
+function removeChildElements(area) { 
   let i = area.childNodes.length;
   while (i > 0) {
     area.removeChild(area.lastChild);
     i--;
   }
+} 
+
+//Render page elements 
+function renderPageVars() {
+  document.getElementById("username").innerText = members[currentUser].name; 
+
+  const projectsArea = document.getElementById("projects"); 
+  const projectDropdown = document.getElementById("projectDropdown"); 
+  removeChildElements(projectDropdown);
+  projectsArea.innerText = projects[currentProject].name + " "; 
+
+  let projectArrow = document.createElement("i"); 
+  projectArrow.className = "fas fa-angle-down"; 
+  
+  document.getElementById("projects").appendChild(projectArrow); 
+
+  
+  projects.forEach((e) => {
+    if(e.members.includes(currentUser) && e.id !== currentProject) {
+      let projectLi = document.createElement("a"); 
+      projectLi.innerText = e.name; 
+      projectLi.dataset.projectId = e.id;
+      
+      document.getElementById("projectDropdown").appendChild(projectLi);
+    }   
+  }); 
+
+  let projectLiAddproject = document.createElement("a"); 
+      projectLiAddproject.innerText = "Nytt projekt"; 
+      projectLiAddproject.id = "newProjectBtn";
+      document.getElementById("projectDropdown").appendChild(projectLiAddproject);
 }
+
 
 // Drag and Drop here!
 
@@ -207,7 +239,7 @@ function fixDueDate() {
   }
 
   today = yyyy + "-" + mm + "-" + dd;
-  // document.getElementById("datefield").setAttribute("min", today);
+  document.getElementById("datefield").setAttribute("min", today);
 }
 
 // Modals

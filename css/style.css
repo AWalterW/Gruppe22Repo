@@ -7,7 +7,8 @@ body {
   padding: 0;
   height: 100vh;
   width: 100vw;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif; 
+  font-weight: 100;
 }
 
 *,
@@ -141,8 +142,20 @@ main {
   color: #fe4a49;
 }
 
+.taskCard:hover .taskDescription{
+  height: auto; 
+
+
+
+}
+
 .taskDescription {
-  grid-area: taskDescription;
+  grid-area: taskDescription; 
+  height: 40px;  
+  transition: linear;  
+  overflow: hidden; 
+  transition-duration: 3s; 
+  transition-property: all;
 }
 
 .taskChecklist {
@@ -218,7 +231,7 @@ list-style: none;
   position: absolute;
   padding-top: 5px;
   background-color: #f9f9f9;
-  min-width: 120px;
+  min-width: 130px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }

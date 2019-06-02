@@ -1,5 +1,6 @@
 let tasks = [];
-let currentProject = 0;
+let currentProject = 0; 
+let currentUser = 0;
 
 let defaultTasks = [
   {
@@ -68,6 +69,7 @@ function taskUpdated() {
 
 // initializing webapp
 function startApp() {
+ 
   // check if item tasks is saved in localstorage
   if (localStorage.getItem("tasks") === null) {
     tasks = defaultTasks;
@@ -81,6 +83,8 @@ function startApp() {
       tasks = JSON.parse(localStorage.getItem("tasks"));
     }
   }
+
+  renderPageVars();
 
   fixDueDate();
 
