@@ -62,30 +62,34 @@ function renderTask(task, targetArea) {
       taskDescription.appendChild(taskDescriptionText);
 
       // check if task has checklist and render it
-      if (task.checkList == "noe") {
-        let listArea = document.createElement("div");
-        listArea.className = "listArea";
+      if (task.checkList) {
+        let listArea = document.createElement("ul");
+        listArea.className = "taskChecklist";
         taskDescription.appendChild(listArea);
 
-        task.checkList.forEach(task => {
+        for(let i = 0; i < task.checkList.length; i++){  
+          let subtask = task.checkList[i];
+
+          let checkListitem = document.createElement("li");
+
           let checkbox = document.createElement("input");
-          checkbox.type = "checkbox";
-          checkbox.onchange = `checkboxChange(${task.id})`;
+          checkbox.type = "checkbox"; 
+          checkbox.dataset.taskId = task.id; 
+          checkbox.dataset.subTaskId = i; 
 
           let checkboxText = document.createElement("p");
-          checkboxText.innerText = task.listTask;
+          checkboxText.innerText = subtask.listTask;
 
-          if (task.isDone) {
+          if (subtask.isDone) {
             checkbox.checked = true;
             checkboxText.style.textDecoration = "line-through";
           }
 
-          listArea.appendChild(checkbox);
-          listArea.appendChild(checkboxText);
+          checkListitem.appendChild(checkbox);
+          checkListitem.appendChild(checkboxText);
 
-          let br = document.createElement("br");
-          listArea.appendChild(br);
-        });
+          listArea.appendChild(checkListitem);
+        };
       }
       cardDiv.appendChild(taskDescription);
 
@@ -116,9 +120,15 @@ function renderTask(task, targetArea) {
         if (e.target.classList.contains("close")) {
           const taskId = e.target.dataset.taskId;
           deleteTask(taskId);
+        } 
+
+        if(e.target.tagName === "INPUT") {
+
+          checkboxChange(e.target.dataset.taskId, e.target.dataset.subTaskId);
         }
       });
 
+      // Enables drop on other card to change status
       cardDiv.addEventListener("drop", e => {
         const taskId = e.dataTransfer.getData("text");
         let target;  
@@ -135,7 +145,6 @@ function renderTask(task, targetArea) {
           target = e.target.parentElement.dataset.categori;
           changeTaskStatus(taskId, target);
         }
-        // e.target.classList.remove("dragging");
       });
 
       cardDiv.addEventListener("dragstart", e => {
@@ -147,7 +156,7 @@ function renderTask(task, targetArea) {
   }
 }
 
-// Removes card from dom to be rendered again
+// Removes cards from dom to be rendered again
 function removeChildElements(area) {
   let i = area.childNodes.length;
   while (i > 0) {
@@ -217,6 +226,8 @@ function closeModal(target, form) {
   modal.style.display = "none";
 }
 
+
+// returns duedate as formated string
 function formatDate(date) {
   let dateArray = date.split("-");
   let month;

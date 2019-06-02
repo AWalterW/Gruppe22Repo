@@ -92,9 +92,7 @@ function startApp() {
   sortTasks();
 }
 
-function checkboxChange(id) {
-  console.log(id);
-}
+
 
 // add new task to task array
 
@@ -138,5 +136,10 @@ function submitTask(newTask) {
 
 function deleteTask(taskId) {
   tasks[taskId].deleted = true;
+  taskUpdated();
+}
+
+function checkboxChange(taskId, subtaskId) {
+  tasks[taskId].checkList[subtaskId].isDone = !tasks[taskId].checkList[subtaskId].isDone;  
   taskUpdated();
 }

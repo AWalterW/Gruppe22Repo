@@ -145,6 +145,22 @@ main {
   grid-area: taskDescription;
 }
 
+.taskChecklist {
+  padding: 0;
+} 
+
+.taskChecklist input {
+  border: 1px solid green;
+}
+
+.taskChecklist li{
+list-style: none; 
+}
+
+.taskChecklist p {
+  display: inline;
+}
+
 .taskWorker {
   grid-area: taskWorker;
   margin: 0;
