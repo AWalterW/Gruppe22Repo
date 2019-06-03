@@ -70,6 +70,10 @@ header * {
   width: 10%;
 }
 
+#logo {
+  text-shadow: 1px 1px #4ad7d1;
+}
+
 #headTools {
   display: flex;
 }
@@ -99,10 +103,10 @@ main {
 #kanbanTools {
   height: 70px;
   padding: 20px 100px;
+
 }
 
 #kanbanBox { 
-
   height: 100%;
   display: grid;
   padding: 10px 50px;
@@ -110,6 +114,10 @@ main {
   grid-template-rows: 40px 100%;
   grid-column-gap: 5%;
   align-content: space-around;
+}
+
+.listHeader {
+  text-align: center;
 }
 
 .kanbanList {
@@ -126,7 +134,7 @@ main {
 .taskCard {
   width: 90%;
   min-height: 120px;
-  margin-left: 6%;
+  margin-left: 5%;
   margin-bottom: 5px;
   padding: 10px 15px 5px 15px;
   color: var(--card-text-color);
@@ -166,8 +174,9 @@ main {
   grid-area: taskDescription; 
   transition: linear;  
   overflow: hidden; 
-  transition-duration: 3s; 
+  transition-duration: 0s; 
   transition-property: all;
+  margin-top: auto;
 }
 
 .taskChecklist {
@@ -179,7 +188,7 @@ main {
 }
 
 .taskChecklist li{
-list-style: none; 
+  list-style: none; 
 }
 
 .taskChecklist p {
@@ -200,6 +209,21 @@ list-style: none;
 }
 
 /* Colorchange on taskCards */
+
+#todo {
+  background-color: #ffeeee;
+  border-radius:5px;
+}
+
+#doing {
+  background-color: #ffffee;
+  border-radius:5px;
+}
+
+#completed {
+  background-color: #eeffee;
+  border-radius: 5px; 
+}
 
 #todo .taskCard {
   background-color: var(--todo-card-color);
@@ -226,6 +250,7 @@ list-style: none;
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
   cursor: pointer;
+  margin-left: -50px;
 }
 
 .mainBtn:hover {
@@ -300,15 +325,17 @@ list-style: none;
 }
 
 .modalHeader {
-  background: #f9530b;
+  background: var(--main-color);
   height: 50px;
   width: 100%;
   padding-left: 10px;
+  text-shadow: 1px 1px #4ad7d1;
 }
 
 .modalHeader h4 {
   display: inline-block;
   color: white;
+  
 }
 
 .modalHeader button {
@@ -318,28 +345,49 @@ list-style: none;
   color: white;
   cursor: pointer;
 }
+
+.closeModalBtn {
+  background-color: red;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  text-align: center;
+  top:0;
+  right:0;
+  display:inline-block;
+}
+
 #addTaskModal {
   display: none;
 }
 
+#addTaskModalBtn {
+  background-color:#5cb85c;
+  border-radius:5px;
+  padding: 10px;
+  color: white;
+  border: 1px solid darkgreen;
+  text-shadow: 1px 1px darkgreen;
+}
+
 #addTaskForm {
   padding: 10px 30px;
-  background-color: #fbd808;
+  background-color:	#eaeaee;
 }
 
 #addTitle {
   border-radius:5px;
-  background-color: #fdf542;
+  background-color:#fcfcfc;
 }
 
 #addDescription{
   border-radius:5px;
   flex-shrink: 0;
   max-width: 100%;
-  background-color: #fdf542;
+  background-color:#fcfcfc;
 }
 
 #datefield {
   border-radius: 5px;
-  background-color: #fdf542;
+  background-color:#fcfcfc;
 }
