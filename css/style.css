@@ -275,18 +275,23 @@ list-style: none;
 
 .modal {
   position: absolute;
-  width: 50%;
-  height: 40%;
-  float: left;
-  left: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  left: 40%;
   top: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 10px;
+  /*Supposed to darken background*/
+  background: rgba(0,0,0,0.85);
+  max-width: 70%;
+  max-height: 100%;
 }
 
 .modalHeader {
-  background: rgb(16, 16, 187);
+  background: #f9530b;
   height: 50px;
   width: 100%;
+  padding-left: 10px;
 }
 
 .modalHeader h4 {
@@ -307,6 +312,22 @@ list-style: none;
 
 #addTaskForm {
   padding: 10px 30px;
-  background-color: #ffffcc;
-  border: 1px solid black;
+  background-color: #fbd808;
+}
+
+#addTitle {
+  border-radius:5px;
+  background-color: #fdf542;
+}
+
+#addDescription{
+  border-radius:5px;
+  flex-shrink: 0;
+  max-width: 100%;
+  background-color: #fdf542;
+}
+
+#datefield {
+  border-radius: 5px;
+  background-color: #fdf542;
 }
