@@ -37,4 +37,5 @@ function childPageView() {
 
 function userpointAdded(user) {
     console.log(members[user].name);
+    addProgressbarPoint();
 }

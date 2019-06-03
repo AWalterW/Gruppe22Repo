@@ -223,7 +223,8 @@ function changeTaskStatus(taskId, target) {
 
     if(target === "completed" && task.completed === false) { 
        if(members[task.worker] && !members[currentUser].isChild) { 
-        members[task.worker].points++; 
+        members[task.worker].points += 1; 
+        console.log(members[task.worker].points);
         userpointAdded(task.worker);
         console.log(`${members[task.worker].name} får 1 poeng og har nå ${members[task.worker].points} poeng!`); 
         task.completed = true;
@@ -323,4 +324,16 @@ function formatDate(date) {
   }
 
   return `${dateArray[2]}. ${month} ${dateArray[0]}`;
+}
+
+// Changing color on points added Progressbar
+
+function addProgressbarPoint(){
+
+    if(members[currentUser].points >= 0 && members[currentUser].isChild){
+    for(let i = 1; i < members[currentUser].points + 1; i++) {
+      document.getElementById("g" + i).style.backgroundColor = "green"; 
+      console.log(i);
+    }
+  }
 }

@@ -405,3 +405,39 @@ main {
   }
 }
 
+/* Progress Bar !!!!!hardcoded!!!!! */
+
+#progressBar{
+  position: relative;
+  margin: 75px;
+}
+
+.grid{
+  position: relative;
+  top: -90px;
+  width: 70px;
+  height: 70px;
+  background-color: white;
+  clip-path:
+      polygon(
+      0% 5%,
+      5% 0%,
+      95% 0%,
+      100% 5%,
+      100% 95%,
+      95% 100%,
+      5% 100%,
+      0% 95%
+      );
+}
+
+#arrow1{
+  position: relative;
+  left: 100px;
+  top: 185px;
+}
+#arrow2{
+  position: relative;
+  left: 100px;
+  top: -60px;
+}
