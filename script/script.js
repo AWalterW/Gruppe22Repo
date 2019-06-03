@@ -266,6 +266,7 @@ function fixDueDate() {
 function openModal(target) {
   const modal = document.getElementById(target);
   modal.style.display = "block";
+
 }
 
 function closeModal(target, form) {
