@@ -1,3 +1,20 @@
+:root {
+  --main-color: #001730; 
+  --main-background-color: #ffffff; 
+  --header-text-color: #ffffff;
+  --kanbanlist-background-color: #f7f7f7; 
+  
+  --todo-card-color: #ff0000c5; 
+  --doing-card-color: #ffff008f; 
+  --completed-card-color: #00800091;
+  --card-text-color: #001730; 
+  --edit-hover-color: #fe4a49;
+  --btn-border-color: #4ad7d1; 
+  --btn-hover-color: #365d88; 
+
+  --sidebar-background-color: #fe4a49;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -38,9 +55,9 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #001730;
+  background-color: var(--main-color);
   padding: 10px 20px;
-  color: #ffffff;
+  color: var(--header-text-color);
 }
 
 header * {
@@ -75,7 +92,8 @@ header * {
 }
 
 main {
-  grid-area: main;
+  grid-area: main; 
+  background-color: var(--main-background-color);
 }
 
 #kanbanTools {
@@ -83,7 +101,8 @@ main {
   padding: 20px 100px;
 }
 
-#kanbanBox {
+#kanbanBox { 
+
   height: 100%;
   display: grid;
   padding: 10px 50px;
@@ -94,7 +113,7 @@ main {
 }
 
 .kanbanList {
-  background-color: #f7f7f7;
+  background-color: var(--kanbanlist-background-color);
   height: 80%;
   width: 100%;
   margin-top: 10px;
@@ -110,7 +129,7 @@ main {
   margin-left: 6%;
   margin-bottom: 5px;
   padding: 10px 15px 5px 15px;
-  color: #001730;
+  color: var(--card-text-color);
   cursor: move;
   border-radius: 10px;
   display: grid;
@@ -139,19 +158,12 @@ main {
 }
 
 .taskEditBtns *:hover {
-  color: #fe4a49;
+  color: var(--doing-card-color);
 }
 
-.taskCard:hover .taskDescription{
-  height: auto; 
-
-
-
-}
 
 .taskDescription {
   grid-area: taskDescription; 
-  height: 40px;  
   transition: linear;  
   overflow: hidden; 
   transition-duration: 3s; 
@@ -190,25 +202,25 @@ list-style: none;
 /* Colorchange on taskCards */
 
 #todo .taskCard {
-  background-color: rgba(255, 0, 0, 0.774);
+  background-color: var(--todo-card-color);
 }
 #doing .taskCard {
-  background-color: rgba(255, 255, 0, 0.562);
+  background-color: var(--doing-card-color);
 }
 #completed .taskCard {
-  background-color: rgba(0, 128, 0, 0.568);
+  background-color: var(--completed-card-color);
 }
 
 #sidebar {
   grid-area: sidebar;
-  background-color: #fe4a49;
+  background-color: var(--sidebar-background-color);
 }
 
 .mainBtn {
-  background: #001730;
+  background: var(--main-color);
   padding: 10px 15px;
   color: #ffffff;
-  border: 1px solid #4ad7d1;
+  border: 1px solid var(--btn-border-color);
   border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -217,7 +229,7 @@ list-style: none;
 }
 
 .mainBtn:hover {
-  background-color: #365d88;
+  background-color: var(--btn-hover-color);
 }
 
 .dropdown {

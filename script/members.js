@@ -4,7 +4,7 @@ let members = [
         email: "noen@eksempel.no", 
         password: "abc123", 
         name: "Ola Nordmann", 
-        lastOpenProject: 0
+        lastOpenProject: 1
         
     }, 
     {

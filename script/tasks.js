@@ -1,5 +1,5 @@
 let tasks = [];
-let currentProject = 0; 
+let currentProject; 
 let currentUser = 0;
 
 let defaultTasks = [
@@ -8,8 +8,7 @@ let defaultTasks = [
     status: "todo",
     title: "First task",
     description: "Lorem ipsum dolor sit amet",
-    category: "school",
-    worker: "Ola Nordmann",
+    worker: 0,
     checkList: [
       {
         listTask: "Noe du må gjøre",
@@ -31,7 +30,8 @@ let defaultTasks = [
     id: 1,
     status: "doing",
     title: "Second task",
-    description: "Lorem ipsum dolor sit amet",
+    description: "Lorem ipsum dolor sit amet", 
+    worker: 1,
     deleted: false,
     project: 0
   },
@@ -82,6 +82,10 @@ function startApp() {
     } else {
       tasks = JSON.parse(localStorage.getItem("tasks"));
     }
+  }
+
+  if(currentProject === undefined) {
+    currentProject = members[currentUser].lastOpenProject;
   }
 
   renderPageVars();
