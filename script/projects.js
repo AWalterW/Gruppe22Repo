@@ -32,7 +32,8 @@ function changeProjectListener() {
 } 
 
 function changeCurrentProject(id) {
-    currentProject = parseInt(id); 
+    currentProject = parseInt(id);  
+    members[currentUser].lastOpenProject = id; 
     startApp();
 }
 

@@ -93,14 +93,15 @@ function renderTask(task, targetArea) {
       }
       cardDiv.appendChild(taskDescription);
 
-      if (task.worker && task.worker.length > 0) {
+      if (task.worker >= 0) {
         let taskWorker = document.createElement("p");
 
         taskWorker.className = "taskWorker";
         let taskWorkerIcon = document.createElement("i");
         taskWorkerIcon.className = "fas fa-user";
-        taskWorker.appendChild(taskWorkerIcon);
-        taskWorker.innerText = task.worker;
+ 
+        taskWorker.innerText = " " + members[parseInt(task.worker)].name; 
+        taskWorker.insertBefore(taskWorkerIcon, taskWorker.firstChild);
         cardDiv.appendChild(taskWorker);
       }
 
@@ -167,7 +168,7 @@ function removeChildElements(area) {
 
 //Render page elements 
 function renderPageVars() {
-  document.getElementById("username").innerText = members[currentUser].name; 
+  document.getElementById("username").innerHTML = members[currentUser].name + '<i class="fas fa-angle-down"></i>'; 
 
   const projectsArea = document.getElementById("projects"); 
   const projectDropdown = document.getElementById("projectDropdown"); 
