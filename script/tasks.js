@@ -1,5 +1,5 @@
 let tasks = [];
-let currentProject; 
+let currentProject;
 let currentUser = 2;
 
 let defaultTasks = [
@@ -23,7 +23,7 @@ let defaultTasks = [
         isDone: true
       }
     ],
-    deleted: false, 
+    deleted: false,
     completed: false,
     project: 0
   },
@@ -31,9 +31,9 @@ let defaultTasks = [
     id: 1,
     status: "doing",
     title: "Second task",
-    description: "Lorem ipsum dolor sit amet", 
+    description: "Lorem ipsum dolor sit amet",
     worker: 1,
-    deleted: false, 
+    deleted: false,
     completed: false,
     project: 0
   },
@@ -42,7 +42,7 @@ let defaultTasks = [
     status: "todo",
     title: "Third task",
     description: "Lorem ipsum dolor sit amet",
-    deleted: false, 
+    deleted: false,
     completed: false,
     project: 0
   },
@@ -72,7 +72,6 @@ function taskUpdated() {
 
 // initializing webapp
 function startApp() {
- 
   // check if item tasks is saved in localstorage
   if (localStorage.getItem("tasks") === null) {
     tasks = defaultTasks;
@@ -87,16 +86,15 @@ function startApp() {
     }
   }
 
-  if(currentProject === undefined) {
-    if(members[currentUser].lastOpenProject) {
+  if (currentProject === undefined) {
+    if (members[currentUser].lastOpenProject) {
       currentProject = members[currentUser].lastOpenProject;
     } else {
       currentProject = 0;
     }
-    
   }
 
-  renderPageVars(); 
+  renderPageVars();
   childPageView();
 
   fixDueDate();
@@ -108,8 +106,6 @@ function startApp() {
   // sorts and renders tasks to the site
   sortTasks();
 }
-
-
 
 // add new task to task array
 
@@ -125,8 +121,8 @@ function addTask(form) {
     newTask.title = taskTitle;
     if (taskDescription.length > 0) {
       newTask.description = taskDescription;
-      newTask.deleted = false; 
-      newTask.completed = false; 
+      newTask.deleted = false;
+      newTask.completed = false;
       newTask.worker = currentUser;
       newTask.project = currentProject;
       if (taskDueDate.length > 0) {
@@ -159,6 +155,8 @@ function deleteTask(taskId) {
 }
 
 function checkboxChange(taskId, subtaskId) {
-  tasks[taskId].checkList[subtaskId].isDone = !tasks[taskId].checkList[subtaskId].isDone;  
+  tasks[taskId].checkList[subtaskId].isDone = !tasks[taskId].checkList[
+    subtaskId
+  ].isDone;
   taskUpdated();
 }

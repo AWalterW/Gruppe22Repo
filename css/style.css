@@ -1,16 +1,16 @@
 :root {
-  --main-color: #001730; 
-  --main-background-color: #ffffff; 
+  --main-color: #001730;
+  --main-background-color: #ffffff;
   --header-text-color: #ffffff;
-  --kanbanlist-background-color: #f7f7f7; 
-  
-  --todo-card-color: #ff0000c5; 
-  --doing-card-color: #ffff008f; 
+  --kanbanlist-background-color: #f7f7f7;
+
+  --todo-card-color: #ff0000c5;
+  --doing-card-color: #ffff008f;
   --completed-card-color: #00800091;
-  --card-text-color: #001730; 
+  --card-text-color: #001730;
   --edit-hover-color: #fe4a49;
-  --btn-border-color: #4ad7d1; 
-  --btn-hover-color: #365d88; 
+  --btn-border-color: #4ad7d1;
+  --btn-hover-color: #365d88;
 
   --sidebar-background-color: #fe4a49;
 }
@@ -24,8 +24,9 @@ body {
   padding: 0;
   height: 100vh;
   width: 100vw;
-  font-family: Arial, Helvetica, sans-serif;     
-  }
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
 
 *,
 *:before,
@@ -95,17 +96,16 @@ header * {
 }
 
 main {
-  grid-area: main; 
+  grid-area: main;
   background-color: var(--main-background-color);
 }
 
 #kanbanTools {
   height: 70px;
   padding: 20px 100px;
-
 }
 
-#kanbanBox { 
+#kanbanBox {
   height: 100%;
   display: grid;
   padding: 10px 50px;
@@ -168,26 +168,25 @@ main {
   color: var(--doing-card-color);
 }
 
-
 .taskDescription {
-  grid-area: taskDescription; 
-  transition: linear;  
-  overflow: hidden; 
-  transition-duration: 0s; 
+  grid-area: taskDescription;
+  transition: linear;
+  overflow: hidden;
+  transition-duration: 0s;
   transition-property: all;
   margin-top: auto;
 }
 
 .taskChecklist {
   padding: 0;
-} 
+}
 
 .taskChecklist input {
   border: 1px solid green;
 }
 
-.taskChecklist li{
-  list-style: none; 
+.taskChecklist li {
+  list-style: none;
 }
 
 .taskChecklist p {
@@ -211,17 +210,17 @@ main {
 
 #todo {
   background-color: #ffeeee;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
 #doing {
   background-color: #ffffee;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
 #completed {
   background-color: #eeffee;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
 #todo .taskCard {
@@ -318,9 +317,10 @@ main {
   transform: translate(-50%, -50%);
   border-radius: 10px;
   /*Supposed to darken background*/
-  background: rgba(0,0,0,0.85);
   max-width: 70%;
   max-height: 100%;
+  /*Animation*/
+  animation: modalShow 0.5s forwards 1;
 }
 
 .modalHeader {
@@ -328,13 +328,11 @@ main {
   height: 50px;
   width: 100%;
   padding-left: 10px;
-  text-shadow: 1px 1px #4ad7d1;
 }
 
 .modalHeader h4 {
   display: inline-block;
   color: white;
-  
 }
 
 .modalHeader button {
@@ -346,14 +344,13 @@ main {
 }
 
 .closeModalBtn {
-  background-color: red;
   width: 50px;
   height: 50px;
   position: absolute;
   text-align: center;
-  top:0;
-  right:0;
-  display:inline-block;
+  top: 0;
+  right: 0;
+  display: inline-block;
 }
 
 #addTaskModal {
@@ -361,32 +358,81 @@ main {
 }
 
 #addTaskModalBtn {
-  background-color:#5cb85c;
-  border-radius:5px;
+  background-color: #5cb85c;
+  border-radius: 5px;
   padding: 10px;
   color: white;
   border: 1px solid darkgreen;
   text-shadow: 1px 1px darkgreen;
+  margin-bottom: 10px;
 }
 
 #addTaskForm {
   padding: 10px 30px;
-  background-color:	#eaeaee;
+  background-color: #eaeaee;
 }
 
 #addTitle {
-  border-radius:5px;
-  background-color:#fcfcfc;
+  border-radius: 5px;
+  background-color: #fcfcfc;
 }
 
-#addDescription{
-  border-radius:5px;
+#addDescription {
+  border-radius: 5px;
   flex-shrink: 0;
   max-width: 100%;
-  background-color:#fcfcfc;
+  background-color: #fcfcfc;
 }
 
 #datefield {
   border-radius: 5px;
-  background-color:#fcfcfc;
+  background-color: #fcfcfc;
+}
+
+/*Keyframes*/
+
+@keyframes modalShow {
+  0% {
+    top: 300%;
+  }
+  100% {
+    top: 50%;
+    body.background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Progress Bar !!!!!hardcoded!!!!! */
+
+#progressBar {
+  position: relative;
+  margin: 75px;
+}
+
+.grid {
+  position: relative;
+  top: -90px;
+  width: 70px;
+  height: 70px;
+  background-color: white;
+  clip-path: polygon(
+    0% 5%,
+    5% 0%,
+    95% 0%,
+    100% 5%,
+    100% 95%,
+    95% 100%,
+    5% 100%,
+    0% 95%
+  );
+}
+
+#arrow1 {
+  position: relative;
+  left: 100px;
+  top: 185px;
+}
+#arrow2 {
+  position: relative;
+  left: 100px;
+  top: -60px;
 }
