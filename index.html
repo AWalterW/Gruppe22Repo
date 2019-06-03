@@ -43,12 +43,12 @@
 
         <main>
             <div id="kanbanTools">
-                <button class="mainBtn" onclick="openModal('addTaskModal'), closeModal('addGrpModal')"><i class="fas fa-plus"></i> Legg til oppgave</button>
+                <button id="addNewTaskBtn" class="mainBtn" onclick="openModal('addTaskModal'), closeModal('addGrpModal')"><i class="fas fa-plus"></i> Legg til oppgave</button>
             </div> 
             <div id="kanbanBox"> 
                 <h3>Skal gjøres</h3> 
-                <h3>Holder på</h3> 
-                <h3>Ferdig</h3>
+                <h3>Ferdig</h3> 
+                <h3>Godkjent</h3>
                     <div id="todo" class="kanbanList"> 
                     </div>
 
@@ -88,7 +88,7 @@
 
         <script src="./script/tasks.js"></script> 
         <script src="./script/projects.js"></script>
-        <script src="./script/members.js"></script> 
+        <script src="./script/members.js"></script>
         <script src="./script/script.js"></script>
 
 </body>

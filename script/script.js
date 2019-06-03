@@ -213,15 +213,33 @@ function addDropListener(area) {
     if (target === "todo" || target === "doing" || target === "completed") {
       changeTaskStatus(taskId, target);
     }
-    // e.target.classList.remove("dragging");
   });
 }
 
-function changeTaskStatus(taskId, target) {
+function changeTaskStatus(taskId, target) { 
   if (tasks[taskId]) {
-    let task = tasks[taskId];
-    task.status = target;
-    taskUpdated();
+    let task = tasks[taskId];  
+    let oldStatus = task.status;  
+
+    if(target === "completed" && task.completed === false) { 
+       if(members[task.worker] && !members[currentUser].isChild) { 
+        members[task.worker].points++; 
+        userpointAdded(task.worker);
+        console.log(`${members[task.worker].name} får 1 poeng og har nå ${members[task.worker].points} poeng!`); 
+        task.completed = true;
+        task.status = target;
+        taskUpdated();
+
+       } else {
+         alert("Oppgaven må være tildelt en person for å få poeng!"); 
+         task.status = oldStatus; 
+         taskUpdated();
+       }
+      
+    } else { 
+      task.status = target;
+      taskUpdated();
+    }
   }
 }
 

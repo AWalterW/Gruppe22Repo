@@ -23,7 +23,8 @@ let defaultTasks = [
         isDone: true
       }
     ],
-    deleted: false,
+    deleted: false, 
+    completed: false,
     project: 0
   },
   {
@@ -32,7 +33,8 @@ let defaultTasks = [
     title: "Second task",
     description: "Lorem ipsum dolor sit amet", 
     worker: 1,
-    deleted: false,
+    deleted: false, 
+    completed: false,
     project: 0
   },
   {
@@ -40,7 +42,8 @@ let defaultTasks = [
     status: "todo",
     title: "Third task",
     description: "Lorem ipsum dolor sit amet",
-    deleted: false,
+    deleted: false, 
+    completed: false,
     project: 0
   },
   {
@@ -88,7 +91,8 @@ function startApp() {
     currentProject = members[currentUser].lastOpenProject;
   }
 
-  renderPageVars();
+  renderPageVars(); 
+  childPageView();
 
   fixDueDate();
 
@@ -116,7 +120,9 @@ function addTask(form) {
     newTask.title = taskTitle;
     if (taskDescription.length > 0) {
       newTask.description = taskDescription;
-      newTask.deleted = false;
+      newTask.deleted = false; 
+      newTask.completed = false; 
+      newTask.worker = currentUser;
       newTask.project = currentProject;
       if (taskDueDate.length > 0) {
         newTask.dueDate = taskDueDate;
