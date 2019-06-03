@@ -4,9 +4,9 @@ let members = [
         email: "noen@eksempel.no", 
         password: "abc123", 
         name: "Ola Nordmann", 
-        lastOpenProject: 0, 
+        lastOpenProject: 1, 
         isChild: false, 
-        points: 0
+        points: 7
         
     }, 
     {
@@ -35,6 +35,7 @@ function childPageView() {
     } 
 } 
 
+// alert progressapps about user getting a point
 function userpointAdded(user) {
-    console.log(members[user].name);
+    console.log(members[user].name);    
 }

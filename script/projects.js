@@ -2,7 +2,7 @@ let projects = [
     {
         id: 0, 
         name: "Hjemmearbeid", 
-        members: [0,2]
+        members: []
     }, 
     {
         id: 1, 
@@ -37,4 +37,4 @@ function changeCurrentProject(id) {
     startApp();
 }
 
-changeProjectListener();
+changeProjectListener();    

@@ -43,6 +43,7 @@ function renderTask(task, targetArea) {
       taskEditBtns.className = "taskEditBtns";
 
       //adding edit button to taskCard
+    if(!members[currentUser].isChild) {
       let editBtn = document.createElement("i");
       editBtn.className = "fas fa-edit edit";
       taskEditBtns.appendChild(editBtn);
@@ -52,7 +53,9 @@ function renderTask(task, targetArea) {
       deleteBtn.dataset.taskId = task.id;
       taskEditBtns.appendChild(deleteBtn);
 
-      cardDiv.appendChild(taskEditBtns);
+      cardDiv.appendChild(taskEditBtns); 
+    }
+
       //adding dscription to taskCard
       let taskDescription = document.createElement("div");
       taskDescription.className = "taskDescription";

@@ -1,6 +1,6 @@
 let tasks = [];
 let currentProject; 
-let currentUser = 0;
+let currentUser = 2;
 
 let defaultTasks = [
   {
@@ -88,7 +88,12 @@ function startApp() {
   }
 
   if(currentProject === undefined) {
-    currentProject = members[currentUser].lastOpenProject;
+    if(members[currentUser].lastOpenProject) {
+      currentProject = members[currentUser].lastOpenProject;
+    } else {
+      currentProject = 0;
+    }
+    
   }
 
   renderPageVars(); 
