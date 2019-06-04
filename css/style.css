@@ -8,7 +8,7 @@
   --doing-card-color: #ffff008f;
   --completed-card-color: #00800091;
   --card-text-color: #001730;
-  --edit-hover-color: #fe4a49;
+  --edit-hover-color: purple;
   --btn-border-color: #4ad7d1;
   --btn-hover-color: #365d88;
 
@@ -164,10 +164,6 @@ main {
   margin-left: 8px;
 }
 
-.taskEditBtns *:hover {
-  color: var(--doing-card-color);
-}
-
 .taskDescription {
   grid-area: taskDescription;
   transition: linear;
@@ -211,6 +207,18 @@ main {
 #todo {
   background-color: #ffeeee;
   border-radius: 5px;
+}
+
+#todo .taskEditBtns *:hover {
+  color: var(--doing-card-color);
+}
+
+#doing .taskEditBtns *:hover {
+  color: var(--completed-card-color);
+}
+
+#completed .taskEditBtns *:hover {
+  color: var(--todo-card-color);
 }
 
 #doing {
@@ -312,7 +320,7 @@ main {
   position: absolute;
   overflow: hidden;
   flex-shrink: 0;
-  left: 40%;
+  left: 50%;
   top: 50%;
   z-index: 150;
   transform: translate(-50%, -50%);
@@ -325,7 +333,7 @@ main {
 }
 
 /* Div for black screen on modal */
-#modalDiv{
+#modalDiv {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -400,7 +408,58 @@ main {
   border-radius: 5px;
   background-color: #fcfcfc;
 }
-#addRewardBtn{
+
+#addTaskWorker {
+  border-radius: 5px;
+  flex-shrink: 0;
+  max-width: 100%;
+  background-color: #fcfcfc;
+}
+
+#editTaskModal {
+  display: none;
+}
+
+#editTaskModalBtn {
+  background-color: #5cb85c;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  border: 1px solid darkgreen;
+  text-shadow: 1px 1px darkgreen;
+  margin-bottom: 10px;
+}
+
+#editTaskForm {
+  padding: 10px 30px;
+  background-color: #eaeaee;
+}
+
+#editTitle {
+  border-radius: 5px;
+  background-color: #fcfcfc;
+}
+
+#editDescription {
+  border-radius: 5px;
+  flex-shrink: 0;
+  max-width: 100%;
+  background-color: #fcfcfc;
+}
+
+#editdatefield {
+  border-radius: 5px;
+  background-color: #fcfcfc;
+}
+
+#editTaskWorker {
+  border-radius: 5px;
+  flex-shrink: 0;
+  max-width: 100%;
+  background-color: #fcfcfc;
+}
+
+#addRewardBtn {
   position: absolute;
   top: -12%;
 }
@@ -409,19 +468,19 @@ main {
 }
 #addRewardForm {
   padding: 10px 30px;
-  background-color:	#eaeaee;
+  background-color: #eaeaee;
 }
 #addReward1 {
-  border-radius:5px;
-  background-color:#fcfcfc;
+  border-radius: 5px;
+  background-color: #fcfcfc;
 }
 #addReward2 {
-  border-radius:5px;
-  background-color:#fcfcfc;
+  border-radius: 5px;
+  background-color: #fcfcfc;
 }
 #addRewardModalBtn {
-  background-color:#5cb85c;
-  border-radius:5px;
+  background-color: #5cb85c;
+  border-radius: 5px;
   padding: 10px;
   color: white;
   border: 1px solid darkgreen;
@@ -451,20 +510,19 @@ main {
   width: 70px;
   height: 50px;
   background-color: white;
-  clip-path:
-      polygon(
-      0% 5%,
-      5% 0%,
-      95% 0%,
-      100% 5%,
-      100% 95%,
-      95% 100%,
-      5% 100%,
-      0% 95%
-      );
+  clip-path: polygon(
+    0% 5%,
+    5% 0%,
+    95% 0%,
+    100% 5%,
+    100% 95%,
+    95% 100%,
+    5% 100%,
+    0% 95%
+  );
 }
 
-#arrow1{
+#arrow1 {
   position: absolute;
   left: 100px;
   top: 50%;
@@ -474,7 +532,7 @@ main {
   left: 100px;
   top: 0%;
 }
-.addRewardBtn{
+.addRewardBtn {
   position: absolute;
   top: -10%;
 }

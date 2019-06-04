@@ -151,6 +151,59 @@ function submitTask(newTask) {
   taskUpdated();
 }
 
+// edit task
+
+function editTask(taskId) {
+  openModal("editTaskModal");
+
+  const oldTask = tasks[taskId];
+  let changedTask;
+
+  document.getElementById("editTaskId").innerText = taskId;
+  document.getElementById("editTitle").value = oldTask.title;
+  document.getElementById("editDescription").value = oldTask.description;
+
+  renderMembers("editTaskWorker", oldTask.worker);
+  if (oldTask.dueDate) {
+    document.getElementById("editdatefield").value = oldTask.dueDate;
+  } else {
+    document.getElementById("editdatefield").value = undefined;
+  }
+
+  if (oldTask.worker) {
+    document.getElementById("addTaskWorker").value = oldTask.worker;
+  } else {
+    document.getElementById("addTaskWorker").value = undefined;
+  }
+
+  /* */
+}
+
+function submitTaskChange() {
+  const taskId = parseInt(document.getElementById("editTaskId").innerText);
+  const taskTitle = document.getElementById("editTitle").value;
+  const taskDescription = document.getElementById("editDescription").value;
+  const taskDueDate = document.getElementById("editdatefield").value;
+  const taskWorker = document.getElementById("editTaskWorker").value;
+
+  if (taskTitle.length > 0) {
+    tasks[taskId].title = taskTitle;
+    if (taskDescription.length > 0) {
+      tasks[taskId].description = taskDescription;
+      tasks[taskId].worker = taskWorker;
+
+      tasks[taskId].dueDate = taskDueDate;
+      closeAllModals();
+    } else {
+      alert("Du må ha en beskrivelse");
+    }
+  } else {
+    alert("Du må ha en tittel");
+  }
+
+  taskUpdated();
+}
+
 function deleteTask(taskId) {
   tasks[taskId].deleted = true;
   taskUpdated();
@@ -163,15 +216,14 @@ function checkboxChange(taskId, subtaskId) {
   taskUpdated();
 }
 
-// Add reward 
+// Add reward
 
-function addReward(form){
-
+function addReward(form) {
   const reward1 = document.getElementById("addReward1").value;
   const reward2 = document.getElementById("addReward2").value;
 
-  document.getElementById("arrow1").innerHTML= " " + reward1;
-  document.getElementById("arrow2").innerHTML= " " + reward2;
+  document.getElementById("arrow1").innerHTML = " " + reward1;
+  document.getElementById("arrow2").innerHTML = " " + reward2;
 
   projects[currentProject].reward1 = reward1;
   projects[currentProject].reward2 = reward2;
