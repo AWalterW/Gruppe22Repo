@@ -1,6 +1,6 @@
 let tasks = [];
 let currentProject;
-let currentUser = 2;
+let currentUser = 0;
 
 let defaultTasks = [
   {
@@ -168,7 +168,9 @@ function addReward(form){
   const reward1 = document.getElementById("addReward1").value;
   const reward2 = document.getElementById("addReward2").value;
 
-  document.getElementById("arrow1").innerHTML= reward1;
-  document.getElementById("arrow2").innerHTML= reward2;
+  document.getElementById("arrow1").innerHTML= " " + reward1;
+  document.getElementById("arrow2").innerHTML= " " + reward2;
 
+  projects[currentProject].reward1 = reward1;
+  projects[currentProject].reward2 = reward2;
 }
