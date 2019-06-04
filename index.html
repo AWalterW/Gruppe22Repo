@@ -45,7 +45,7 @@
 
         <main>
             <div id="kanbanTools">
-                <button id="addNewTaskBtn" class="mainBtn" onclick="openModal('addTaskModal'), renderMembers(), closeModal('addGrpModal')"><i class="fas fa-plus"></i> Legg til oppgave</button>
+                <button id="addNewTaskBtn" class="mainBtn" onclick="openModal('addTaskModal'), renderMembers(), closeModal('addRewardModal')"><i class="fas fa-plus"></i> Legg til oppgave</button>
             </div> 
             <div id="kanbanBox"> 
                 <h3 class="listHeader">Skal gjøres</h3> 
@@ -94,7 +94,7 @@
                 <form id="addTaskForm" onsubmit="return false">
                     <div id="addTaskLeft">
                         Tittel:<br>
-                        <input type="text" name="title" id="addTitle"><br>
+                        <input type="text" name="title" id="addTitle"><br> <br>
                         Beskrivelse:<br>
                         <textarea name="description" cols="40" rows="8" id="addDescription"></textarea> <br>
                         Frist:<br>

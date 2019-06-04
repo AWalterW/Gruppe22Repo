@@ -150,6 +150,48 @@ function submitTask(newTask) {
   taskUpdated();
 }
 
+// edit task
+
+function editTask(taskId) {
+  const oldTask = tasks[taskId];
+
+  const taskTitle = document.getElementById("addTitle").value;
+  const taskDescription = document.getElementById("addDescription").value;
+  const taskDueDate = document.getElementById("datefield").value;
+  const taskWorker = document.getElementById("addTaskWorker").value;
+
+  if (taskTitle.length > 0) {
+    newTask.title = taskTitle;
+    if (taskDescription.length > 0) {
+      newTask.description = taskDescription;
+      newTask.deleted = false;
+      newTask.completed = false;
+      newTask.worker = taskWorker;
+      newTask.project = currentProject;
+      if (taskDueDate.length > 0) {
+        newTask.dueDate = taskDueDate;
+        submitTask(newTask);
+        closeModal("addTaskModal", "addTaskForm");
+      } else {
+        submitTask(newTask);
+        closeModal("addTaskModal", "addTaskForm");
+      }
+    } else {
+      alert("Du må ha en beskrivelse");
+    }
+  } else {
+    alert("Du må ha en tittel");
+  }
+}
+
+function submitTask(newTask) {
+  const task = newTask;
+  task.status = "todo";
+  task.id = tasks.length;
+  tasks.push(task);
+  taskUpdated();
+}
+
 function deleteTask(taskId) {
   tasks[taskId].deleted = true;
   taskUpdated();
@@ -162,15 +204,14 @@ function checkboxChange(taskId, subtaskId) {
   taskUpdated();
 }
 
-// Add reward 
+// Add reward
 
-function addReward(form){
-
+function addReward(form) {
   const reward1 = document.getElementById("addReward1").value;
   const reward2 = document.getElementById("addReward2").value;
 
-  document.getElementById("arrow1").innerHTML= " " + reward1;
-  document.getElementById("arrow2").innerHTML= " " + reward2;
+  document.getElementById("arrow1").innerHTML = " " + reward1;
+  document.getElementById("arrow2").innerHTML = " " + reward2;
 
   projects[currentProject].reward1 = reward1;
   projects[currentProject].reward2 = reward2;
