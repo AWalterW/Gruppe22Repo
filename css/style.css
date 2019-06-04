@@ -12,7 +12,8 @@
   --btn-border-color: #4ad7d1;
   --btn-hover-color: #365d88;
 
-  --sidebar-background-color: #fe4a49;
+  --sidebar-background-color: #1E90FF;
+  --gridGained-background-color: #00FF00;
 }
 
 html {
@@ -524,6 +525,9 @@ main {
     0% 95%
   );
 }
+.gainedGrid{
+  background-color: var(--gridGained-background-color);
+}
 
 #arrow1 {
   position: absolute;
@@ -539,7 +543,6 @@ main {
   position: absolute;
   top: -10%;
 }
-
 #completed .taskEditBtns{
   display:none;
 }

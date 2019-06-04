@@ -384,8 +384,7 @@ function formatDate(date) {
 function addProgressbarPoint() {
   if (members[currentUser].points >= 0 && members[currentUser].isChild) {
     for (let i = 1; i < members[currentUser].points + 1; i++) {
-      document.getElementById("g" + i).style.backgroundColor = "green";
-      console.log(i);
+      document.getElementById("g" + i).className = "grid gainedGrid";
     }
   }
 }
@@ -393,7 +392,6 @@ function addProgressbarPoint() {
 // function for closing all modals
 
 function closeAllModals(){
-  console.log("test");
   closeModal('addRewardModal');
   closeModal('addTaskModal');
   closeModal('editTaskModal');
@@ -403,7 +401,6 @@ function closeAllModals(){
 
 function colorBlind(){
   isColorBlind = !isColorBlind;
-  console.log(isColorBlind);
   if(isColorBlind){
 
   //document.documentElement.style.setProperty('--main-color', 'rgb(0,114,178)'); 
@@ -419,7 +416,8 @@ function colorBlind(){
   //document.documentElement.style.setProperty(--btn-border-color, #4ad7d1);
   //document.documentElement.style.setProperty(--btn-hover-color, #365d88);
 
-  document.documentElement.style.setProperty('--sidebar-background-color', 'rgb(213, 94, 0)');
+  //document.documentElement.style.setProperty('--sidebar-background-color', 'rgb(213, 94, 0)');
+  document.documentElement.style.setProperty('--gridGained-background-color', 'rgb(255,69,0)');
   }
   else {
     document.documentElement.style = " ";
