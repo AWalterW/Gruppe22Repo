@@ -43,16 +43,19 @@ function renderTask(task, targetArea) {
       taskEditBtns.className = "taskEditBtns";
 
       //adding edit button to taskCard
-      let editBtn = document.createElement("i");
-      editBtn.className = "fas fa-edit edit";
-      taskEditBtns.appendChild(editBtn);
+      if (!members[currentUser].isChild) {
+        let editBtn = document.createElement("i");
+        editBtn.className = "fas fa-edit edit";
+        taskEditBtns.appendChild(editBtn);
 
-      let deleteBtn = document.createElement("i");
-      deleteBtn.className = "fas fa-trash-alt close";
-      deleteBtn.dataset.taskId = task.id;
-      taskEditBtns.appendChild(deleteBtn);
+        let deleteBtn = document.createElement("i");
+        deleteBtn.className = "fas fa-trash-alt close";
+        deleteBtn.dataset.taskId = task.id;
+        taskEditBtns.appendChild(deleteBtn);
 
-      cardDiv.appendChild(taskEditBtns);
+        cardDiv.appendChild(taskEditBtns);
+      }
+
       //adding dscription to taskCard
       let taskDescription = document.createElement("div");
       taskDescription.className = "taskDescription";
@@ -67,15 +70,15 @@ function renderTask(task, targetArea) {
         listArea.className = "taskChecklist";
         taskDescription.appendChild(listArea);
 
-        for(let i = 0; i < task.checkList.length; i++){  
+        for (let i = 0; i < task.checkList.length; i++) {
           let subtask = task.checkList[i];
 
           let checkListitem = document.createElement("li");
 
           let checkbox = document.createElement("input");
-          checkbox.type = "checkbox"; 
-          checkbox.dataset.taskId = task.id; 
-          checkbox.dataset.subTaskId = i; 
+          checkbox.type = "checkbox";
+          checkbox.dataset.taskId = task.id;
+          checkbox.dataset.subTaskId = i;
 
           let checkboxText = document.createElement("p");
           checkboxText.innerText = subtask.listTask;
@@ -89,7 +92,7 @@ function renderTask(task, targetArea) {
           checkListitem.appendChild(checkboxText);
 
           listArea.appendChild(checkListitem);
-        };
+        }
       }
       cardDiv.appendChild(taskDescription);
 
@@ -99,8 +102,8 @@ function renderTask(task, targetArea) {
         taskWorker.className = "taskWorker";
         let taskWorkerIcon = document.createElement("i");
         taskWorkerIcon.className = "fas fa-user";
- 
-        taskWorker.innerText = " " + members[parseInt(task.worker)].name; 
+
+        taskWorker.innerText = " " + members[parseInt(task.worker)].name;
         taskWorker.insertBefore(taskWorkerIcon, taskWorker.firstChild);
         cardDiv.appendChild(taskWorker);
       }
@@ -121,10 +124,9 @@ function renderTask(task, targetArea) {
         if (e.target.classList.contains("close")) {
           const taskId = e.target.dataset.taskId;
           deleteTask(taskId);
-        } 
+        }
 
-        if(e.target.tagName === "INPUT") {
-
+        if (e.target.tagName === "INPUT") {
           checkboxChange(e.target.dataset.taskId, e.target.dataset.subTaskId);
         }
       });
@@ -132,17 +134,29 @@ function renderTask(task, targetArea) {
       // Enables drop on other card to change status
       cardDiv.addEventListener("drop", e => {
         const taskId = e.dataTransfer.getData("text");
-        let target;  
-        if (e.target.dataset.categori === "todo" || e.target.dataset.categori === "doing" || e.target.dataset.categori === "completed") {
+        let target;
+        if (
+          e.target.dataset.categori === "todo" ||
+          e.target.dataset.categori === "doing" ||
+          e.target.dataset.categori === "completed"
+        ) {
           target = e.target.dataset.categori;
           changeTaskStatus(taskId, target);
-        } 
-        if (e.target.parentElement.parentElement.dataset.categori === "todo" || e.target.parentElement.parentElement.dataset.categori === "doing" || e.target.parentElement.parentElement.dataset.categori === "completed") {
+        }
+        if (
+          e.target.parentElement.parentElement.dataset.categori === "todo" ||
+          e.target.parentElement.parentElement.dataset.categori === "doing" ||
+          e.target.parentElement.parentElement.dataset.categori === "completed"
+        ) {
           target = e.target.parentElement.parentElement.dataset.categori;
           changeTaskStatus(taskId, target);
-        } 
+        }
 
-        if (e.target.parentElement.dataset.categori === "todo" || e.target.parentElement.dataset.categori === "doing" || e.target.parentElement.dataset.categori === "completed") {
+        if (
+          e.target.parentElement.dataset.categori === "todo" ||
+          e.target.parentElement.dataset.categori === "doing" ||
+          e.target.parentElement.dataset.categori === "completed"
+        ) {
           target = e.target.parentElement.dataset.categori;
           changeTaskStatus(taskId, target);
         }
@@ -158,45 +172,44 @@ function renderTask(task, targetArea) {
 }
 
 // Removes cards from dom to be rendered again
-function removeChildElements(area) { 
+function removeChildElements(area) {
   let i = area.childNodes.length;
   while (i > 0) {
     area.removeChild(area.lastChild);
     i--;
   }
-} 
-
-//Render page elements 
-function renderPageVars() {
-  document.getElementById("username").innerHTML = members[currentUser].name + '<i class="fas fa-angle-down"></i>'; 
-
-  const projectsArea = document.getElementById("projects"); 
-  const projectDropdown = document.getElementById("projectDropdown"); 
-  removeChildElements(projectDropdown);
-  projectsArea.innerText = projects[currentProject].name + " "; 
-
-  let projectArrow = document.createElement("i"); 
-  projectArrow.className = "fas fa-angle-down"; 
-  
-  document.getElementById("projects").appendChild(projectArrow); 
-
-  
-  projects.forEach((e) => {
-    if(e.members.includes(currentUser) && e.id !== currentProject) {
-      let projectLi = document.createElement("a"); 
-      projectLi.innerText = e.name; 
-      projectLi.dataset.projectId = e.id;
-      
-      document.getElementById("projectDropdown").appendChild(projectLi);
-    }   
-  }); 
-
-  let projectLiAddproject = document.createElement("a"); 
-      projectLiAddproject.innerText = "Nytt projekt"; 
-      projectLiAddproject.id = "newProjectBtn";
-      document.getElementById("projectDropdown").appendChild(projectLiAddproject);
 }
 
+//Render page elements
+function renderPageVars() {
+  document.getElementById("username").innerHTML =
+    members[currentUser].name + '<i class="fas fa-angle-down"></i>';
+
+  const projectsArea = document.getElementById("projects");
+  const projectDropdown = document.getElementById("projectDropdown");
+  removeChildElements(projectDropdown);
+  projectsArea.innerText = projects[currentProject].name + " ";
+
+  let projectArrow = document.createElement("i");
+  projectArrow.className = "fas fa-angle-down";
+
+  document.getElementById("projects").appendChild(projectArrow);
+
+  projects.forEach(e => {
+    if (e.members.includes(currentUser) && e.id !== currentProject) {
+      let projectLi = document.createElement("a");
+      projectLi.innerText = e.name;
+      projectLi.dataset.projectId = e.id;
+
+      document.getElementById("projectDropdown").appendChild(projectLi);
+    }
+  });
+
+  let projectLiAddproject = document.createElement("a");
+  projectLiAddproject.innerText = "Nytt projekt";
+  projectLiAddproject.id = "newProjectBtn";
+  document.getElementById("projectDropdown").appendChild(projectLiAddproject);
+}
 
 // Drag and Drop here!
 
@@ -216,28 +229,30 @@ function addDropListener(area) {
   });
 }
 
-function changeTaskStatus(taskId, target) { 
+function changeTaskStatus(taskId, target) {
   if (tasks[taskId]) {
-    let task = tasks[taskId];  
-    let oldStatus = task.status;  
+    let task = tasks[taskId];
+    let oldStatus = task.status;
 
-    if(target === "completed" && task.completed === false) { 
-       if(members[task.worker] && !members[currentUser].isChild) { 
-        members[task.worker].points += 1; 
+    if (target === "completed" && task.completed === false) {
+      if (members[task.worker] && !members[currentUser].isChild) {
+        members[task.worker].points += 1;
         console.log(members[task.worker].points);
         userpointAdded(task.worker);
-        console.log(`${members[task.worker].name} får 1 poeng og har nå ${members[task.worker].points} poeng!`); 
+        console.log(
+          `${members[task.worker].name} får 1 poeng og har nå ${
+            members[task.worker].points
+          } poeng!`
+        );
         task.completed = true;
         task.status = target;
         taskUpdated();
-
-       } else {
-         alert("Oppgaven må være tildelt en person for å få poeng!"); 
-         task.status = oldStatus; 
-         taskUpdated();
-       }
-      
-    } else { 
+      } else {
+        alert("Oppgaven må være tildelt en person for å få poeng!");
+        task.status = oldStatus;
+        taskUpdated();
+      }
+    } else {
       task.status = target;
       taskUpdated();
     }
@@ -267,7 +282,6 @@ function fixDueDate() {
 function openModal(target) {
   const modal = document.getElementById(target);
   modal.style.display = "block";
-
 }
 
 function closeModal(target, form) {
@@ -280,7 +294,6 @@ function closeModal(target, form) {
   document.getElementById("addReward2").value ="";
   modal.style.display = "none";
 }
-
 
 // returns duedate as formated string
 function formatDate(date) {
@@ -330,11 +343,10 @@ function formatDate(date) {
 
 // Changing color on points added Progressbar
 
-function addProgressbarPoint(){
-
-    if(members[currentUser].points >= 0 && members[currentUser].isChild){
-    for(let i = 1; i < members[currentUser].points + 1; i++) {
-      document.getElementById("g" + i).style.backgroundColor = "green"; 
+function addProgressbarPoint() {
+  if (members[currentUser].points >= 0 && members[currentUser].isChild) {
+    for (let i = 1; i < members[currentUser].points + 1; i++) {
+      document.getElementById("g" + i).style.backgroundColor = "green";
       console.log(i);
     }
   }
