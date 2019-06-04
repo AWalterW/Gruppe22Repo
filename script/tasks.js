@@ -1,6 +1,7 @@
 let tasks = [];
 let currentProject;
 let currentUser = 0;
+let isColorBlind = false;
 
 let defaultTasks = [
   {

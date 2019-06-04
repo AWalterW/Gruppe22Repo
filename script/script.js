@@ -389,3 +389,39 @@ function addProgressbarPoint() {
     }
   }
 }
+
+// function for closing all modals
+
+function closeAllModals(){
+  console.log("test");
+  closeModal('addRewardModal');
+  closeModal('addTaskModal');
+  closeModal('editTaskModal');
+}
+
+// function for changing to colorblind mode
+
+function colorBlind(){
+  isColorBlind = !isColorBlind;
+  console.log(isColorBlind);
+  if(isColorBlind){
+
+  //document.documentElement.style.setProperty('--main-color', 'rgb(0,114,178)'); 
+  //document.documentElement.style.setProperty(--main-background-color, #ffffff);
+  //document.documentElement.style.setProperty(--header-text-color, #ffffff);
+  //document.documentElement.style.setProperty(--kanbanlist-background-color, #f7f7f7);
+
+  document.documentElement.style.setProperty('--todo-card-color', 'rgb(204,121,167)');
+  document.documentElement.style.setProperty('--doing-card-color', 'rgb(240, 228, 66)');
+  document.documentElement.style.setProperty('--completed-card-color', 'rgb(255, 140, 0)');
+  //document.documentElement.style.setProperty(--card-text-color, #001730);
+  //document.documentElement.style.setProperty(--edit-hover-color, #fe4a49);
+  //document.documentElement.style.setProperty(--btn-border-color, #4ad7d1);
+  //document.documentElement.style.setProperty(--btn-hover-color, #365d88);
+
+  document.documentElement.style.setProperty('--sidebar-background-color', 'rgb(213, 94, 0)');
+  }
+  else {
+    document.documentElement.style = " ";
+  };
+}
