@@ -12,11 +12,12 @@
   --doing-card-bg: rgba(250, 250, 141, 0.493);
   --completed-card-bg: rgba(143, 253, 143, 0.479);
   --card-text-color: #001730;
-  --edit-hover-color: #fe4a49;
+  --edit-hover-color: purple;
   --btn-border-color: #4ad7d1;
   --btn-hover-color: #365d88;
 
-  --sidebar-background-color: #fe4a49;
+  --sidebar-background-color: #1E90FF;
+  --gridGained-background-color: #00FF00;
 }
 
 html {
@@ -182,10 +183,6 @@ main {
   margin-left: 8px;
 }
 
-.taskEditBtns *:hover {
-  color: var(--doing-card-color);
-}
-
 .taskDescription {
   grid-area: taskDescription;
   transition: linear;
@@ -230,6 +227,18 @@ main {
   border: 1px solid var(--main-color);
   background-color: var(--todo-card-bg);
   border-radius: 5px;
+}
+
+#todo .taskEditBtns *:hover {
+  color: var(--doing-card-color);
+}
+
+#doing .taskEditBtns *:hover {
+  color: var(--completed-card-color);
+}
+
+#completed .taskEditBtns *:hover {
+  color: var(--todo-card-color);
 }
 
 #doing {
@@ -336,7 +345,7 @@ main {
   position: absolute;
   overflow: hidden;
   flex-shrink: 0;
-  left: 40%;
+  left: 50%;
   top: 50%;
   z-index: 150;
   transform: translate(-50%, -50%);
@@ -349,7 +358,7 @@ main {
 }
 
 /* Div for black screen on modal */
-#modalDiv{
+#modalDiv {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -432,7 +441,50 @@ main {
   background-color: #fcfcfc;
 }
 
-#addRewardBtn{
+#editTaskModal {
+  display: none;
+}
+
+#editTaskModalBtn {
+  background-color: #5cb85c;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  border: 1px solid darkgreen;
+  text-shadow: 1px 1px darkgreen;
+  margin-bottom: 10px;
+}
+
+#editTaskForm {
+  padding: 10px 30px;
+  background-color: #eaeaee;
+}
+
+#editTitle {
+  border-radius: 5px;
+  background-color: #fcfcfc;
+}
+
+#editDescription {
+  border-radius: 5px;
+  flex-shrink: 0;
+  max-width: 100%;
+  background-color: #fcfcfc;
+}
+
+#editdatefield {
+  border-radius: 5px;
+  background-color: #fcfcfc;
+}
+
+#editTaskWorker {
+  border-radius: 5px;
+  flex-shrink: 0;
+  max-width: 100%;
+  background-color: #fcfcfc;
+}
+
+#addRewardBtn {
   position: absolute;
   top: -12%;
 }
@@ -441,19 +493,19 @@ main {
 }
 #addRewardForm {
   padding: 10px 30px;
-  background-color:	#eaeaee;
+  background-color: #eaeaee;
 }
 #addReward1 {
-  border-radius:5px;
-  background-color:#fcfcfc;
+  border-radius: 5px;
+  background-color: #fcfcfc;
 }
 #addReward2 {
-  border-radius:5px;
-  background-color:#fcfcfc;
+  border-radius: 5px;
+  background-color: #fcfcfc;
 }
 #addRewardModalBtn {
-  background-color:#5cb85c;
-  border-radius:5px;
+  background-color: #5cb85c;
+  border-radius: 5px;
   padding: 10px;
   color: white;
   border: 1px solid darkgreen;
@@ -477,39 +529,47 @@ main {
 
 #progressBar {
   position: relative;
-  margin: 75px;
+  height: 80%;
+  margin-left: 75px;
+  max-height: 800px;
+  margin-top: 100px;
 }
 
 .grid {
   position: relative;
-  top: 10px;
-  width: 70px;
-  height: 50px;
+  top: 0;
+  width: 60px;
+  height: 8%;
   background-color: white;
-  clip-path:
-      polygon(
-      0% 5%,
-      5% 0%,
-      95% 0%,
-      100% 5%,
-      100% 95%,
-      95% 100%,
-      5% 100%,
-      0% 95%
-      );
+  clip-path: polygon(
+    0% 5%,
+    5% 0%,
+    95% 0%,
+    100% 5%,
+    100% 95%,
+    95% 100%,
+    5% 100%,
+    0% 95%
+  );
+}
+.gainedGrid{
+  background-color: var(--gridGained-background-color);
 }
 
-#arrow1{
+#arrow1 {
   position: absolute;
   left: 100px;
-  top: 50%;
+  top: 39%;
 }
 #arrow2 {
   position: absolute;
   left: 100px;
-  top: 0%;
+  top: -1%;
 }
-.addRewardBtn{
+.addRewardBtn {
   position: absolute;
   top: -10%;
+}
+#completed .taskEditBtns{
+  display:none;
 }

@@ -46,6 +46,7 @@ function renderTask(task, targetArea) {
       if (!members[currentUser].isChild) {
         let editBtn = document.createElement("i");
         editBtn.className = "fas fa-edit edit";
+        editBtn.dataset.taskId = task.id;
         taskEditBtns.appendChild(editBtn);
 
         let deleteBtn = document.createElement("i");
@@ -124,6 +125,11 @@ function renderTask(task, targetArea) {
         if (e.target.classList.contains("close")) {
           const taskId = e.target.dataset.taskId;
           deleteTask(taskId);
+        }
+
+        if (e.target.classList.contains("edit")) {
+          const taskId = e.target.dataset.taskId;
+          editTask(taskId);
         }
 
         if (e.target.tagName === "INPUT") {
@@ -211,16 +217,19 @@ function renderPageVars() {
   document.getElementById("projectDropdown").appendChild(projectLiAddproject);
 }
 
-function renderMembers() {
-  console.log("noe");
+function renderMembers(target, currentWorker) {
   //add task form members
-  let addTaskWorkerList = document.getElementById("addTaskWorker");
+  let addTaskWorkerList = document.getElementById(target);
   addTaskWorkerList.innerHTML = "";
   projects[currentProject].members.forEach(e => {
-    console.log(e);
     const workerOption = document.createElement("option");
     workerOption.innerText = members[e].name;
     workerOption.value = e;
+
+    if (e === parseInt(currentWorker)) {
+      console.log(e);
+      workerOption.selected = true;
+    }
     addTaskWorkerList.appendChild(workerOption);
   });
 }
@@ -299,11 +308,10 @@ function openModal(target) {
 
   document.getElementById("modalDiv").style.display = "block";
 
-  document.getElementById("modalDiv").addEventListener("click", e=>{
+  document.getElementById("modalDiv").addEventListener("click", e => {
     console.log(e);
-    document.getElementById("modalDiv").style.display = "none";
     closeAllModals();
-  })
+  });
 }
 
 function closeModal(target, form) {
@@ -312,11 +320,17 @@ function closeModal(target, form) {
   document.getElementById("addTitle").value = "";
   document.getElementById("addDescription").value = "";
   document.getElementById("datefield").value = "";
-  document.getElementById("addReward1").value ="";
-  document.getElementById("addReward2").value ="";
+  document.getElementById("addReward1").value = "";
+  document.getElementById("addReward2").value = "";
   modal.style.display = "none";
 
   document.getElementById("modalDiv").style.display = "none";
+}
+
+function closeAllModals() {
+  closeModal("addRewardModal");
+  closeModal("addTaskModal");
+  closeModal("editTaskModal");
 }
 
 // returns duedate as formated string
@@ -370,14 +384,42 @@ function formatDate(date) {
 function addProgressbarPoint() {
   if (members[currentUser].points >= 0 && members[currentUser].isChild) {
     for (let i = 1; i < members[currentUser].points + 1; i++) {
-      document.getElementById("g" + i).style.backgroundColor = "green";
-      console.log(i);
+      document.getElementById("g" + i).className = "grid gainedGrid";
     }
   }
 }
 
+// function for closing all modals
+
 function closeAllModals(){
-  console.log("test");
   closeModal('addRewardModal');
   closeModal('addTaskModal');
+  closeModal('editTaskModal');
+}
+
+// function for changing to colorblind mode
+
+function colorBlind(){
+  isColorBlind = !isColorBlind;
+  if(isColorBlind){
+
+  //document.documentElement.style.setProperty('--main-color', 'rgb(0,114,178)'); 
+  //document.documentElement.style.setProperty(--main-background-color, #ffffff);
+  //document.documentElement.style.setProperty(--header-text-color, #ffffff);
+  //document.documentElement.style.setProperty(--kanbanlist-background-color, #f7f7f7);
+
+  document.documentElement.style.setProperty('--todo-card-color', 'rgb(204,121,167)');
+  document.documentElement.style.setProperty('--doing-card-color', 'rgb(240, 228, 66)');
+  document.documentElement.style.setProperty('--completed-card-color', 'rgb(255, 140, 0)');
+  //document.documentElement.style.setProperty(--card-text-color, #001730);
+  //document.documentElement.style.setProperty(--edit-hover-color, #fe4a49);
+  //document.documentElement.style.setProperty(--btn-border-color, #4ad7d1);
+  //document.documentElement.style.setProperty(--btn-hover-color, #365d88);
+
+  //document.documentElement.style.setProperty('--sidebar-background-color', 'rgb(213, 94, 0)');
+  document.documentElement.style.setProperty('--gridGained-background-color', 'rgb(255,69,0)');
+  }
+  else {
+    document.documentElement.style = " ";
+  };
 }

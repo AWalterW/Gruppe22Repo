@@ -17,7 +17,8 @@
         <header>
            <div id="logoDiv">
                <h1 id="logo">KanBarn</h1>
-           </div>  
+           </div>
+           <button id="colorBlindBtn" class="mainBtn" onclick="colorBlind()"><i class="fas fa-low-vision"></i>Fargeblind</button>  
            <span></span>
            <div id="headTools">
                 <button class="mainBtn"><i class="fas fa-user-friends"></i>ProsjektGruppe</button> 
@@ -46,7 +47,7 @@
 
         <main>
             <div id="kanbanTools">
-                <button id="addNewTaskBtn" class="mainBtn" onclick="closeAllModals(), openModal('addTaskModal'), renderMembers()"><i class="fas fa-plus"></i> Legg til oppgave</button>
+                <button id="addNewTaskBtn" class="mainBtn" onclick="closeAllModals(), openModal('addTaskModal'), renderMembers('addTaskWorker')"><i class="fas fa-plus"></i> Legg til oppgave</button>
             </div> 
             <div id="kanbanBox"> 
                 <div class="listHeaderBox">
@@ -95,13 +96,13 @@
             <div id="addTaskModal" class="modal">
                 <div class="modalHeader">
                     <h4>Legg til oppgave</h4>
-                    <button class="closeModalBtn" onclick="closeModal('addTaskModal', 'addTaskForm')">Lukk</button>
+                    <button class="closeModalBtn" onclick="closeAllModals()">Lukk</button>
                 </div>
             
                 <form id="addTaskForm" onsubmit="return false">
                     <div id="addTaskLeft">
                         Tittel:<br>
-                        <input type="text" name="title" id="addTitle"><br>
+                        <input type="text" name="title" id="addTitle"><br> <br>
                         Beskrivelse:<br>
                         <textarea name="description" cols="40" rows="8" id="addDescription"></textarea> <br>
                         Frist:<br>
@@ -116,7 +117,36 @@
                     </div>
             
                 </form>
+            </div> 
+
+            <div id="editTaskModal" class="modal">
+                <div class="modalHeader">
+                    <h4>Rediger oppgave</h4> 
+                    <p style="opacity: 0" id="editTaskId"></p>
+                    <button class="closeModalBtn" onclick="closeAllModals()">Lukk</button>
+                </div>
+            
+                <form id="editTaskForm" onsubmit="return false">
+                    <div id="editTaskLeft">
+                        Tittel:<br>
+                        <input type="text" name="title" id="editTitle"><br> <br>
+                        Beskrivelse:<br>
+                        <textarea name="description" cols="40" rows="8" id="editDescription"></textarea> <br>
+                        Frist:<br>
+                        <input id="editdatefield" type='date' min='1899-01-01' max='2000-13-13' name="dateDue"></input> <br> <br>
+                        Ansvarlig:<br>
+                        <select id="editTaskWorker"></select>
+                        <br><br>
+                        <input id="editTaskModalBtn" type="button" value="Lagre" onclick="submitTaskChange()">
+                    </div>
+                    <div id="editTaskRight">
+            
+                    </div>
+            
+                </form>
             </div>
+
+
             
             <div id="addRewardModal" class="modal">
                 <div class="modalHeader">
@@ -127,9 +157,9 @@
                 <form id="addRewardForm" onsubmit="return false">
                     <div id="addReward">
                         Belønning 1:<br>
-                        <input type="text" name="Reward1" id="addReward1"><br>
+                        <input type="text" name="Reward1" id="addReward1"><br><br>
                         Belønning 2:<br>
-                        <input type="text" name="Reward2" id="addReward2"><br>
+                        <input type="text" name="Reward2" id="addReward2"><br><br>
                         <input id="addRewardModalBtn" type="button" value="Legg til" onclick="addReward('addRewardForm'), closeModal('addRewardModal')">
                     </div>
                 </form>
