@@ -46,7 +46,7 @@
 
         <main>
             <div id="kanbanTools">
-                <button id="addNewTaskBtn" class="mainBtn" onclick="closeAllModals(), openModal('addTaskModal')"><i class="fas fa-plus"></i> Legg til oppgave</button>
+                <button id="addNewTaskBtn" class="mainBtn" onclick="closeAllModals(), openModal('addTaskModal'), renderMembers()"><i class="fas fa-plus"></i> Legg til oppgave</button>
             </div> 
             <div id="kanbanBox"> 
                 <h3 class="listHeader">Skal gjøres</h3> 
@@ -100,6 +100,9 @@
                         <textarea name="description" cols="40" rows="8" id="addDescription"></textarea> <br>
                         Frist:<br>
                         <input id="datefield" type='date' min='1899-01-01' max='2000-13-13' name="dateDue"></input> <br> <br>
+                        Ansvarlig:<br>
+                        <select id="addTaskWorker"></select>
+                        <br><br>
                         <input id="addTaskModalBtn" type="button" value="Legg til" onclick="addTask('addTaskForm')">
                     </div>
                     <div id="addTaskRight">
