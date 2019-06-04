@@ -304,6 +304,8 @@ function closeModal(target, form) {
   document.getElementById("addTitle").value = "";
   document.getElementById("addDescription").value = "";
   document.getElementById("datefield").value = "";
+  document.getElementById("addReward1").value ="";
+  document.getElementById("addReward2").value ="";
   modal.style.display = "none";
 }
 

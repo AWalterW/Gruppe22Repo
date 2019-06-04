@@ -66,10 +66,12 @@
         <div id="sidebar">
 
             <div id="progressBar">
-
-                <p><i id= "arrow1" class="fas fa-arrow-left "> Lørdagsgodt</i></p> 
-                <p><i id= "arrow2" class="fas fa-arrow-left "> 100kr</i></p>
+                <button id="addRewardBtn" class="mainBtn" onclick="openModal('addRewardModal'),  closeModal('addTaskModal')"><i class="fas fa-plus"></i> Legg til belønning</button>
+                <p><i id= "arrow1" class="fas fa-arrow-left "></i></p> 
+                <p><i id= "arrow2" class="fas fa-arrow-left "></i></p>
             
+                <div id="g10" class="grid"></div>
+                <div id="g9" class="grid"></div>
                 <div id="g8" class="grid"></div>
                 <div id="g7" class="grid"></div>
                 <div id="g6" class="grid"></div>
@@ -106,6 +108,23 @@
             
                     </div>
             
+                </form>
+            </div>
+            
+            <div id="addRewardModal" class="modal">
+                <div class="modalHeader">
+                    <h4>Legg til belønning</h4>
+                    <button class="closeModalBtn" onclick="closeModal('addRewardModal', 'addRewardForm')">Lukk</button>
+                </div>
+
+                <form id="addRewardForm" onsubmit="return false">
+                    <div id="addReward">
+                        Belønning 1:<br>
+                        <input type="text" name="Reward1" id="addReward1"><br>
+                        Belønning 2:<br>
+                        <input type="text" name="Reward2" id="addReward2"><br>
+                        <input id="addRewardModalBtn" type="button" value="Legg til" onclick="addReward('addRewardForm'), closeModal('addRewardModal')">
+                    </div>
                 </form>
             </div>
 
