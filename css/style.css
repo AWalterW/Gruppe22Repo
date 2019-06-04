@@ -389,6 +389,13 @@ main {
   background-color: #fcfcfc;
 }
 
+#addTaskWorker {
+  border-radius: 5px;
+  flex-shrink: 0;
+  max-width: 100%;
+  background-color: #fcfcfc;
+}
+
 /*Keyframes*/
 
 @keyframes modalShow {

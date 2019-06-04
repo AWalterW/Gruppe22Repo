@@ -1,6 +1,6 @@
 let tasks = [];
 let currentProject;
-let currentUser = 2;
+let currentUser = 0;
 
 let defaultTasks = [
   {
@@ -116,6 +116,7 @@ function addTask(form) {
   const taskTitle = document.getElementById("addTitle").value;
   const taskDescription = document.getElementById("addDescription").value;
   const taskDueDate = document.getElementById("datefield").value;
+  const taskWorker = document.getElementById("addTaskWorker").value;
 
   if (taskTitle.length > 0) {
     newTask.title = taskTitle;
@@ -123,7 +124,7 @@ function addTask(form) {
       newTask.description = taskDescription;
       newTask.deleted = false;
       newTask.completed = false;
-      newTask.worker = currentUser;
+      newTask.worker = taskWorker;
       newTask.project = currentProject;
       if (taskDueDate.length > 0) {
         newTask.dueDate = taskDueDate;

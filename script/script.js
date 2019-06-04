@@ -211,6 +211,20 @@ function renderPageVars() {
   document.getElementById("projectDropdown").appendChild(projectLiAddproject);
 }
 
+function renderMembers() {
+  console.log("noe");
+  //add task form members
+  let addTaskWorkerList = document.getElementById("addTaskWorker");
+  addTaskWorkerList.innerHTML = "";
+  projects[currentProject].members.forEach(e => {
+    console.log(e);
+    const workerOption = document.createElement("option");
+    workerOption.innerText = members[e].name;
+    workerOption.value = e;
+    addTaskWorkerList.appendChild(workerOption);
+  });
+}
+
 // Drag and Drop here!
 
 function addDropListener(area) {
