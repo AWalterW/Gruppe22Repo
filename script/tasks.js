@@ -153,42 +153,53 @@ function submitTask(newTask) {
 // edit task
 
 function editTask(taskId) {
-  const oldTask = tasks[taskId];
+  openModal("editTaskModal");
 
-  const taskTitle = document.getElementById("addTitle").value;
-  const taskDescription = document.getElementById("addDescription").value;
-  const taskDueDate = document.getElementById("datefield").value;
-  const taskWorker = document.getElementById("addTaskWorker").value;
+  const oldTask = tasks[taskId];
+  let changedTask;
+
+  document.getElementById("editTaskId").innerText = taskId;
+  document.getElementById("editTitle").value = oldTask.title;
+  document.getElementById("editDescription").value = oldTask.description;
+
+  renderMembers("editTaskWorker", oldTask.worker);
+  if (oldTask.dueDate) {
+    document.getElementById("editdatefield").value = oldTask.dueDate;
+  } else {
+    document.getElementById("editdatefield").value = undefined;
+  }
+
+  if (oldTask.worker) {
+    document.getElementById("addTaskWorker").value = oldTask.worker;
+  } else {
+    document.getElementById("addTaskWorker").value = undefined;
+  }
+
+  /* */
+}
+
+function submitTaskChange() {
+  const taskId = parseInt(document.getElementById("editTaskId").innerText);
+  const taskTitle = document.getElementById("editTitle").value;
+  const taskDescription = document.getElementById("editDescription").value;
+  const taskDueDate = document.getElementById("editdatefield").value;
+  const taskWorker = document.getElementById("editTaskWorker").value;
 
   if (taskTitle.length > 0) {
-    newTask.title = taskTitle;
+    tasks[taskId].title = taskTitle;
     if (taskDescription.length > 0) {
-      newTask.description = taskDescription;
-      newTask.deleted = false;
-      newTask.completed = false;
-      newTask.worker = taskWorker;
-      newTask.project = currentProject;
-      if (taskDueDate.length > 0) {
-        newTask.dueDate = taskDueDate;
-        submitTask(newTask);
-        closeModal("addTaskModal", "addTaskForm");
-      } else {
-        submitTask(newTask);
-        closeModal("addTaskModal", "addTaskForm");
-      }
+      tasks[taskId].description = taskDescription;
+      tasks[taskId].worker = taskWorker;
+
+      tasks[taskId].dueDate = taskDueDate;
+      closeAllModals();
     } else {
       alert("Du må ha en beskrivelse");
     }
   } else {
     alert("Du må ha en tittel");
   }
-}
 
-function submitTask(newTask) {
-  const task = newTask;
-  task.status = "todo";
-  task.id = tasks.length;
-  tasks.push(task);
   taskUpdated();
 }
 

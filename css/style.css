@@ -164,10 +164,6 @@ main {
   margin-left: 8px;
 }
 
-.taskEditBtns *:hover {
-  /* color: var(--edit-hover-color); */
-}
-
 .taskDescription {
   grid-area: taskDescription;
   transition: linear;
@@ -326,6 +322,7 @@ main {
   flex-shrink: 0;
   left: 50%;
   top: 50%;
+  z-index: 150;
   transform: translate(-50%, -50%);
   border-radius: 10px;
   /*Supposed to darken background*/
@@ -333,6 +330,17 @@ main {
   max-height: 100%;
   /*Animation*/
   animation: modalShow 0.5s forwards 1;
+}
+
+/* Div for black screen on modal */
+#modalDiv {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 100;
+  opacity: 0.9;
+  display: none;
 }
 
 .modalHeader {
@@ -402,6 +410,49 @@ main {
 }
 
 #addTaskWorker {
+  border-radius: 5px;
+  flex-shrink: 0;
+  max-width: 100%;
+  background-color: #fcfcfc;
+}
+
+#editTaskModal {
+  display: none;
+}
+
+#editTaskModalBtn {
+  background-color: #5cb85c;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  border: 1px solid darkgreen;
+  text-shadow: 1px 1px darkgreen;
+  margin-bottom: 10px;
+}
+
+#editTaskForm {
+  padding: 10px 30px;
+  background-color: #eaeaee;
+}
+
+#editTitle {
+  border-radius: 5px;
+  background-color: #fcfcfc;
+}
+
+#editDescription {
+  border-radius: 5px;
+  flex-shrink: 0;
+  max-width: 100%;
+  background-color: #fcfcfc;
+}
+
+#editdatefield {
+  border-radius: 5px;
+  background-color: #fcfcfc;
+}
+
+#editTaskWorker {
   border-radius: 5px;
   flex-shrink: 0;
   max-width: 100%;

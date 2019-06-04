@@ -46,6 +46,7 @@ function renderTask(task, targetArea) {
       if (!members[currentUser].isChild) {
         let editBtn = document.createElement("i");
         editBtn.className = "fas fa-edit edit";
+        editBtn.dataset.taskId = task.id;
         taskEditBtns.appendChild(editBtn);
 
         let deleteBtn = document.createElement("i");
@@ -124,6 +125,11 @@ function renderTask(task, targetArea) {
         if (e.target.classList.contains("close")) {
           const taskId = e.target.dataset.taskId;
           deleteTask(taskId);
+        }
+
+        if (e.target.classList.contains("edit")) {
+          const taskId = e.target.dataset.taskId;
+          editTask(taskId);
         }
 
         if (e.target.tagName === "INPUT") {
@@ -211,16 +217,19 @@ function renderPageVars() {
   document.getElementById("projectDropdown").appendChild(projectLiAddproject);
 }
 
-function renderMembers() {
-  console.log("noe");
+function renderMembers(target, currentWorker) {
   //add task form members
-  let addTaskWorkerList = document.getElementById("addTaskWorker");
+  let addTaskWorkerList = document.getElementById(target);
   addTaskWorkerList.innerHTML = "";
   projects[currentProject].members.forEach(e => {
-    console.log(e);
     const workerOption = document.createElement("option");
     workerOption.innerText = members[e].name;
     workerOption.value = e;
+
+    if (e === parseInt(currentWorker)) {
+      console.log(e);
+      workerOption.selected = true;
+    }
     addTaskWorkerList.appendChild(workerOption);
   });
 }
@@ -296,6 +305,13 @@ function fixDueDate() {
 function openModal(target) {
   const modal = document.getElementById(target);
   modal.style.display = "block";
+
+  document.getElementById("modalDiv").style.display = "block";
+
+  document.getElementById("modalDiv").addEventListener("click", e => {
+    console.log(e);
+    closeAllModals();
+  });
 }
 
 function closeModal(target, form) {
@@ -304,9 +320,17 @@ function closeModal(target, form) {
   document.getElementById("addTitle").value = "";
   document.getElementById("addDescription").value = "";
   document.getElementById("datefield").value = "";
-  document.getElementById("addReward1").value ="";
-  document.getElementById("addReward2").value ="";
+  document.getElementById("addReward1").value = "";
+  document.getElementById("addReward2").value = "";
   modal.style.display = "none";
+
+  document.getElementById("modalDiv").style.display = "none";
+}
+
+function closeAllModals() {
+  closeModal("addRewardModal");
+  closeModal("addTaskModal");
+  closeModal("editTaskModal");
 }
 
 // returns duedate as formated string
