@@ -15,7 +15,7 @@ let members = [
     name: "Kari Nordmann",
     lastOpenProject: 1,
     isChild: true,
-    points: 0
+    points: 8
   },
   {
     id: 2,
@@ -23,13 +23,14 @@ let members = [
     password: "abc123",
     name: "George W. Bush",
     isChild: false,
-    points: 0
+    points: 7
   }
 ];
 
 function childPageView() {
   if (members[currentUser].isChild) {
-    document.getElementById("addNewTaskBtn").style.display = "none";
+    document.getElementById("kanbanTools").style.display = "none";
+    document.getElementById("addRewardBtn").style.display = "none";
   }
 }
 

@@ -96,7 +96,7 @@ function startApp() {
 
   renderPageVars();
   childPageView();
-  addProgressbarPoint();
+  addProgressbarPoint(currentUser);
   fixDueDate();
 
   addDropListener(todoArea);

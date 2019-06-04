@@ -382,7 +382,7 @@ function formatDate(date) {
 // Changing color on points added Progressbar
 
 function addProgressbarPoint() {
-  if (members[currentUser].points >= 0 && members[currentUser].isChild) {
+  if (members[currentUser].points >= 0 /* && members[currentUser].isChild*/) {
     for (let i = 1; i < members[currentUser].points + 1; i++) {
       document.getElementById("g" + i).style.backgroundColor = "green";
       console.log(i);
