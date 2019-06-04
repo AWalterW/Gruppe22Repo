@@ -282,6 +282,14 @@ function fixDueDate() {
 function openModal(target) {
   const modal = document.getElementById(target);
   modal.style.display = "block";
+
+  document.getElementById("modalDiv").style.display = "block";
+
+  document.getElementById("modalDiv").addEventListener("click", e=>{
+    console.log(e);
+    document.getElementById("modalDiv").style.display = "none";
+    closeAllModals();
+  })
 }
 
 function closeModal(target, form) {
@@ -293,6 +301,8 @@ function closeModal(target, form) {
   document.getElementById("addReward1").value ="";
   document.getElementById("addReward2").value ="";
   modal.style.display = "none";
+
+  document.getElementById("modalDiv").style.display = "none";
 }
 
 // returns duedate as formated string
@@ -350,4 +360,10 @@ function addProgressbarPoint() {
       console.log(i);
     }
   }
+}
+
+function closeAllModals(){
+  console.log("test");
+  closeModal('addRewardModal');
+  closeModal('addTaskModal');
 }
