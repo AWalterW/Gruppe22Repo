@@ -1,142 +1,148 @@
-let tasks = [];
-let currentProject = 0;
+let tasks = []; 
 
 let defaultTasks = [
-  {
-    id: 0,
-    status: "todo",
-    title: "First task",
-    description: "Lorem ipsum dolor sit amet",
-    category: "school",
-    worker: "Ola Nordmann",
-    checkList: [
-      {
-        listTask: "Noe du må gjøre",
-        isDone: false
-      },
-      {
-        listTask: "Noe du må gjøre",
-        isDone: false
-      },
-      {
-        listTask: "Noe du må gjøre",
-        isDone: true
-      }
-    ],
-    deleted: false,
-    project: 0
-  },
-  {
-    id: 1,
-    status: "doing",
-    title: "Second task",
-    description: "Lorem ipsum dolor sit amet",
-    deleted: false,
-    project: 0
-  },
-  {
-    id: 2,
-    status: "todo",
-    title: "Third task",
-    description: "Lorem ipsum dolor sit amet",
-    deleted: false,
-    project: 0
-  },
-  {
-    id: 3,
-    status: "completed",
-    title: "Fourth task",
-    description: "Lorem ipsum dolor sit amet",
-    deleted: false,
-    project: 1
-  }
+    {
+        id: 0, 
+        status: "todo", 
+        title: "First task", 
+        description: "Lorem ipsum dolor sit amet", 
+        category: "school", 
+        checkList: [
+            {
+                listTask: "Noe du må gjøre", 
+                isDone: false
+            }, 
+            {
+                listTask: "Noe du må gjøre", 
+                isDone: false
+            }, 
+            {
+                listTask: "Noe du må gjøre", 
+                isDone: true
+            }
+        ]
+    }, 
+    {
+        id: 1, 
+        status: "doing",  
+        title: "Second task", 
+        description: "Lorem ipsum dolor sit amet"
+    }, 
+    {
+        id: 2, 
+        status: "todo",  
+        title: "Third task", 
+        description: "Lorem ipsum dolor sit amet"
+    }, 
+    {
+        id: 3, 
+        status: "completed", 
+        title: "Fourth task", 
+        description: "Lorem ipsum dolor sit amet"
+    }
 ];
 
-function saveToLocal() {
-  localStorage.removeItem("tasks");
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+function saveToLocal() { 
+    localStorage.removeItem("tasks"); 
+    localStorage.setItem("tasks", JSON.stringify(tasks)); 
 }
 
 function getFromLocal() {
-  tasks = JSON.parse(localStorage.getItem("tasks"));
+     tasks = JSON.parse(localStorage.getItem("tasks")); 
 }
 
 function taskUpdated() {
-  saveToLocal();
-  sortTasks();
+    saveToLocal(); 
+    sortTasks(); 
 }
 
-// initializing webapp
+// initializing webapp 
 function startApp() {
-  // check if item tasks is saved in localstorage
-  if (localStorage.getItem("tasks") === null) {
-    tasks = defaultTasks;
-    saveToLocal();
-  } else {
-    if (localStorage.getItem("tasks").length < 1) {
-      tasks = defaultTasks;
-      console.log("localstorage defined but empty");
-      saveToLocal();
-    } else {
-      tasks = JSON.parse(localStorage.getItem("tasks"));
+    
+    // check if item tasks is saved in localstorage
+    if(localStorage.getItem("tasks") === null) {
+       
+        saveToLocal();
+    
+    } else {    
+        if(localStorage.getItem("tasks").length < 1) {
+            tasks = defaultTasks; 
+            console.log("localstorage defined but empty"); 
+            saveToLocal();
+        } else {
+        tasks = JSON.parse(localStorage.getItem("tasks")); 
+        }
     }
-  }
 
-  fixDueDate();
+    fixDueDate();
 
-  addDropListener(todoArea);
-  addDropListener(doingArea);
-  addDropListener(completedArea);
+    addDropListener(todoArea); 
+    addDropListener(doingArea); 
+    addDropListener(completedArea);
 
-  // sorts and renders tasks to the site
-  sortTasks();
-}
 
-function checkboxChange(id) {
-  console.log(id);
-}
+    // sorts and renders tasks to the site
+    sortTasks(); 
+
+} 
 
 // add new task to task array
 
-function addTask(form) {
-  const newTask = {};
-  const newTaskList = [];
+function addTask(form) { 
+    const newTask = {};
 
-  const taskTitle = document.getElementById("addTitle").value;
-  const taskDescription = document.getElementById("addDescription").value;
-  const taskDueDate = ""; // = document.getElementById("datefield").value;
+    const formData = document.getElementById(form).children; 
+    const taskTitle = formData[1].value;  
+    const taskDescription = formData[4].value; 
+    const taskDueDate = formData[7].value; 
 
-  if (taskTitle.length > 0) {
-    newTask.title = taskTitle;
-    if (taskDescription.length > 0) {
-      newTask.description = taskDescription;
-      newTask.deleted = false;
-      newTask.project = currentProject;
-      if (taskDueDate.length > 0) {
-        newTask.dueDate = taskDueDate;
-        submitTask(newTask);
-        closeModal("addTaskModal", "addTaskForm");
-      } else {
-        submitTask(newTask);
-        closeModal("addTaskModal", "addTaskForm");
-      }
+    if(taskTitle.length > 0) {
+        newTask.title = taskTitle; 
+        if(taskDescription.length > 0) {
+            newTask.description = taskDescription;
+            if(taskDueDate.length > 0) {
+                newTask.dueDate = taskDueDate; 
+                submitTask(newTask); 
+                closeModal('addTaskModal', 'addTaskForm');
+            } else {
+                submitTask(newTask); 
+                closeModal('addTaskModal', 'addTaskForm');
+            }
+        } else {
+            alert("Du må ha en beskrivelse");
+        }
     } else {
-      alert("Du må ha en beskrivelse");
+        alert("Du må ha en tittel");
     }
-  } else {
-    alert("Du må ha en tittel");
-  }
-}
+    
+} 
 
 function submitTask(newTask) {
-  const task = newTask;
-  task.status = "todo";
-  task.id = tasks.length;
-  tasks.push(task);
-  taskUpdated();
+    const task = newTask; 
+    task.status = "todo"; 
+    task.id = tasks.length; 
+    tasks.push(task); 
+    taskUpdated();
 }
 
-function deleteTask(taskId) {
-  tasks[taskId].deleted = true;
-  taskUpdated();
-}
+
+
+//   const taskDueDate = formData[7].value; 
+
+// Date reminder
+var x=new Date(taskDueDate);
+x.setFullYear(2033,12,30);
+var today = new Date();
+
+if (x>today)
+  {
+  alert("You missed the day.");
+  }
+else if (x<today)
+  {
+  alert("x day left");
+  }
+else {
+  alert("This is the day");
+  }

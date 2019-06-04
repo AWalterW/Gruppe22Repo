@@ -1,0 +1,16 @@
+.stack{
+    width:100px;
+    height:100px;
+    background-color:red;
+    border:1px solid black;    
+    }
+    
+    
+    
+    #trash{
+        width:75px;
+        height:75px;
+        background-color:grey;
+        margin-top:20px;
+        margin-left:200px;
+    }

@@ -1,0 +1,38 @@
+
+
+
+.callout{
+    position: fixed;
+    border-radius: 25%;
+    bottom: 35px;
+    right: 20px;
+    margin-left: 20px;
+    max-width: 300px;
+    overflow: hidden;
+    }
+
+.calloutHeader{
+    padding: 25px 15px;
+    background: #2b9ad0;
+    font-size: 30px;
+    color: yellow;;
+    }
+
+.calloutContainer{
+    padding: 15px;
+    background-color: #ffdfe5;
+    color: black;
+}
+
+.closeBtn{
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    color: lightgrey;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.closeBtn:hover {
+    color: #ff3232;
+}

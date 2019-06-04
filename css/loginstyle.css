@@ -1,16 +1,56 @@
-
 body {
-    background: url('https://www.neeuro.com/wp-content/uploads/Depositphotos_8846425_original.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+    font-family: Arial, Helvetica, sans-serif; 
 }
 
-.opacityMod {
-    opacity: 0.5;
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
-#loginBox {
-    background-color: rgba(10,10,10,0.7);
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
 }
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+    background-color:#f1f1f1;
+    width:50%;
+    flex: 1;
+    min-width: 300px;
+}
+
+.wrapper {
+    width: 80%;
+    height: 600px;
+    margin: 0 auto;
+    display:flex;
+    padding:3%;
+}
+
+#kiddodiv {
+    width: 100%;
+    flex: 0 0 65%;
+}
+
+#kiddoimage {
+    height: 600px;
+}
+
