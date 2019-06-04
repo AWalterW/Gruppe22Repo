@@ -390,6 +390,34 @@ main {
   border-radius: 5px;
   background-color:#fcfcfc;
 }
+#addRewardBtn{
+  position: absolute;
+  top: -12%;
+}
+#addRewardModal {
+  display: none;
+}
+#addRewardForm {
+  padding: 10px 30px;
+  background-color:	#eaeaee;
+}
+#addReward1 {
+  border-radius:5px;
+  background-color:#fcfcfc;
+}
+#addReward2 {
+  border-radius:5px;
+  background-color:#fcfcfc;
+}
+#addRewardModalBtn {
+  background-color:#5cb85c;
+  border-radius:5px;
+  padding: 10px;
+  color: white;
+  border: 1px solid darkgreen;
+  text-shadow: 1px 1px darkgreen;
+}
+
 /* Progress Bar !!!!!hardcoded!!!!! */
 
 #progressBar{
@@ -399,9 +427,9 @@ main {
 
 .grid{
   position: relative;
-  top: -90px;
+  top: 10px;
   width: 70px;
-  height: 70px;
+  height: 50px;
   background-color: white;
   clip-path:
       polygon(
@@ -417,12 +445,16 @@ main {
 }
 
 #arrow1{
-  position: relative;
+  position: absolute;
   left: 100px;
-  top: 185px;
+  top: 50%;
 }
 #arrow2{
-  position: relative;
+  position: absolute;
   left: 100px;
-  top: -60px;
+  top: 0%;
+}
+.addRewardBtn{
+  position: absolute;
+  top: -10%;
 }

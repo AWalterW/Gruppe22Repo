@@ -93,7 +93,7 @@ function startApp() {
 
   renderPageVars(); 
   childPageView();
-
+  addProgressbarPoint();
   fixDueDate();
 
   addDropListener(todoArea);
@@ -156,4 +156,16 @@ function deleteTask(taskId) {
 function checkboxChange(taskId, subtaskId) {
   tasks[taskId].checkList[subtaskId].isDone = !tasks[taskId].checkList[subtaskId].isDone;  
   taskUpdated();
+}
+
+// Add reward 
+
+function addReward(form){
+
+  const reward1 = document.getElementById("addReward1").value;
+  const reward2 = document.getElementById("addReward2").value;
+
+  document.getElementById("arrow1").innerHTML= reward1;
+  document.getElementById("arrow2").innerHTML= reward2;
+
 }
