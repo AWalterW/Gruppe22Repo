@@ -21,7 +21,8 @@
            <button id="colorBlindBtn" class="mainBtn" onclick="colorBlind()"><i class="fas fa-low-vision"></i>Fargeblind</button>  
            <span></span>
            <div id="headTools">
-                <button class="mainBtn"><i class="fas fa-user-friends"></i>ProsjektGruppe</button> 
+                <button id="addNewTaskBtn" class="mainBtn" onclick="closeAllModals(), openModal('addTaskModal'), renderMembers('addTaskWorker')"><i class="fas fa-plus"></i> Legg til oppgave</button>
+                <button id="projectBtn" class="mainBtn"><i class="fas fa-user-friends"></i>ProsjektGruppe</button> 
                 <div class="dropdown">
                     <h3 id="projects"><i class="fas fa-angle-down"></i></h3>
                     <div id="projectDropdown" class="dropdown-content"> 
@@ -47,7 +48,7 @@
 
         <main>
             <div id="kanbanTools">
-                <button id="addNewTaskBtn" class="mainBtn" onclick="closeAllModals(), openModal('addTaskModal'), renderMembers('addTaskWorker')"><i class="fas fa-plus"></i> Legg til oppgave</button>
+                
             </div> 
             <div id="kanbanBox"> 
                 <h3 class="listHeader">Skal gjøres</h3> 
@@ -68,10 +69,13 @@
         <div id="sidebar">
 
             <div id="progressBar">
+                
                 <button id="addRewardBtn" class="mainBtn" onclick="closeAllModals(), openModal('addRewardModal')"><i class="fas fa-plus"></i> Legg til belønning</button>
-                <p><i id= "arrow1" class="fas fa-arrow-left "></i></p> 
-                <p><i id= "arrow2" class="fas fa-arrow-left "></i></p>
-            
+                <p><i id= "arrow1" class="fas fa-arrow-left arrow"></i></p> 
+                <p><i id= "arrow2" class="fas fa-arrow-left arrow"></i></p>
+                <div id="rewardBox1" class="rewardBox"><div id="rewardText1" class="rewardText"></div></div>
+                <div id="rewardBox2" class="rewardBox"><div id="rewardText2" class="rewardText"></div></div>
+
                 <div id="g10" class="grid"></div>
                 <div id="g9" class="grid"></div>
                 <div id="g8" class="grid"></div>
@@ -154,7 +158,7 @@
                         <input type="text" name="Reward1" id="addReward1"><br><br>
                         Belønning 2:<br>
                         <input type="text" name="Reward2" id="addReward2"><br><br>
-                        <input id="addRewardModalBtn" type="button" value="Legg til" onclick="addReward('addRewardForm'), closeModal('addRewardModal')">
+                        <input id="addRewardModalBtn" type="button" value="Legg til" onclick="addReward('addRewardForm'), closeModal('addRewardModal'), displayReward()">
                     </div>
                 </form>
             </div>
