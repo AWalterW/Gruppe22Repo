@@ -104,7 +104,6 @@ header * {
 main {
   grid-area: main;
   background-color: var(--main-background-color);
-  background-image: url('https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fincitrio.com%2Fwp-content%2Fuploads%2F2014%2F02%2FLego1.jpg&f=1');
 }
 
 #kanbanTools {
@@ -129,13 +128,16 @@ main {
   background-color: var(--main-color);
   border: 2px solid black;
   border-radius: 3px;
-  margin-bottom: 10px;
   text-align: center;
 }
 
 /* HOLY FUCK TEXTEN VIL IKKE VÆRE NOE ANNET STED ENN PÅ BUNNEN AV DEN BOKSEN HJELP*/
 .listHeader {
   color: white;
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 10%;
 }
 
 .kanbanList {

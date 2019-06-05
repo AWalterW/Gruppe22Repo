@@ -411,6 +411,9 @@ function colorBlind(){
   document.documentElement.style.setProperty('--todo-card-color', 'rgb(204,121,167)');
   document.documentElement.style.setProperty('--doing-card-color', 'rgb(240, 228, 66)');
   document.documentElement.style.setProperty('--completed-card-color', 'rgb(255, 140, 0)');
+  document.documentElement.style.setProperty('--todo-card-bg', 'rgba(204,10,167, 0.2)');
+  document.documentElement.style.setProperty('--doing-card-bg', 'rgba(228, 228, 10, 0.2)');
+  document.documentElement.style.setProperty('--completed-card-bg', 'rgba(255, 140, 0, 0.2)');
   //document.documentElement.style.setProperty(--card-text-color, #001730);
   //document.documentElement.style.setProperty(--edit-hover-color, #fe4a49);
   //document.documentElement.style.setProperty(--btn-border-color, #4ad7d1);
