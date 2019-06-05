@@ -1,7 +1,7 @@
 let members = [
   {
     id: 0,
-    email: "noen@eksempel.no",
+    email: "OlaNordmann@eksempel.no",
     password: "abc123",
     name: "Ola Nordmann",
     lastOpenProject: 1,
@@ -10,7 +10,7 @@ let members = [
   },
   {
     id: 1,
-    email: "noenandre@eksempel.no",
+    email: "KariNordmann@eksempel.no",
     password: "passord",
     name: "Kari Nordmann",
     lastOpenProject: 1,
