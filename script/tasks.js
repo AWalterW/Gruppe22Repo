@@ -3,6 +3,15 @@ let currentProject;
 let currentUser = 0;
 let isColorBlind = false;
 
+
+//Forsøker å sette currentUser til samme value som logintoken, som blir satt i loginscript.js
+/*
+function getloginLocal() {
+  currentUser = JSON.parse(localStorage.getItem("loginToken"));
+}
+
+getloginLocal();
+*/
 let defaultTasks = [
   {
     id: 0,
@@ -216,15 +225,83 @@ function checkboxChange(taskId, subtaskId) {
   taskUpdated();
 }
 
-// Add reward
+// Add rewards
 
 function addReward(form) {
   const reward1 = document.getElementById("addReward1").value;
   const reward2 = document.getElementById("addReward2").value;
 
-  document.getElementById("arrow1").innerHTML = " " + reward1;
-  document.getElementById("arrow2").innerHTML = " " + reward2;
+  document.getElementById("rewardText1").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;" + reward1;
+  document.getElementById("rewardText2").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;" + reward2;
 
   projects[currentProject].reward1 = reward1;
   projects[currentProject].reward2 = reward2;
+}
+function displayReward(){
+  var reward1 = document.getElementById("addReward1").value;
+  var reward2 = document.getElementById("addReward2").value;
+
+    document.getElementById("arrow1").style.visibility = "visible";
+    document.getElementById("rewardBox1").style.visibility = "visible";
+    document.getElementById("arrow2").style.visibility = "visible";
+    document.getElementById("rewardBox2").style.visibility = "visible";
+
+  /*if(reward1.length !== ""){
+    document.getElementById("arrow1").style.visibility = "visible";
+    document.getElementById("rewardBox1").style.visibility = "visible";
+  }
+  else{
+    alert("fuck you");
+  }*/
+
+  /*function checkBox1(reward1){
+    if(reward1 != ""){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  function checkBox2(reward2){
+    if(reward2 != ""){
+      return true;
+    }
+      else{
+      return false;
+     }
+  }
+
+  if(checkBox1() = true){
+    document.getElementById("arrow1").style.visibility = "visible";
+    document.getElementById("rewardBox1").style.visibility = "visible";
+    document.getElementById("arrow2").style.visibility = "hidden";
+    document.getElementById("rewardBox2").style.visibility = "hidden";
+  }
+  else if (checkBox2() = true){
+    document.getElementById("arrow2").style.visibility = "visible";
+    document.getElementById("rewardBox2").style.visibility = "visible";
+    document.getElementById("arrow1").style.visibility = "hidden";
+    document.getElementById("rewardBox1").style.visibility = "hidden";
+  }
+  else{
+    document.getElementById("arrow1").style.visibility = "hidden";
+    document.getElementById("rewardBox1").style.visibility = "hidden";
+    document.getElementById("arrow2").style.visibility = "hidden";
+    document.getElementById("rewardBox2").style.visibility = "hidden";
+  }
+ /* if(){
+    document.getElementById("arrow1").style.visibility = "visible";
+    document.getElementById("rewardBox1").style.visibility = "visible";
+    document.getElementById("arrow2").style.visibility = "hidden";
+    document.getElementById("rewardBox2").style.visibility = "hidden";
+  }
+  else if(){
+    document.getElementById("arrow2").style.visibility = "visible";
+    document.getElementById("rewardBox2").style.visibility = "visible";
+    document.getElementById("arrow1").style.visibility = "hidden";
+    document.getElementById("rewardBox1").style.visibility = "hidden";
+  }
+   else{ alert("fuck you");
+  }
+*/
 }
