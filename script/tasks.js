@@ -225,7 +225,7 @@ function checkboxChange(taskId, subtaskId) {
   taskUpdated();
 }
 
-// Add reward
+// Add rewards
 
 function addReward(form) {
   const reward1 = document.getElementById("addReward1").value;

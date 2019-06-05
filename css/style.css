@@ -569,7 +569,7 @@ main {
   );
   border: 1px solid #001730;
   margin-bottom: -1px;
-  /*border-bottom: 2px solid #001730;*/
+  /*border-bottom: 2px solid #001730s;*/
 }
 .gainedGrid{
   background-color: var(--gridGained-background-color);
