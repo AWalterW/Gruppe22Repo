@@ -3,6 +3,15 @@ let currentProject;
 let currentUser = 0;
 let isColorBlind = false;
 
+
+//Forsøker å sette currentUser til samme value som logintoken, som blir satt i loginscript.js
+/*
+function getloginLocal() {
+  currentUser = JSON.parse(localStorage.getItem("loginToken"));
+}
+
+getloginLocal();
+*/
 let defaultTasks = [
   {
     id: 0,

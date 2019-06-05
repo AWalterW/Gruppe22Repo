@@ -8,15 +8,8 @@ body {
     -o-background-size: cover;
 }
 
-.opacityMod {
-    opacity: 0.5;
-}
-
 #loginBox {
     background-color: rgba(10,10,10,0.7);
-}
-
-#kanBarnImagino {
 }
 
 #loginbtn {
