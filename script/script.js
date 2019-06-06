@@ -171,8 +171,9 @@ function renderTask(task, targetArea) {
       cardDiv.addEventListener("dragstart", e => {
         e.dataTransfer.setData("text", task.id);
       });
-
+      
       targetArea.appendChild(cardDiv);
+      
     }
   }
 }
@@ -212,7 +213,7 @@ function renderPageVars() {
   });
 
   let projectLiAddproject = document.createElement("a");
-  projectLiAddproject.innerHTML = 'Nytt projekt <i class="fas fa-plus"></i>';
+  projectLiAddproject.innerHTML = 'Nytt prosjekt <i class="fas fa-plus"></i>';
   projectLiAddproject.id = "newProjectBtn";
   document.getElementById("projectDropdown").appendChild(projectLiAddproject); 
 
@@ -238,6 +239,48 @@ function renderMembers(target, currentWorker) {
     }
     addTaskWorkerList.appendChild(workerOption);
   });
+}
+
+function renderGroupMembers() {
+  document.getElementById("groupMembers").innerHTML = "";
+  document.getElementById("addGroupMember").innerHTML = "";
+
+  projects[currentProject].members.forEach(m => {
+    let groupMember = document.createElement("li");
+    groupMember.innerText = members[m].name;
+
+    document.getElementById("groupMembers").appendChild(groupMember);
+  });
+  let membersNotInGroup = [];
+
+  members.forEach(e => {
+    let isInGroup = false;
+    for (let i = 0; i < projects[currentProject].members.length; i++) {
+      console.log(projects[currentProject].members[i]);
+
+      if (e.id == projects[currentProject].members[i]) {
+        isInGroup = true;
+      }
+    }
+    if (!isInGroup) {
+      membersNotInGroup.push(e.id);
+    }
+  });
+
+  for (let i = 1; i < membersNotInGroup.length; i++) {
+    let userSelectItem = document.createElement("option");
+    userSelectItem.value = membersNotInGroup[i];
+    userSelectItem.innerText = members[membersNotInGroup[i]].name;
+    document.getElementById("addGroupMember").appendChild(userSelectItem);
+  }
+}
+
+function addNewGroupMember() {
+  let newMember = document.getElementById("addGroupMember").value;
+  console.log(newMember);
+  projects[currentProject].members.push(newMember);
+  renderGroupMembers();
+  taskUpdated();
 }
 
 // Drag and Drop here!
@@ -268,7 +311,7 @@ function changeTaskStatus(taskId, target) {
       task.completed === false &&
       members[task.worker]
     ) {
-      if (!members[currentUser].isChild || currentProject > 2) {
+      if (currentProject != 1 && currentProject !== 2) {
         projects[currentProject].points += 1;
         console.log(projects[currentProject].points);
         projectpointAdded(currentProject);
@@ -410,6 +453,7 @@ function closeAllModals() {
   closeModal("addTaskModal");
   closeModal("editTaskModal");
   closeModal("addProjectModal");
+  closeModal("groupModal");
 }
 
 // function for changing to colorblind mode
@@ -467,11 +511,13 @@ document.getElementById("header").addEventListener("click", e => {
   if (e.target.id === "logoutBtn") {
     document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.open("./login.html", "_self");
-  }
-
-  if (e.target.id === "newProjectBtn") {
+  } else if (e.target.id === "newProjectBtn") {
     closeAllModals();
     openModal("addProjectModal");
+  } else if (e.target.id === "projectBtn") {
+    closeAllModals();
+    openModal("groupModal");
+    renderGroupMembers();
   }
 });
 

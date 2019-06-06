@@ -1,107 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>KanBarn</title>  
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./css/style.css"> 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-</head>
-<body onload="startApp()">
-    <div id="modalDiv"></div>
-    <div class="container">
-        <header id="header">
-           <div id="logoDiv">
-               <img src="./images/KanBarnMain.jpg">
-           </div>
-           <span></span>
-           <div id="headTools">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>KanBarn</title>  
+        <link rel="shortcut icon" href="./faviconM.ico" type="image/x-icon">
+        <link rel="icon" href="./faviconM.ico" type="image/x-icon">
+        <link rel="stylesheet" href="./css/style.css"> 
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    </head>
+    <body onload="startApp()">
+        <div id="modalDiv"></div>
+        <div class="container">
+            <header id="header">
+            <div id="logoDiv">
+                <img src="./images/KanBarnMain.jpg">
+            </div>
+            <span></span>
+            <!--The header, contains buttons for tasks and other-->
+            <div id="headTools">
                 <button id="colorBlindBtn" class="mainBtn" onclick="colorBlind()"><i class="fas fa-low-vision"></i>Fargeblind</button>  
                 <button id="addNewTaskBtn" class="mainBtn" onclick="closeAllModals(), openModal('addTaskModal'), renderMembers('addTaskWorker')"><i class="fas fa-plus"></i>Ny Oppgave</button>
                 <button id="addRewardBtn" class="mainBtn" onclick="closeAllModals(), openModal('addRewardModal')"><i class="fas fa-plus"></i>Ny Belønning</button>
-                <button id="projectBtn" class="mainBtn"><i class="fas fa-user-friends"></i>Gruppe</button> 
+                <button id="projectBtn" class="mainBtn" ><i class="fas fa-user-friends"></i>Gruppe</button> 
                 <div class="dropdown">
                     <h3 id="projects"><i class="fas fa-angle-down"></i></h3>
-                    <div id="projectDropdown" class="dropdown-content"> 
+                    <div id="projectDropdown" class="dropdown-content"></div>
+                </div>
+                
+            </div><!--End headTools--> 
+            <!--User Header, top right-->
+            <div id="userTools"> 
+
+                <div class="dropdown" id="userDropDown">
+                    <p id="username"></p>
+                    <div class="dropdown-content">
+                        <a href="#">Min bruker</a>
+                        <a id="logoutBtn">Logg ut</a>
                     </div>
                 </div>
-                
-           </div> 
-           <div id="userTools"> 
 
-            <div class="dropdown" id="userDropDown">
-                <p id="username"></p>
-                <div class="dropdown-content">
-                    <a href="#">Min bruker</a>
-                    <a id="logoutBtn">Logg ut</a>
-                </div>
-            </div>
+                    <div id="profilePicture">
+                        <img src="./images/user.png" alt="user profilepicture">
+                    </div>
+            </div><!--End userTools-->
+            </header> 
 
-                <div id="profilePicture">
-                    <img src="./images/user.png" alt="user profilepicture">
-                </div>
-           </div>
-        </header> 
+            <!--main contains the kanban, with all it's assets and functions-->
+            <main>
+                <div id="kanbanTools">
+                    
+                </div><!--End kanbanTools-->
+                <div id="kanbanBox"> 
+                    <div class="listHeaderBox">
+                        <h3 class="listHeader">Skal gjøres</h3> 
+                    </div>
+                    <div class="listHeaderBox">
+                        <h3 class="listHeader">Ferdig</h3> 
+                    </div>
+                    <div class="listHeaderBox">
+                        <h3 class="listHeader">Godkjent</h3>
+                    </div>
+                        <div id="todo" class="kanbanList">
+                        </div>
+                        <div id="doing" class="kanbanList">
+                        </div> 
+                        <div id="completed" class="kanbanList">
+                        </div>            
+                </div><!--End kanbanBox-->
+            </main>  
 
-        <main>
-            <div id="kanbanTools">
-                
-            </div> 
-            <div id="kanbanBox"> 
-                <div class="listHeaderBox">
-                    <h3 class="listHeader">Skal gjøres</h3> 
-                </div>
-                <div class="listHeaderBox">
-                    <h3 class="listHeader">Ferdig</h3> 
-                </div>
-                <div class="listHeaderBox">
-                    <h3 class="listHeader">Godkjent</h3>
-                </div>
-                    <div id="todo" class="kanbanList">
+            <!--The sidebar contains a progress bar to show progress toward rewards-->
+            <div id="sidebar">
+                <div id="progressBar">
+                    
+                    
+                    <p><i id= "arrow1" class="fas fa-arrow-left arrow"></i></p> 
+                    <p><i id= "arrow2" class="fas fa-arrow-left arrow"></i></p>
+                    <div id="rewardBox1" class="rewardBox"><div id="rewardText1" class="rewardText"></div></div>
+                    <div id="rewardBox2" class="rewardBox"><div id="rewardText2" class="rewardText"></div></div>
+
+                    <div id="g10" class="grid"></div>
+                    <div id="g9" class="grid"></div>
+                    <div id="g8" class="grid"></div>
+                    <div id="g7" class="grid"></div>
+                    <div id="g6" class="grid"></div>
+                    <div id="g5" class="grid"></div>
+                    <div id="g4" class="grid"></div>
+                    <div id="g3" class="grid"></div>
+                    <div id="g2" class="grid"></div>
+                    <div id="g1" class="grid"></div>
+
+                    <button id="resetReward" class="mainBtn" onclick="resetReward(), resetRewardVisibility()">&nbsp Fullfør belønning</button>
+                    <div id="logBackdrop">
+                    <p id="rewardLog"></p>
                     </div>
 
-                    <div id="doing" class="kanbanList">
-       
-                    </div> 
-
-                    <div id="completed" class="kanbanList">
-                                
-            </div>
-        </main>  
-
-        <div id="sidebar">
-
-            <div id="progressBar">
-                
-                
-                <p><i id= "arrow1" class="fas fa-arrow-left arrow"></i></p> 
-                <p><i id= "arrow2" class="fas fa-arrow-left arrow"></i></p>
-                <div id="rewardBox1" class="rewardBox"><div id="rewardText1" class="rewardText"></div></div>
-                <div id="rewardBox2" class="rewardBox"><div id="rewardText2" class="rewardText"></div></div>
-
-                <div id="g10" class="grid"></div>
-                <div id="g9" class="grid"></div>
-                <div id="g8" class="grid"></div>
-                <div id="g7" class="grid"></div>
-                <div id="g6" class="grid"></div>
-                <div id="g5" class="grid"></div>
-                <div id="g4" class="grid"></div>
-                <div id="g3" class="grid"></div>
-                <div id="g2" class="grid"></div>
-                <div id="g1" class="grid"></div>
-                
-                <button id="resetReward" class="mainBtn" onclick="resetReward(), resetRewardVisibility()">&nbsp Fullfør belønning</button>
-                <div id="logBackdrop">
-                <p id="rewardLog"></p>
-                </div>
-
-            </div>
-        
-        </div>  
+                </div><!--End progressBar-->
+            </div><!--End sidebar-->
 
             <div id="addTaskModal" class="modal">
                 <div class="modalHeader">
@@ -122,12 +120,14 @@
                         <br><br>
                         <input id="addTaskModalBtn" type="button" value="Legg til" onclick="addTask('addTaskForm')">
                     </div>
+                    <!--Not implemented
                     <div id="addTaskRight">
             
                     </div>
+                    -->
             
                 </form>
-            </div> 
+            </div> <!--End addTaskModal-->
 
             <div id="editTaskModal" class="modal">
                 <div class="modalHeader">
@@ -149,15 +149,13 @@
                         <br><br>
                         <input id="editTaskModalBtn" type="button" value="Lagre" onclick="submitTaskChange()">
                     </div>
+                    <!--Not implemented
                     <div id="editTaskRight">
-            
                     </div>
-            
+                    -->
                 </form>
-            </div>
+            </div><!--End editTaskModal-->
 
-
-            
             <div id="addRewardModal" class="modal">
                 <div class="modalHeader">
                     <h4>Legg til belønning</h4>
@@ -173,7 +171,7 @@
                         <input id="addRewardModalBtn" type="button" value="Legg til" onclick="addReward('addRewardForm'), closeModal('addRewardModal')">
                     </div>
                 </form>
-            </div> 
+            </div><!--End addRewardModal-->
 
             <div id="addProjectModal" class="modal">
                 <div class="modalHeader">
@@ -188,7 +186,26 @@
                         <input id="addProjectModalBtn" type="button" value="Legg til" onclick="addProject('addProjectForm'), closeAllModals()">
                     </div>
                 </form>
+            </div> 
+
+            <div id="groupModal" class="modal">
+                <div class="modalHeader">
+                    <h4>Gruppemedlemmer</h4>
+                    <button class="closeModalBtn" onclick="closeAllModals()">Lukk</button>
+                </div>
+
+                <form id="groupForm" onsubmit="return false">
+                    <div id="editGroup">
+                        Nytt medlem:<br><br>
+                        <select id="addGroupMember"></select><input type="button" onclick="addNewGroupMember()" value="Legg til">
+                        <br><br> 
+                        Medlemmer:
+                        <ul id="groupMembers"></ul>
+                        <input id="saveGroupModalBtn" type="button" value="Lukk" onclick="closeAllModals()">
+                    </div>
+                </form>
             </div>
+
 
 
 
@@ -198,5 +215,5 @@
         <script src="./script/script.js"></script> 
     </div>
 
-</body>
+    </body>
 </html>

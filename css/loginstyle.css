@@ -1,5 +1,5 @@
 
-/* Set a background image by replacing the URL below */
+/* Background image that covers the entire page */
 body {
     background: url('https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pixelstalk.net%2Fwp-content%2Fuploads%2F2016%2F03%2FColorful-Wallpapers-HD-desktop-download.jpg&f=1') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -8,6 +8,7 @@ body {
     -o-background-size: cover;
 }
 
+/*The div that contains the form and the logo */
 #loginBox {
     background-color: rgba(10,10,10,0.7);
 }

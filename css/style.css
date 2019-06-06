@@ -1,3 +1,4 @@
+/***COLOR VARIABLES***/
 :root {
   --main-color: #001730;
   --main-background-color: #ffffff;
@@ -55,6 +56,8 @@ img {
   overflow: hidden;
 }
 
+/***HEADER***/
+
 header {
   grid-area: header;
   width: 100%;
@@ -91,8 +94,8 @@ header * {
 }
 
 #projects {
-  margin-top: 7%;
-  margin-left: px;
+  margin-left: 0px;
+  position: relative;
 }
 
 #userTools {
@@ -112,6 +115,8 @@ header * {
   height: 100%;
   margin-left: 0;
 }
+
+/*** MAIN BODY ***/
 
 main {
   grid-area: main;
@@ -195,7 +200,6 @@ main {
   color: var(--card-text-color);
   cursor: move;
   border-radius: 10px;
-  animation: pop 0.15s ease-in-out 0s forwards;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   grid-template-rows: 20px auto auto;
@@ -204,6 +208,14 @@ main {
     "taskDescription taskDescription taskDescription"
     "taskWorker taskDate taskDate";
 }
+
+/*Hvis vi vil ha animasjoner på drop cards, legg til denne ett sted i script: cardDiv.className = "popCard";*/
+/*
+.popCard {
+  animation: pop 0.15s ease-in-out 0s forwards;
+}
+*/
+
 .taskTitle {
   grid-area: taskTitle;
   width: 80%;
@@ -364,7 +376,7 @@ main {
   background-color: #3e8e41;
 }
 
-@media (max-width: 1162px) {
+@media (max-width: 862px) {
   .container {
     grid-template-columns: 1fr;
     grid-template-rows: 70px 100vh 100vh;
@@ -376,7 +388,7 @@ main {
   }
 }
 
-/* modals */
+/*** MODALS ***/
 
 .modal {
   position: absolute;
@@ -443,6 +455,8 @@ main {
 .closeModalBtn:hover {
   transform: scale(1.05);
 }
+
+/***TASKMODAL***/
 
 #addTaskModal {
   display: none;
@@ -534,6 +548,8 @@ main {
   background-color: #fcfcfc;
 }
 
+/***REWARDMODAL***/
+
 #addRewardModal {
   display: none;
 }
@@ -566,6 +582,30 @@ main {
   background-color: #eaeaee;
 }
 #addProject {
+  border-radius: 5px;
+}
+
+#addProjectModalBtn {
+  background-color: #3c983c;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  border: 1px solid darkgreen;
+  text-shadow: 1px 1px darkgreen;
+}
+
+#addProjectModalBtn:hover {
+  background-color: #5cb85c;
+}
+
+#groupModal {
+  display: none;
+}
+#groupForm {
+  padding: 10px 30px;
+  background-color: #eaeaee;
+}
+#editGroup {
   border-radius: 5px;
 }
 
@@ -655,7 +695,7 @@ main {
   background-color: var(--gridGained-background-color);
 }
 
-/* Reward divs and arrows */
+/*** REWARDS DIVS AND ARROWS ***/
 
 #arrow1 {
   position: absolute;
@@ -663,6 +703,7 @@ main {
   top: 39.2%;
   visibility: hidden;
 }
+
 #arrow2 {
   position: absolute;
   left: 46%;
@@ -688,16 +729,16 @@ main {
   overflow-x: auto;
   overflow-y: hidden;
 }
-.rewardBox *{
+.rewardBox * {
   position: relative;
 }
-#rewardBox1{
+#rewardBox1 {
   position: absolute;
   top: 37.6%;
 }
-#rewardBox2{
+#rewardBox2 {
   position: absolute;
-  top: -1.2%;  
+  top: -1.2%;
 }
 #completed .taskEditBtns {
   display: none;
@@ -705,7 +746,7 @@ main {
 
 /* Reset reward tag and button */
 
-#resetReward{
+#resetReward {
   position: absolute;
   left: 70%;
   bottom: 21%;
