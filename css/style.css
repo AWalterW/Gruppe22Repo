@@ -4,6 +4,7 @@
   --header-text-color: #ffffff;
   --kanbanlist-background-color: #f7f7f7;
   --main-color-opacity: rgba(0, 22, 48, 0.5);
+  --scroll-hover: #283f58;
 
   --todo-card-color: rgb(251, 63, 63);
   --doing-card-color: rgb(255, 255, 55);
@@ -14,7 +15,7 @@
   --card-text-color: #001730;
   --edit-hover-color: purple;
   --btn-border-color: #4ad7d1;
-  --btn-hover-color: #365d88;
+  --btn-hover-color: #283f58;
 
   --sidebar-background-color: #1e90ff;
   --gridGained-background-color: #00ff00;
@@ -73,23 +74,29 @@ header * {
 }
 
 #logoDiv {
-  width: 10%;
-}
-
-#logo {
-  text-shadow: 1px 1px #4ad7d1;
+  width: 160px;
+  min-width: 160px;
 }
 
 #headTools {
+  width: 70%;
+  height: 80%;
+  min-width: 700px;
   display: flex;
+}
+
+#headTools * {
+  margin-left: 7px;
+  position: relative;
+}
+
+#projects {
+  margin-top: 7%;
+  margin-left: px;
 }
 
 #userTools {
   display: flex;
-}
-#username {
-  position: relative;
-  right: 40%;
 }
 #profilePicture {
   float: right;
@@ -102,6 +109,7 @@ header * {
 
 #profilePicture img {
   width: 100%;
+  height: 100%;
   margin-left: 0;
 }
 
@@ -112,9 +120,31 @@ main {
   */
 }
 
+/*Scrollbar, only supported by certain browsers*/
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-hover);
+}
+
 #kanbanTools {
-  height: 70px;
-  padding: 20px 100px;
+  height: 0px;
+  padding: 18px 100px;
 }
 
 #kanbanBox {
@@ -165,6 +195,7 @@ main {
   color: var(--card-text-color);
   cursor: move;
   border-radius: 10px;
+  animation: pop 0.15s ease-in-out 0s forwards;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   grid-template-rows: 20px auto auto;
@@ -172,10 +203,6 @@ main {
     "taskTitle taskTitle taskEditBtns"
     "taskDescription taskDescription taskDescription"
     "taskWorker taskDate taskDate";
-}
-#addNewTaskBtn {
-  position: relative;
-  left: 15%;
 }
 .taskTitle {
   grid-area: taskTitle;
@@ -284,6 +311,7 @@ main {
 .mainBtn {
   background: var(--main-color);
   padding: 10px 15px;
+  padding-left: 5px;
   color: #ffffff;
   border: 1px solid var(--btn-border-color);
   border-bottom-left-radius: 20px;
@@ -296,17 +324,13 @@ main {
 
 .mainBtn:hover {
   background-color: var(--btn-hover-color);
-}
-#projectBtn {
-  position: relative;
-  left: 30%;
+  transform: scale(1.03);
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
   cursor: pointer;
-  left: 30%;
 }
 
 .dropdown-content {
@@ -338,11 +362,7 @@ main {
   background-color: #3e8e41;
 }
 
-@media (max-width: 812px) {
-  #logoDiv {
-    display: none;
-  }
-
+@media (max-width: 1162px) {
   .container {
     grid-template-columns: 1fr;
     grid-template-rows: 70px 100vh 100vh;
@@ -367,8 +387,10 @@ main {
   border-radius: 10px;
   max-width: 70%;
   max-height: 100%;
+  border: 2px solid var(--scroll-hover);
+  box-shadow: 1px 1px 20px black;
   /*Animation*/
-  animation: modalShow 0.2s forwards 1;
+  animation: modalShow 0.2s forwards;
   animation-timing-function: ease-out;
 }
 
@@ -381,6 +403,8 @@ main {
   z-index: 100;
   opacity: 0.9;
   display: none;
+  animation: modalDivFade 0.3s forwards;
+  animation-timing-function: ease-out;
 }
 
 .modalHeader {
@@ -388,6 +412,7 @@ main {
   height: 50px;
   width: 100%;
   padding-left: 10px;
+  border-bottom: 1px solid var(--scroll-hover);
 }
 
 .modalHeader h4 {
@@ -413,18 +438,26 @@ main {
   display: inline-block;
 }
 
+.closeModalBtn:hover {
+  transform: scale(1.05);
+}
+
 #addTaskModal {
   display: none;
 }
 
 #addTaskModalBtn {
-  background-color: #5cb85c;
+  background-color: #3c983c;
   border-radius: 5px;
   padding: 10px;
   color: white;
   border: 1px solid darkgreen;
   text-shadow: 1px 1px darkgreen;
   margin-bottom: 10px;
+}
+
+#addTaskModalBtn:hover {
+  background-color: #5cb85c;
 }
 
 #addTaskForm {
@@ -461,7 +494,7 @@ main {
 }
 
 #editTaskModalBtn {
-  background-color: #5cb85c;
+  background-color: #3c983c;
   border-radius: 5px;
   padding: 10px;
   color: white;
@@ -499,11 +532,6 @@ main {
   background-color: #fcfcfc;
 }
 
-#addRewardBtn {
-  position: absolute;
-  top: -12%;
-  left: 20%;
-}
 #addRewardModal {
   display: none;
 }
@@ -520,7 +548,7 @@ main {
   background-color: #fcfcfc;
 }
 #addRewardModalBtn {
-  background-color: #5cb85c;
+  background-color: #3c983c;
   border-radius: 5px;
   padding: 10px;
   color: white;
@@ -531,13 +559,6 @@ main {
 #addProjectModal {
   display: none;
 }
-
-#addProjectBtn {
-  position: absolute;
-  top: -12%;
-  left: 20%;
-}
-
 #addProjectForm {
   padding: 10px 30px;
   background-color: #eaeaee;
@@ -547,23 +568,54 @@ main {
 }
 
 #addProjectModalBtn {
-  background-color: #5cb85c;
+  background-color: #3c983c;
   border-radius: 5px;
   padding: 10px;
   color: white;
   border: 1px solid darkgreen;
   text-shadow: 1px 1px darkgreen;
 }
+
+#addProjectModalBtn:hover {
+  background-color: #5cb85c;
+}
 /*Keyframes*/
 
 @keyframes modalShow {
   0% {
-    top: 100%;
+    top: 70%;
     opacity: 0;
   }
   100% {
     top: 50%;
     opacity: 1;
+  }
+}
+
+@keyframes modalDivFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0, 9;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(0.97);
+  }
+
+  70% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -622,10 +674,6 @@ main {
   font-size: 75%;
 }
 
-.addRewardBtn {
-  position: absolute;
-  top: -10%;
-}
 .rewardBox {
   position: relative;
   left: 120px;
@@ -646,9 +694,23 @@ main {
   top: -7%;
 }
 #colorBlindBtn {
-  position: relative;
-  left: -5%;
 }
 #completed .taskEditBtns {
   display: none;
 }
+
+/*Fungerer ikke enda*/
+/*
+#addRewardBtn:hover#sidebar {
+  animation: pulse 2s linear infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #FFFFFF
+  }
+  100% {
+    background-color: var(--sidebar-background-color);
+  }
+}
+*/

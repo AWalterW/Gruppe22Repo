@@ -26,7 +26,6 @@ function check(form) {
       members[member].email.toLowerCase() === loginUsername.toLowerCase() &&
       members[member].password === loginPassword
     ) {
-      alert("noe");
       loginSuccess(member, stayLoggedin);
       break;
     } else if (

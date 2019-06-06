@@ -46,7 +46,6 @@ function changeProjectListener() {
     if (e.target.dataset.projectId) {
       changeCurrentProject(e.target.dataset.projectId);
     } else if (e.target.id === "newProjectBtn") {
-      console.log("New Project");
     }
   });
 }
