@@ -10,7 +10,6 @@ if (localStorage.getItem("members") === null) {
 } else {
   if (localStorage.getItem("members").length < 1) {
     members = defaultMembers;
-    console.log("localstorage defined but empty");
   } else {
     members = JSON.parse(localStorage.getItem("members"));
   }
@@ -50,16 +49,3 @@ function loginSuccess(member, remember) {
     window.open("./index.html", "_self");
   }
 }
-
-//Forsøk på å lagre til local storage
-/*
-function saveLoginLocal() {
-    localStorage.setItem("loginToken", JSON.pars(loginToken));
-  }
-  */
-
-// let date = new Date();
-//  date.setTime(date.getTime() + 15 * 24 * 60 * 60 * 1000);
-// let expires = "expires=" + date.toUTCString();
-//  document.cookie = user + "=" + e.id + ";" + expires + ";path=/";
-// let windowOpen = window.open("index.html");

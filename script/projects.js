@@ -61,6 +61,5 @@ changeProjectListener();
 
 // alert progressapps about user getting a point
 function projectpointAdded(project) {
-  console.log(projects[project].points);
   addProgressbarPoint();
 }
