@@ -24,7 +24,7 @@
                 <button id="colorBlindBtn" class="mainBtn" onclick="colorBlind()"><i class="fas fa-low-vision"></i>Fargeblind</button>  
                 <button id="addNewTaskBtn" class="mainBtn" onclick="closeAllModals(), openModal('addTaskModal'), renderMembers('addTaskWorker')"><i class="fas fa-plus"></i>Ny Oppgave</button>
                 <button id="addRewardBtn" class="mainBtn" onclick="closeAllModals(), openModal('addRewardModal')"><i class="fas fa-plus"></i>Ny Belønning</button>
-                <button id="projectBtn" class="mainBtn"><i class="fas fa-user-friends"></i>Gruppe</button> 
+                <button id="projectBtn" class="mainBtn" ><i class="fas fa-user-friends"></i>Gruppe</button> 
                 <div class="dropdown">
                     <h3 id="projects"><i class="fas fa-angle-down"></i></h3>
                     <div id="projectDropdown" class="dropdown-content"></div>
@@ -58,10 +58,10 @@
                         <h3 class="listHeader">Skal gjøres</h3> 
                     </div>
                     <div class="listHeaderBox">
-                        <h3 class="listHeader">Ferdig</h3> 
+                        <h3 class="listHeader" id="doingHeader">Ferdig</h3> 
                     </div>
                     <div class="listHeaderBox">
-                        <h3 class="listHeader">Godkjent</h3>
+                        <h3 class="listHeader" id="completeHeader">Godkjent</h3>
                     </div>
                         <div id="todo" class="kanbanList">
                         </div>
@@ -93,8 +93,10 @@
                     <div id="g2" class="grid"></div>
                     <div id="g1" class="grid"></div>
 
-                    <button id="resetReward" class="mainBtn" onclick="resetReward()">&nbsp Fullfør belønning</button>
-                    <p id="rewardLogg">Halla</p>
+                    <button id="resetReward" class="mainBtn" onclick="resetReward(), resetRewardVisibility()">&nbsp Fullfør belønning</button>
+                    <div id="logBackdrop">
+                    <p id="rewardLog"></p>
+                    </div>
 
                 </div><!--End progressBar-->
             </div><!--End sidebar-->
@@ -184,7 +186,26 @@
                         <input id="addProjectModalBtn" type="button" value="Legg til" onclick="addProject('addProjectForm'), closeAllModals()">
                     </div>
                 </form>
-            </div><!--End addProjectModal-->
+            </div> 
+
+            <div id="groupModal" class="modal">
+                <div class="modalHeader">
+                    <h4>Gruppemedlemmer</h4>
+                    <button class="closeModalBtn" onclick="closeAllModals()">Lukk</button>
+                </div>
+
+                <form id="groupForm" onsubmit="return false">
+                    <div id="editGroup">
+                        Nytt medlem:<br><br>
+                        <select id="addGroupMember"></select><input type="button" onclick="addNewGroupMember()" value="Legg til">
+                        <br><br> 
+                        Medlemmer:
+                        <ul id="groupMembers"></ul>
+                        <input id="saveGroupModalBtn" type="button" value="Lukk" onclick="closeAllModals()">
+                    </div>
+                </form>
+            </div>
+
 
 
 
@@ -192,7 +213,7 @@
         <script src="./script/members.js"></script> 
         <script src="./script/tasks.js"></script> 
         <script src="./script/script.js"></script> 
-
+    </div>
 
     </body>
 </html>

@@ -171,9 +171,8 @@ function renderTask(task, targetArea) {
       cardDiv.addEventListener("dragstart", e => {
         e.dataTransfer.setData("text", task.id);
       });
-      
+
       targetArea.appendChild(cardDiv);
-      
     }
   }
 }
@@ -213,9 +212,22 @@ function renderPageVars() {
   });
 
   let projectLiAddproject = document.createElement("a");
-  projectLiAddproject.innerHTML = 'Nytt projekt <i class="fas fa-plus"></i>';
+  projectLiAddproject.innerHTML = 'Nytt prosjekt <i class="fas fa-plus"></i>';
   projectLiAddproject.id = "newProjectBtn";
   document.getElementById("projectDropdown").appendChild(projectLiAddproject);
+
+  if (projects[currentProject].log) {
+    document.getElementById("rewardLog").innerText =
+      projects[currentProject].log;
+  }
+
+  if (currentProject > 2) {
+    document.getElementById("doingHeader").innerText = "Holder på";
+    document.getElementById("completeHeader").innerText = "Ferdig";
+  } else {
+    document.getElementById("doingHeader").innerText = "Ferdig";
+    document.getElementById("completeHeader").innerText = "Godkjent";
+  }
 
   addProgressbarPoint();
   renderRewards();
@@ -235,6 +247,48 @@ function renderMembers(target, currentWorker) {
     }
     addTaskWorkerList.appendChild(workerOption);
   });
+}
+
+function renderGroupMembers() {
+  document.getElementById("groupMembers").innerHTML = "";
+  document.getElementById("addGroupMember").innerHTML = "";
+
+  projects[currentProject].members.forEach(m => {
+    let groupMember = document.createElement("li");
+    groupMember.innerText = members[m].name;
+
+    document.getElementById("groupMembers").appendChild(groupMember);
+  });
+  let membersNotInGroup = [];
+
+  members.forEach(e => {
+    let isInGroup = false;
+    for (let i = 0; i < projects[currentProject].members.length; i++) {
+      console.log(projects[currentProject].members[i]);
+
+      if (e.id == projects[currentProject].members[i]) {
+        isInGroup = true;
+      }
+    }
+    if (!isInGroup) {
+      membersNotInGroup.push(e.id);
+    }
+  });
+
+  for (let i = 1; i < membersNotInGroup.length; i++) {
+    let userSelectItem = document.createElement("option");
+    userSelectItem.value = membersNotInGroup[i];
+    userSelectItem.innerText = members[membersNotInGroup[i]].name;
+    document.getElementById("addGroupMember").appendChild(userSelectItem);
+  }
+}
+
+function addNewGroupMember() {
+  let newMember = document.getElementById("addGroupMember").value;
+  console.log(newMember);
+  projects[currentProject].members.push(parseInt(newMember));
+  renderGroupMembers();
+  taskUpdated();
 }
 
 // Drag and Drop here!
@@ -265,7 +319,7 @@ function changeTaskStatus(taskId, target) {
       task.completed === false &&
       members[task.worker]
     ) {
-      if (!members[currentUser].isChild || currentProject > 2) {
+      if (!members[currentUser].isChild) {
         projects[currentProject].points += 1;
         console.log(projects[currentProject].points);
         projectpointAdded(currentProject);
@@ -276,10 +330,20 @@ function changeTaskStatus(taskId, target) {
         task.completed = true;
         task.status = target;
         taskUpdated();
+      } else if (currentProject > 2) {
+        projects[currentProject].points += 1;
+        console.log(projects[currentProject].points);
+        projectpointAdded(currentProject);
+        console.log(
+          `${projects[currentProject].name} får 1 poeng og har nå 
+          ${projects[currentProject].points} poeng!`
+        );
+        task.completed = true;
+        task.status = target;
       } else {
-        alert("Oppgaven må være tildelt en person for å få poeng!");
         task.status = oldStatus;
         taskUpdated();
+        alert("Kun voksne kan godkjenne oppgaver");
       }
     } else {
       task.status = target;
@@ -388,7 +452,7 @@ function formatDate(date) {
 // Changing color on points added Progressbar
 
 function addProgressbarPoint() {
-  for (let i = 1; i < 10; i++) {
+  for (let i = 1; i < 11; i++) {
     document.getElementById("g" + i).className = "grid";
   }
   if (
@@ -407,6 +471,7 @@ function closeAllModals() {
   closeModal("addTaskModal");
   closeModal("editTaskModal");
   closeModal("addProjectModal");
+  closeModal("groupModal");
 }
 
 // function for changing to colorblind mode
@@ -464,16 +529,39 @@ document.getElementById("header").addEventListener("click", e => {
   if (e.target.id === "logoutBtn") {
     document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.open("./login.html", "_self");
-  }
-
-  if (e.target.id === "newProjectBtn") {
+  } else if (e.target.id === "newProjectBtn") {
     closeAllModals();
     openModal("addProjectModal");
+  } else if (e.target.id === "projectBtn") {
+    closeAllModals();
+    openModal("groupModal");
+    renderGroupMembers();
   }
 });
 
 //Reset rewards
 
-function resetReward(){
-  document.getElementsByClassName("grid").style.backgroundColor = "white";
+function resetReward() {
+  let logMessage;
+
+  if (projects[currentProject].points >= 5) {
+    logMessage = "Forrige uke nådde du første belønning. Stå på!";
+  }
+  if (projects[currentProject].points == 10) {
+    logMessage =
+      "Forrige uke nådde du både første og andre belønning. Gratulerer!";
+  }
+
+  projects[currentProject].reward1 = "";
+  projects[currentProject].reward2 = "";
+  projects[currentProject].log = logMessage;
+  projects[currentProject].points = 0;
+
+  taskUpdated();
+}
+function resetRewardVisibility() {
+  document.getElementById("arrow1").style.visibility = "hidden";
+  document.getElementById("rewardBox1").style.visibility = "hidden";
+  document.getElementById("arrow2").style.visibility = "hidden";
+  document.getElementById("rewardBox2").style.visibility = "hidden";
 }

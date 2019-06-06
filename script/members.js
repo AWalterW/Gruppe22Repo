@@ -35,9 +35,11 @@ function childPageView() {
     if (currentProject === 1 || currentProject === 2) {
       document.getElementById("addNewTaskBtn").style.display = "none";
       document.getElementById("addRewardBtn").style.display = "none";
+      document.getElementById("resetReward").style.display = "none";
     } else {
       document.getElementById("addNewTaskBtn").style.display = "block";
       document.getElementById("addRewardBtn").style.display = "block";
+      document.getElementById("resetReward").style.display = "block";
     }
   }
 }
