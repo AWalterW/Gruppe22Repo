@@ -6,15 +6,6 @@ let currentProject;
 let currentUser;
 let isColorBlind = false;
 
-//Forsøker å sette currentUser til samme value som logintoken, som blir satt i loginscript.js
-/*
-function getloginLocal() {
-  currentUser = JSON.parse(localStorage.getItem("loginToken"));
-}
-
-getloginLocal();
-*/
-
 let defaultTasks = [
   /*
   {
@@ -71,6 +62,8 @@ let defaultTasks = [
   */
 ];
 
+//Saving and getting to/from local storage
+
 function saveToLocal() {
   localStorage.removeItem("tasks");
   localStorage.removeItem("projects");
@@ -103,7 +96,6 @@ function startApp() {
     } else {
       if (localStorage.getItem("tasks").length < 1) {
         tasks = defaultTasks;
-        console.log("localstorage defined but empty");
       } else {
         tasks = JSON.parse(localStorage.getItem("tasks"));
       }
@@ -115,7 +107,6 @@ function startApp() {
     } else {
       if (localStorage.getItem("members").length < 1) {
         members = defaultMembers;
-        console.log("localstorage defined but empty");
       } else {
         members = JSON.parse(localStorage.getItem("members"));
       }
@@ -127,7 +118,6 @@ function startApp() {
     } else {
       if (localStorage.getItem("projects").length < 1) {
         projects = defaultProjects;
-        console.log("localstorage defined but empty");
       } else {
         projects = JSON.parse(localStorage.getItem("projects"));
       }
@@ -227,8 +217,9 @@ function editTask(taskId) {
     document.getElementById("addTaskWorker").value = undefined;
   }
 
-  /* */
 }
+
+// edit function for taskCard
 
 function submitTaskChange() {
   const taskId = parseInt(document.getElementById("editTaskId").innerText);
@@ -300,6 +291,8 @@ function renderRewards() {
     document.getElementById("rewardBox2").style.visibility = "hidden";
   }
 }
+
+//Cookies
 
 function getCookie(cname) {
   var name = cname + "=";

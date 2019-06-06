@@ -186,7 +186,8 @@ function removeChildElements(area) {
   }
 }
 
-//Render page elements
+//functions for rendering page elements
+
 function renderPageVars() {
   document.getElementById("username").innerHTML =
     members[currentUser].name + '<i class="fas fa-angle-down"></i>';
@@ -248,7 +249,7 @@ function renderMembers(target, currentWorker) {
     addTaskWorkerList.appendChild(workerOption);
   });
 }
-
+// Rendering Grp members
 function renderGroupMembers() {
   document.getElementById("groupMembers").innerHTML = "";
   document.getElementById("addGroupMember").innerHTML = "";
@@ -264,8 +265,6 @@ function renderGroupMembers() {
   members.forEach(e => {
     let isInGroup = false;
     for (let i = 0; i < projects[currentProject].members.length; i++) {
-      console.log(projects[currentProject].members[i]);
-
       if (e.id == projects[currentProject].members[i]) {
         isInGroup = true;
       }
@@ -281,11 +280,16 @@ function renderGroupMembers() {
     userSelectItem.innerText = members[membersNotInGroup[i]].name;
     document.getElementById("addGroupMember").appendChild(userSelectItem);
   }
+
+  if (membersNotInGroup.length < 2) {
+    document.getElementById("addMemberSelect").style.display = "none";
+  } else {
+    document.getElementById("addMemberSelect").style.display = "inline";
+  }
 }
 
 function addNewGroupMember() {
   let newMember = document.getElementById("addGroupMember").value;
-  console.log(newMember);
   projects[currentProject].members.push(parseInt(newMember));
   renderGroupMembers();
   taskUpdated();
@@ -309,6 +313,8 @@ function addDropListener(area) {
   });
 }
 
+// Changing status on tasks and awarding points
+
 function changeTaskStatus(taskId, target) {
   if (tasks[taskId]) {
     let task = tasks[taskId];
@@ -321,23 +327,13 @@ function changeTaskStatus(taskId, target) {
     ) {
       if (!members[currentUser].isChild) {
         projects[currentProject].points += 1;
-        console.log(projects[currentProject].points);
         projectpointAdded(currentProject);
-        console.log(
-          `${projects[currentProject].name} får 1 poeng og har nå 
-          ${projects[currentProject].points} poeng!`
-        );
         task.completed = true;
         task.status = target;
         taskUpdated();
       } else if (currentProject > 2) {
         projects[currentProject].points += 1;
-        console.log(projects[currentProject].points);
         projectpointAdded(currentProject);
-        console.log(
-          `${projects[currentProject].name} får 1 poeng og har nå 
-          ${projects[currentProject].points} poeng!`
-        );
         task.completed = true;
         task.status = target;
       } else {
@@ -370,7 +366,7 @@ function fixDueDate() {
   document.getElementById("datefield").setAttribute("min", today);
 }
 
-// Modals
+// Modal functions
 
 function openModal(target) {
   const modal = document.getElementById(target);
@@ -379,7 +375,6 @@ function openModal(target) {
   document.getElementById("modalDiv").style.display = "block";
 
   document.getElementById("modalDiv").addEventListener("click", e => {
-    console.log(e);
     closeAllModals();
   });
 }
@@ -479,11 +474,6 @@ function closeAllModals() {
 function colorBlind() {
   isColorBlind = !isColorBlind;
   if (isColorBlind) {
-    //document.documentElement.style.setProperty('--main-color', 'rgb(0,114,178)');
-    //document.documentElement.style.setProperty(--main-background-color, #ffffff);
-    //document.documentElement.style.setProperty(--header-text-color, #ffffff);
-    //document.documentElement.style.setProperty(--kanbanlist-background-color, #f7f7f7);
-
     document.documentElement.style.setProperty(
       "--todo-card-color",
       "rgb(204,121,167)"
@@ -508,12 +498,6 @@ function colorBlind() {
       "--completed-card-bg",
       "rgba(251, 190, 115, 0.486)"
     );
-    //document.documentElement.style.setProperty(--card-text-color, #001730);
-    //document.documentElement.style.setProperty(--edit-hover-color, #fe4a49);
-    //document.documentElement.style.setProperty(--btn-border-color, #4ad7d1);
-    //document.documentElement.style.setProperty(--btn-hover-color, #365d88);
-
-    //document.documentElement.style.setProperty('--sidebar-background-color', 'rgb(213, 94, 0)');
     document.documentElement.style.setProperty(
       "--gridGained-background-color",
       "	rgb(255,255,0)"
