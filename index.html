@@ -93,8 +93,10 @@
                     <div id="g2" class="grid"></div>
                     <div id="g1" class="grid"></div>
 
-                    <button id="resetReward" class="mainBtn" onclick="resetReward()">&nbsp Fullfør belønning</button>
-                    <p id="rewardLogg"></p>
+                    <button id="resetReward" class="mainBtn" onclick="resetReward(), resetRewardVisibility()">&nbsp Fullfør belønning</button>
+                    <div id="logBackdrop">
+                    <p id="rewardLog"></p>
+                    </div>
 
                 </div><!--End progressBar-->
             </div><!--End sidebar-->
@@ -211,7 +213,7 @@
         <script src="./script/members.js"></script> 
         <script src="./script/tasks.js"></script> 
         <script src="./script/script.js"></script> 
-
+    </div>
 
     </body>
 </html>

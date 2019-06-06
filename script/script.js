@@ -214,7 +214,11 @@ function renderPageVars() {
   let projectLiAddproject = document.createElement("a");
   projectLiAddproject.innerHTML = 'Nytt prosjekt <i class="fas fa-plus"></i>';
   projectLiAddproject.id = "newProjectBtn";
-  document.getElementById("projectDropdown").appendChild(projectLiAddproject);
+  document.getElementById("projectDropdown").appendChild(projectLiAddproject); 
+
+  if (projects[currentProject].log){
+    document.getElementById("rewardLog").innerText = projects[currentProject].log;
+  }
 
   addProgressbarPoint();
   renderRewards();
@@ -439,7 +443,7 @@ function formatDate(date) {
 // Changing color on points added Progressbar
 
 function addProgressbarPoint() {
-  for (let i = 1; i < 10; i++) {
+  for (let i = 1; i < 11; i++) {
     document.getElementById("g" + i).className = "grid";
   }
   if (
@@ -528,6 +532,25 @@ document.getElementById("header").addEventListener("click", e => {
 
 //Reset rewards
 
-function resetReward() {
-  document.getElementsByClassName("grid").style.backgroundColor = "white";
+function resetReward(){
+
+  let logMessage;
+
+  if(projects[currentProject].points >= 5){
+    logMessage = "Forrige uke nådde du første belønning. Stå på!"
+  }
+  if(projects[currentProject].points == 10){
+    logMessage = "Forrige uke nådde du både første og andre belønning. Gratulerer!"
+  }
+
+  projects[currentProject].log = logMessage;
+  projects[currentProject].points = 0;
+
+  taskUpdated();
+}
+function resetRewardVisibility(){
+  document.getElementById("arrow1").style.visibility = "hidden";
+  document.getElementById("rewardBox1").style.visibility = "hidden";
+  document.getElementById("arrow2").style.visibility = "hidden";
+  document.getElementById("rewardBox2").style.visibility = "hidden";
 }
