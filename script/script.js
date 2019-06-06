@@ -171,8 +171,9 @@ function renderTask(task, targetArea) {
       cardDiv.addEventListener("dragstart", e => {
         e.dataTransfer.setData("text", task.id);
       });
-
+      
       targetArea.appendChild(cardDiv);
+      
     }
   }
 }
