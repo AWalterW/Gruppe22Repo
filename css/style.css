@@ -211,12 +211,6 @@ main {
 }
 
 
-/*Hvis vi vil ha animasjoner på drop cards, legg til denne ett sted i script: cardDiv.className = "popCard";*/
-/*
-.popCard {
-  animation: pop 0.15s ease-in-out 0s forwards;
-}
-*/
 
 .taskTitle {
   grid-area: taskTitle;
