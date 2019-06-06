@@ -1,6 +1,12 @@
 let members = [
   {
     id: 0,
+    email: "admin@admin.io",
+    passord: "DONOTUSE!",
+    name: "admin"
+  },
+  {
+    id: 1,
     email: "OlaNordmann@eksempel.no",
     password: "abc123",
     name: "Ola Nordmann",
@@ -9,7 +15,7 @@ let members = [
     points: 7
   },
   {
-    id: 1,
+    id: 2,
     email: "KariNordmann@eksempel.no",
     password: "passord",
     name: "Kari Nordmann",
@@ -18,7 +24,7 @@ let members = [
     points: 8
   },
   {
-    id: 2,
+    id: 3,
     email: "admin@whitehouse.gov",
     password: "abc123",
     name: "George W. Bush",

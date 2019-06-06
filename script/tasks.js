@@ -1,8 +1,7 @@
 let tasks = [];
 let currentProject;
-let currentUser = 0;
+let currentUser;
 let isColorBlind = false;
-
 
 //Forsøker å sette currentUser til samme value som logintoken, som blir satt i loginscript.js
 /*
@@ -82,39 +81,44 @@ function taskUpdated() {
 
 // initializing webapp
 function startApp() {
-  // check if item tasks is saved in localstorage
-  if (localStorage.getItem("tasks") === null) {
-    tasks = defaultTasks;
-    saveToLocal();
-  } else {
-    if (localStorage.getItem("tasks").length < 1) {
+  let usercookie = getCookie("user");
+  if (usercookie > 0) {
+    currentUser = parseInt(usercookie);
+    // check if item tasks is saved in localstorage
+    if (localStorage.getItem("tasks") === null) {
       tasks = defaultTasks;
-      console.log("localstorage defined but empty");
       saveToLocal();
     } else {
-      tasks = JSON.parse(localStorage.getItem("tasks"));
+      if (localStorage.getItem("tasks").length < 1) {
+        tasks = defaultTasks;
+        console.log("localstorage defined but empty");
+        saveToLocal();
+      } else {
+        tasks = JSON.parse(localStorage.getItem("tasks"));
+      }
     }
-  }
 
-  if (currentProject === undefined) {
-    if (members[currentUser].lastOpenProject) {
-      currentProject = members[currentUser].lastOpenProject;
-    } else {
-      currentProject = 0;
+    if (currentProject === undefined) {
+      if (members[currentUser].lastOpenProject) {
+        currentProject = members[currentUser].lastOpenProject;
+      } else {
+        currentProject = 0;
+      }
     }
+    renderPageVars();
+    childPageView();
+    addProgressbarPoint(currentUser);
+    fixDueDate();
+
+    addDropListener(todoArea);
+    addDropListener(doingArea);
+    addDropListener(completedArea);
+
+    // sorts and renders tasks to the site
+    sortTasks();
+  } else {
+    window.open("./login.html", "_self");
   }
-
-  renderPageVars();
-  childPageView();
-  addProgressbarPoint(currentUser);
-  fixDueDate();
-
-  addDropListener(todoArea);
-  addDropListener(doingArea);
-  addDropListener(completedArea);
-
-  // sorts and renders tasks to the site
-  sortTasks();
 }
 
 // add new task to task array
@@ -231,20 +235,22 @@ function addReward(form) {
   const reward1 = document.getElementById("addReward1").value;
   const reward2 = document.getElementById("addReward2").value;
 
-  document.getElementById("rewardText1").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;" + reward1;
-  document.getElementById("rewardText2").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;" + reward2;
+  document.getElementById("rewardText1").innerHTML =
+    "&nbsp;&nbsp;&nbsp;&nbsp;" + reward1;
+  document.getElementById("rewardText2").innerHTML =
+    "&nbsp;&nbsp;&nbsp;&nbsp;" + reward2;
 
   projects[currentProject].reward1 = reward1;
   projects[currentProject].reward2 = reward2;
 }
-function displayReward(){
+function displayReward() {
   var reward1 = document.getElementById("addReward1").value;
   var reward2 = document.getElementById("addReward2").value;
 
-    document.getElementById("arrow1").style.visibility = "visible";
-    document.getElementById("rewardBox1").style.visibility = "visible";
-    document.getElementById("arrow2").style.visibility = "visible";
-    document.getElementById("rewardBox2").style.visibility = "visible";
+  document.getElementById("arrow1").style.visibility = "visible";
+  document.getElementById("rewardBox1").style.visibility = "visible";
+  document.getElementById("arrow2").style.visibility = "visible";
+  document.getElementById("rewardBox2").style.visibility = "visible";
 
   /*if(reward1.length !== ""){
     document.getElementById("arrow1").style.visibility = "visible";
@@ -304,4 +310,20 @@ function displayReward(){
    else{ alert("fuck you");
   }
 */
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }

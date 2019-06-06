@@ -1,22 +1,37 @@
-function check(form) {
-   
-    let keccakL = form.emailLogin.value;
-    let keccakP = form.passwordLogin.value;
+window.onload = function() {
+  document.getElementById("loginform").onsubmit = function() {
+    check(this.form);
+    return false;
+  };
+};
 
-    if(keccakL === members[0].email && keccakP === members[0].password) {
-        // currentUser = 0;
-        window.open('index.html', currentUser = 0); 
-        startApp();
+function check(form) {
+  let loginUsername = form.emailLogin.value;
+  let loginPassword = form.passwordLogin.value;
+  let stayLoggedin = document.querySelector("#rememberCheck").checked;
+
+  for (member in members) {
+    if (
+      members[member].email.toLowerCase() === loginUsername.toLowerCase() &&
+      members[member].password === loginPassword
+    ) {
+      loginSuccess(member, stayLoggedin);
+      break;
     }
-    else if(keccakL === members[1].email && keccakP === members[1].password) {
-        // currentUser = 1;
-        var windowOpen = window.open('index.html');
-        windowOpen.document(currentUser = 1);
-        startApp();
-    } 
-    else {
-        alert("Feil brukernavn eller passord, vennligst prøv på nytt eller opprett en ny bruker.");
-    }
+  }
+}
+
+function loginSuccess(member, remember) {
+  if (remember) {
+    let date = new Date();
+    date.setTime(date.getTime() + 15 * 24 * 60 * 60 * 1000);
+    let expires = "expires=" + date.toUTCString();
+    document.cookie = `user=${member};${expires};path=/`;
+    window.open("./index.html", "_self");
+  } else {
+    document.cookie = `user=${member};`;
+    window.open("./index.html", "_self");
+  }
 }
 
 //Forsøk på å lagre til local storage
@@ -25,3 +40,9 @@ function saveLoginLocal() {
     localStorage.setItem("loginToken", JSON.pars(loginToken));
   }
   */
+
+// let date = new Date();
+//  date.setTime(date.getTime() + 15 * 24 * 60 * 60 * 1000);
+// let expires = "expires=" + date.toUTCString();
+//  document.cookie = user + "=" + e.id + ";" + expires + ";path=/";
+// let windowOpen = window.open("index.html");
