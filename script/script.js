@@ -439,7 +439,7 @@ function colorBlind() {
     //document.documentElement.style.setProperty('--sidebar-background-color', 'rgb(213, 94, 0)');
     document.documentElement.style.setProperty(
       "--gridGained-background-color",
-      "rgb(255,69,0)"
+      "	rgb(255,255,0)"
     );
   } else {
     document.documentElement.style = " ";
