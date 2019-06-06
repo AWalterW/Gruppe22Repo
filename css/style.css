@@ -319,6 +319,7 @@ main {
   grid-area: sidebar;
   background-color: var(--sidebar-background-color);
   position: relative;
+  padding-top: 15%;
 }
 
 .mainBtn {

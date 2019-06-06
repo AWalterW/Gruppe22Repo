@@ -171,9 +171,8 @@ function renderTask(task, targetArea) {
       cardDiv.addEventListener("dragstart", e => {
         e.dataTransfer.setData("text", task.id);
       });
-      
+
       targetArea.appendChild(cardDiv);
-      
     }
   }
 }
@@ -307,7 +306,7 @@ function changeTaskStatus(taskId, target) {
       task.completed === false &&
       members[task.worker]
     ) {
-      if (currentProject != 1 && currentProject !== 2) {
+      if (!members[currentUser].isChild) {
         projects[currentProject].points += 1;
         console.log(projects[currentProject].points);
         projectpointAdded(currentProject);
@@ -318,10 +317,20 @@ function changeTaskStatus(taskId, target) {
         task.completed = true;
         task.status = target;
         taskUpdated();
+      } else if (currentProject > 2) {
+        projects[currentProject].points += 1;
+        console.log(projects[currentProject].points);
+        projectpointAdded(currentProject);
+        console.log(
+          `${projects[currentProject].name} får 1 poeng og har nå 
+          ${projects[currentProject].points} poeng!`
+        );
+        task.completed = true;
+        task.status = target;
       } else {
-        alert("Oppgaven må være tildelt en person for å få poeng!");
         task.status = oldStatus;
         taskUpdated();
+        alert("Kun voksne kan godkjenne oppgaver");
       }
     } else {
       task.status = target;
