@@ -18,6 +18,13 @@ function check(form) {
       loginSuccess(member, stayLoggedin);
       break;
     }
+    else if(
+      members[member].email.toLowerCase() === loginUsername.toLowerCase() &&
+      members[member].password !== loginPassword
+    ){
+      alert("Feil brukernavn og/eller passord!");
+      break;
+    }
   }
 }
 
