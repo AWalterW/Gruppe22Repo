@@ -579,6 +579,30 @@ main {
 #addProjectModalBtn:hover {
   background-color: #5cb85c;
 }
+
+#groupModal {
+  display: none;
+}
+#groupForm {
+  padding: 10px 30px;
+  background-color: #eaeaee;
+}
+#editGroup {
+  border-radius: 5px;
+}
+
+#addProjectModalBtn {
+  background-color: #3c983c;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  border: 1px solid darkgreen;
+  text-shadow: 1px 1px darkgreen;
+}
+
+#addProjectModalBtn:hover {
+  background-color: #5cb85c;
+}
 /*Keyframes*/
 
 @keyframes modalShow {
