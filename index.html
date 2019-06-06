@@ -14,7 +14,7 @@
 <body onload="startApp()">
     <div id="modalDiv"></div>
     <div class="container">
-        <header>
+        <header id="header">
            <div id="logoDiv">
                <img src="./images/KanBarnMain.jpg">
            </div>
@@ -37,7 +37,7 @@
                 <p id="username"></p>
                 <div class="dropdown-content">
                     <a href="#">Min bruker</a>
-                    <a href="./login.html">Logg ut</a>
+                    <a id="logoutBtn">Logg ut</a>
                 </div>
             </div>
 
@@ -165,7 +165,7 @@
                         <input type="text" name="Reward1" id="addReward1"><br><br>
                         Belønning 2:<br>
                         <input type="text" name="Reward2" id="addReward2"><br><br>
-                        <input id="addRewardModalBtn" type="button" value="Legg til" onclick="addReward('addRewardForm'), closeModal('addRewardModal'), displayReward()">
+                        <input id="addRewardModalBtn" type="button" value="Legg til" onclick="addReward('addRewardForm'), closeModal('addRewardModal')">
                     </div>
                 </form>
             </div>

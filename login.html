@@ -1,81 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/loginstyle.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/loginstyle.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <title>KanBarn login</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container col-11 mt-5">
-                    
-        <div class="row">
-            
-           
-            <div class="col-3 p-3 rounded" style="min-width: 400px;" id="loginBox">
-                   
-                <div class="rounded" id="kanBarnImagino">
-                    <img src="./images/KB.jpg" class="img-fluid rounded">
+      <div class="row">
+        <div class="col-3 p-3 rounded" style="min-width: 400px;" id="loginBox">
+          <div class="rounded" id="kanBarnImagino">
+            <img src="./images/KB.jpg" class="img-fluid rounded" />
+          </div>
+          <div>
+            <h3 class="text-white mt-2" id="loginHeader">
+              Velkommen til KanBarn
+            </h3>
+          </div>
+          <div>
+            <form id="loginform">
+              <div class="form-group mt-2">
+                <label for="inputEmail" class="text-white">Email adresse</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="emailLogin"
+                  aria-describedby="emailHelp"
+                  placeholder="Skriv emailen din her"
+                />
+                <small id="emailHelp" class="form-text text-muted"
+                  >Vi deler aldri emailen din videre. :)</small
+                >
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1" class="text-white"
+                  >Passord</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  name="passwordLogin"
+                  placeholder="Passord"
+                />
+              </div>
+              <div class="form-group form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="rememberCheck"
+                  name="rememberCheck"
+                />
+                <label class="form-check-label text-white" for="rememberCheck"
+                  >Husk meg</label
+                >
+              </div>
+              <button
+                class="btn"
+                id="loginbtn"
+                onclick="check(this.form); return false;"
+              >
+                Logg inn
+              </button>
+              <!-- Registrer ny bruker knapp, viser hardkodede brukere for testing -->
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Registrer ny bruker
+              </button>
+
+              <!-- Registrer ny bruker modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Registrer ny bruker
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h6>
+                        Versjonen du bruker, er fortsatt i test-fasen. Under
+                        finner du noen brukere du kan bruke til å teste KanBarn.
+                      </h6>
+                      Voksenkonto:<br />Email: OlaNordmann@eksempel.no<br />Passord:
+                      abc123<br />
+                      <br />Barnekonto:<br />Email: KariNordmann@eksempel.no<br />Passord:
+                      passord
+                      <h6><br />Tusen takk for at du prøvde produktet vårt!</h6>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Lukk
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                    <h3 class="text-white mt-2" id="loginHeader">Velkommen til KanBarn</h3>
-                </div>
-                <div>
-                    <form id="loginform">
-                        <div class="form-group mt-2">
-                            <label for="inputEmail" class="text-white">Email adresse</label>
-                            <input type="email" class="form-control" name="emailLogin" aria-describedby="emailHelp" placeholder="Skriv emailen din her">
-                            <small id="emailHelp" class="form-text text-muted">Vi deler aldri emailen din videre. :)</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1" class="text-white">Passord</label>
-                            <input type="password" class="form-control" name="passwordLogin" placeholder="Passord">
-                        </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label text-white" for="exampleCheck1">Husk meg</label>
-                        </div>
-                        <button type="submit" class="btn" id="loginbtn" onclick="check(this.form)">Logg inn</button>
-                        <!-- Registrer ny bruker knapp, viser hardkodede brukere for testing -->
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
-                            Registrer ny bruker
-                        </button>
-                        
-                        <!-- Registrer ny bruker modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Registrer ny bruker</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                </div>
-                                <div class="modal-body">
-                                    <h6>Versjonen du bruker, er fortsatt i test-fasen. Under finner du noen brukere du kan bruke til å teste KanBarn.</h6>
-                                    Voksenkonto:<br>Email: OlaNordmann@eksempel.no<br>Passord: abc123<br> <br>Barnekonto:<br>Email: KariNordmann@eksempel.no<br>Passord: passord
-                                    <h6><br>Tusen takk for at du prøvde produktet vårt!</h6>
-                                </div>
-                                <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Lukk</button>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
     <script src="./script/tasks.js"></script>
     <script src="./script/members.js"></script>
     <script src="./script/loginscript.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

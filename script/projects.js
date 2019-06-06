@@ -1,18 +1,23 @@
 let projects = [
   {
     id: 0,
-    name: "Hjemmearbeid",
+    name: "Ingen prosjekter",
     members: []
   },
   {
     id: 1,
     name: "Skolearbeid",
-    members: [0, 1]
+    members: [1, 2]
   },
   {
     id: 2,
     name: "Frivillige",
-    members: [0, 1, 2]
+    members: [1, 2, 3]
+  },
+  {
+    id: 3,
+    name: "Hjemmearbeid",
+    members: [1, 3]
   }
 ];
 

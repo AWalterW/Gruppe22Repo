@@ -2,8 +2,6 @@ const todoArea = document.getElementById("todo");
 const doingArea = document.getElementById("doing");
 const completedArea = document.getElementById("completed");
 
-
-
 //sorts all tasks and render them in the correct category
 function sortTasks() {
   removeChildElements(todoArea);
@@ -384,7 +382,7 @@ function formatDate(date) {
 // Changing color on points added Progressbar
 
 function addProgressbarPoint() {
-  if (members[currentUser].points >= 0 && members[currentUser].isChild) {
+  if (members[currentUser].points >= 0 /* && members[currentUser].isChild*/) {
     for (let i = 1; i < members[currentUser].points + 1; i++) {
       document.getElementById("g" + i).className = "grid gainedGrid";
     }
@@ -393,38 +391,66 @@ function addProgressbarPoint() {
 
 // function for closing all modals
 
-function closeAllModals(){
-  closeModal('addRewardModal');
-  closeModal('addTaskModal');
-  closeModal('editTaskModal');
+function closeAllModals() {
+  closeModal("addRewardModal");
+  closeModal("addTaskModal");
+  closeModal("editTaskModal");
 }
 
 // function for changing to colorblind mode
 
-function colorBlind(){
+function colorBlind() {
   isColorBlind = !isColorBlind;
-  if(isColorBlind){
+  if (isColorBlind) {
+    //document.documentElement.style.setProperty('--main-color', 'rgb(0,114,178)');
+    //document.documentElement.style.setProperty(--main-background-color, #ffffff);
+    //document.documentElement.style.setProperty(--header-text-color, #ffffff);
+    //document.documentElement.style.setProperty(--kanbanlist-background-color, #f7f7f7);
 
-  //document.documentElement.style.setProperty('--main-color', 'rgb(0,114,178)'); 
-  //document.documentElement.style.setProperty(--main-background-color, #ffffff);
-  //document.documentElement.style.setProperty(--header-text-color, #ffffff);
-  //document.documentElement.style.setProperty(--kanbanlist-background-color, #f7f7f7);
+    document.documentElement.style.setProperty(
+      "--todo-card-color",
+      "rgb(204,121,167)"
+    );
+    document.documentElement.style.setProperty(
+      "--doing-card-color",
+      "rgb(240, 228, 66)"
+    );
+    document.documentElement.style.setProperty(
+      "--completed-card-color",
+      "rgb(255, 140, 0)"
+    );
+    document.documentElement.style.setProperty(
+      "--todo-card-bg",
+      "rgba(255, 157, 237, 0.493)"
+    );
+    document.documentElement.style.setProperty(
+      "--doing-card-bg",
+      "rgba(251, 251, 135, 0.5)"
+    );
+    document.documentElement.style.setProperty(
+      "--completed-card-bg",
+      "rgba(251, 190, 115, 0.486)"
+    );
+    //document.documentElement.style.setProperty(--card-text-color, #001730);
+    //document.documentElement.style.setProperty(--edit-hover-color, #fe4a49);
+    //document.documentElement.style.setProperty(--btn-border-color, #4ad7d1);
+    //document.documentElement.style.setProperty(--btn-hover-color, #365d88);
 
-  document.documentElement.style.setProperty('--todo-card-color', 'rgb(204,121,167)');
-  document.documentElement.style.setProperty('--doing-card-color', 'rgb(240, 228, 66)');
-  document.documentElement.style.setProperty('--completed-card-color', 'rgb(255, 140, 0)');
-  document.documentElement.style.setProperty('--todo-card-bg', 'rgba(255, 157, 237, 0.493)');
-  document.documentElement.style.setProperty('--doing-card-bg' ,'rgba(251, 251, 135, 0.5)');
-  document.documentElement.style.setProperty('--completed-card-bg', 'rgba(251, 190, 115, 0.486)');
-  //document.documentElement.style.setProperty(--card-text-color, #001730);
-  //document.documentElement.style.setProperty(--edit-hover-color, #fe4a49);
-  //document.documentElement.style.setProperty(--btn-border-color, #4ad7d1);
-  //document.documentElement.style.setProperty(--btn-hover-color, #365d88);
-
-  //document.documentElement.style.setProperty('--sidebar-background-color', 'rgb(213, 94, 0)');
-  document.documentElement.style.setProperty('--gridGained-background-color', 'rgb(255,69,0)');
-  }
-  else {
+    //document.documentElement.style.setProperty('--sidebar-background-color', 'rgb(213, 94, 0)');
+    document.documentElement.style.setProperty(
+      "--gridGained-background-color",
+      "	rgb(255,255,0)"
+    );
+  } else {
     document.documentElement.style = " ";
-  };
+  }
 }
+
+// Header click listener
+
+document.getElementById("header").addEventListener("click", e => {
+  if (e.target.id === "logoutBtn") {
+    document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.open("./login.html", "_self");
+  }
+});
