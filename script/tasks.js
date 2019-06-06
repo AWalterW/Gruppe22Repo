@@ -14,7 +14,9 @@ function getloginLocal() {
 
 getloginLocal();
 */
+
 let defaultTasks = [
+  /*
   {
     id: 0,
     status: "todo",
@@ -65,7 +67,8 @@ let defaultTasks = [
     description: "Lorem ipsum dolor sit amet",
     deleted: false,
     project: 1
-  }
+  } 
+  */
 ];
 
 function saveToLocal() {
@@ -142,7 +145,7 @@ function startApp() {
 
     renderPageVars();
     childPageView();
-    addProgressbarPoint(currentUser);
+    addProgressbarPoint(currentProject);
     fixDueDate();
 
     addDropListener(todoArea);
@@ -270,27 +273,29 @@ function addReward(form) {
   const reward1 = document.getElementById("addReward1").value;
   const reward2 = document.getElementById("addReward2").value;
 
-  document.getElementById("rewardText1").innerHTML =
-    "&nbsp;&nbsp;&nbsp;&nbsp;" + reward1;
-  document.getElementById("rewardText2").innerHTML =
-    "&nbsp;&nbsp;&nbsp;&nbsp;" + reward2;
-
   projects[currentProject].reward1 = reward1;
   projects[currentProject].reward2 = reward2;
-
-  if(reward1.length > 0){
+  taskUpdated();
+}
+function renderRewards() {
+  const reward1 = projects[currentProject].reward1;
+  const reward2 = projects[currentProject].reward2;
+  if (reward1 && reward1.length > 0) {
+    document.getElementById("rewardText1").innerHTML =
+      "&nbsp;&nbsp;&nbsp;&nbsp;" + reward1;
     document.getElementById("arrow1").style.visibility = "visible";
     document.getElementById("rewardBox1").style.visibility = "visible";
-  }
-  else {
+  } else {
     document.getElementById("arrow1").style.visibility = "hidden";
     document.getElementById("rewardBox1").style.visibility = "hidden";
   }
-  if(reward2.length > 0){
+
+  if (reward2 && reward2.length > 0) {
+    document.getElementById("rewardText2").innerHTML =
+      "&nbsp;&nbsp;&nbsp;&nbsp;" + reward2;
     document.getElementById("arrow2").style.visibility = "visible";
     document.getElementById("rewardBox2").style.visibility = "visible";
-  }
-  else{
+  } else {
     document.getElementById("arrow2").style.visibility = "hidden";
     document.getElementById("rewardBox2").style.visibility = "hidden";
   }

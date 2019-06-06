@@ -5,6 +5,17 @@ window.onload = function() {
   };
 };
 
+if (localStorage.getItem("members") === null) {
+  members = defaultMembers;
+} else {
+  if (localStorage.getItem("members").length < 1) {
+    members = defaultMembers;
+    console.log("localstorage defined but empty");
+  } else {
+    members = JSON.parse(localStorage.getItem("members"));
+  }
+}
+
 function check(form) {
   let loginUsername = form.emailLogin.value;
   let loginPassword = form.passwordLogin.value;
@@ -15,13 +26,13 @@ function check(form) {
       members[member].email.toLowerCase() === loginUsername.toLowerCase() &&
       members[member].password === loginPassword
     ) {
+      alert("noe");
       loginSuccess(member, stayLoggedin);
       break;
-    }
-    else if(
+    } else if (
       members[member].email.toLowerCase() === loginUsername.toLowerCase() &&
       members[member].password !== loginPassword
-    ){
+    ) {
       alert("Feil brukernavn og/eller passord!");
       break;
     }

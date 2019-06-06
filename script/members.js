@@ -11,8 +11,7 @@ let defaultMembers = [
     password: "abc123",
     name: "Ola Nordmann",
     lastOpenProject: 1,
-    isChild: false,
-    points: 7
+    isChild: false
   },
   {
     id: 2,
@@ -20,28 +19,25 @@ let defaultMembers = [
     password: "passord",
     name: "Kari Nordmann",
     lastOpenProject: 1,
-    isChild: true,
-    points: 8
+    isChild: true
   },
   {
     id: 3,
     email: "admin@whitehouse.gov",
     password: "abc123",
     name: "George W. Bush",
-    isChild: false,
-    points: 7
+    isChild: false
   }
 ];
 
 function childPageView() {
   if (members[currentUser].isChild) {
-    document.getElementById("addNewTaskBtn").style.display = "none";
-    document.getElementById("addRewardBtn").style.display = "none";
+    if (currentProject === 1 || currentProject === 2) {
+      document.getElementById("addNewTaskBtn").style.display = "none";
+      document.getElementById("addRewardBtn").style.display = "none";
+    } else {
+      document.getElementById("addNewTaskBtn").style.display = "block";
+      document.getElementById("addRewardBtn").style.display = "block";
+    }
   }
-}
-
-// alert progressapps about user getting a point
-function userpointAdded(user) {
-  console.log(members[user].name);
-  addProgressbarPoint();
 }

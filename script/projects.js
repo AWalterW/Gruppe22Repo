@@ -6,18 +6,21 @@ let defaultProjects = [
   },
   {
     id: 1,
-    name: "Skolearbeid",
-    members: [1, 2]
+    name: "Hjemmearbeid",
+    members: [1, 2],
+    points: 0
   },
   {
     id: 2,
-    name: "Frivillige",
-    members: [1, 2, 3]
+    name: "Skolearbeid",
+    members: [1, 2, 3],
+    points: 0
   },
   {
     id: 3,
-    name: "Hjemmearbeid",
-    members: [1, 3]
+    name: "Annet",
+    members: [1, 2, 3],
+    points: 0
   }
 ];
 // add new project
@@ -29,6 +32,7 @@ function addProject() {
     newProject.name = newProjectName;
     newProject.members = [];
     newProject.members.push(currentUser);
+    newProject.points = 0;
     projects.push(newProject);
     taskUpdated();
   }
@@ -55,3 +59,9 @@ function changeCurrentProject(id) {
 }
 
 changeProjectListener();
+
+// alert progressapps about user getting a point
+function projectpointAdded(project) {
+  console.log(projects[project].points);
+  addProgressbarPoint();
+}
