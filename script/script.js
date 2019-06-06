@@ -454,3 +454,9 @@ document.getElementById("header").addEventListener("click", e => {
     window.open("./login.html", "_self");
   }
 });
+
+//Reset rewards
+
+function resetReward(){
+  document.getElementsByClassName("grid").style.backgroundColor = "white";
+}
