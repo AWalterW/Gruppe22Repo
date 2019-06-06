@@ -265,7 +265,6 @@ function renderGroupMembers() {
   members.forEach(e => {
     let isInGroup = false;
     for (let i = 0; i < projects[currentProject].members.length; i++) {
-
       if (e.id == projects[currentProject].members[i]) {
         isInGroup = true;
       }
@@ -280,6 +279,12 @@ function renderGroupMembers() {
     userSelectItem.value = membersNotInGroup[i];
     userSelectItem.innerText = members[membersNotInGroup[i]].name;
     document.getElementById("addGroupMember").appendChild(userSelectItem);
+  }
+
+  if (membersNotInGroup.length < 2) {
+    document.getElementById("addMemberSelect").style.display = "none";
+  } else {
+    document.getElementById("addMemberSelect").style.display = "inline";
   }
 }
 
@@ -469,7 +474,6 @@ function closeAllModals() {
 function colorBlind() {
   isColorBlind = !isColorBlind;
   if (isColorBlind) {
-
     document.documentElement.style.setProperty(
       "--todo-card-color",
       "rgb(204,121,167)"
