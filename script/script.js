@@ -213,9 +213,12 @@ function renderPageVars() {
   });
 
   let projectLiAddproject = document.createElement("a");
-  projectLiAddproject.innerText = "Nytt projekt";
+  projectLiAddproject.innerHTML = 'Nytt projekt <i class="fas fa-plus"></i>';
   projectLiAddproject.id = "newProjectBtn";
   document.getElementById("projectDropdown").appendChild(projectLiAddproject);
+
+  addProgressbarPoint();
+  renderRewards();
 }
 
 function renderMembers(target, currentWorker) {
@@ -228,7 +231,6 @@ function renderMembers(target, currentWorker) {
     workerOption.value = e;
 
     if (e === parseInt(currentWorker)) {
-      console.log(e);
       workerOption.selected = true;
     }
     addTaskWorkerList.appendChild(workerOption);
@@ -258,15 +260,18 @@ function changeTaskStatus(taskId, target) {
     let task = tasks[taskId];
     let oldStatus = task.status;
 
-    if (target === "completed" && task.completed === false) {
-      if (members[task.worker] && !members[currentUser].isChild) {
-        members[task.worker].points += 1;
-        console.log(members[task.worker].points);
-        userpointAdded(task.worker);
+    if (
+      target === "completed" &&
+      task.completed === false &&
+      members[task.worker]
+    ) {
+      if (!members[currentUser].isChild || currentProject > 2) {
+        projects[currentProject].points += 1;
+        console.log(projects[currentProject].points);
+        projectpointAdded(currentProject);
         console.log(
-          `${members[task.worker].name} får 1 poeng og har nå ${
-            members[task.worker].points
-          } poeng!`
+          `${projects[currentProject].name} får 1 poeng og har nå 
+          ${projects[currentProject].points} poeng!`
         );
         task.completed = true;
         task.status = target;
@@ -383,8 +388,13 @@ function formatDate(date) {
 // Changing color on points added Progressbar
 
 function addProgressbarPoint() {
-  if (members[currentUser].points >= 0 /* && members[currentUser].isChild*/) {
-    for (let i = 1; i < members[currentUser].points + 1; i++) {
+  for (let i = 1; i < 10; i++) {
+    document.getElementById("g" + i).className = "grid";
+  }
+  if (
+    projects[currentProject].points >= 0 /* && members[currentUser].isChild*/
+  ) {
+    for (let i = 1; i < projects[currentProject].points + 1; i++) {
       document.getElementById("g" + i).className = "grid gainedGrid";
     }
   }
@@ -396,6 +406,7 @@ function closeAllModals() {
   closeModal("addRewardModal");
   closeModal("addTaskModal");
   closeModal("editTaskModal");
+  closeModal("addProjectModal");
 }
 
 // function for changing to colorblind mode
@@ -454,4 +465,15 @@ document.getElementById("header").addEventListener("click", e => {
     document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.open("./login.html", "_self");
   }
+
+  if (e.target.id === "newProjectBtn") {
+    closeAllModals();
+    openModal("addProjectModal");
+  }
 });
+
+//Reset rewards
+
+function resetReward(){
+  document.getElementsByClassName("grid").style.backgroundColor = "white";
+}
