@@ -472,3 +472,9 @@ document.getElementById("header").addEventListener("click", e => {
     openModal("groupModal");
   }
 });
+
+//Reset rewards
+
+function resetReward(){
+  document.getElementsByClassName("grid").style.backgroundColor = "white";
+}

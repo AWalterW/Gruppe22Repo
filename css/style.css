@@ -306,6 +306,7 @@ main {
 #sidebar {
   grid-area: sidebar;
   background-color: var(--sidebar-background-color);
+  position: relative;
 }
 
 .mainBtn {
@@ -647,15 +648,16 @@ main {
 
 #progressBar {
   position: relative;
-  height: 80%;
-  margin-left: 75px;
+  height: 100%;
+  width: 100%;
   max-height: 800px;
-  margin-top: 90px;
+  margin: auto;
 }
 .grid {
   position: relative;
-  top: -10%;
-  width: 60px;
+  top: 1%;
+  left: 10%;
+  width: 35%;
   height: 8%;
   background-color: white;
   clip-path: polygon(
@@ -680,14 +682,14 @@ main {
 
 #arrow1 {
   position: absolute;
-  left: 100px;
-  top: 39%;
+  left: 46%;
+  top: 39.2%;
   visibility: hidden;
 }
 #arrow2 {
   position: absolute;
-  left: 100px;
-  top: -1%;
+  left: 46%;
+  top: 0%;
   visibility: hidden;
 }
 .rewardText {
@@ -698,29 +700,43 @@ main {
   font-size: 75%;
 }
 
-.rewardBox {
-  position: relative;
-  left: 120px;
+.rewardBox{
+  position: absolute;
+  left: 52%;
   width: 45%;
   height: 5%;
   background-color: var(--main-color);
   border: 1px solid white;
-  text-align: start;
-  line-height: 165%;
-  margin-left: 0%;
-  padding-left: 0%;
+  line-height: 200%;
   visibility: hidden;
+  overflow-x: auto;
 }
-#rewardBox1 {
-  top: 38%;
+.rewardBox *{
+  position: relative;
 }
-#rewardBox2 {
-  top: -7%;
+#rewardBox1{
+  position: absolute;
+  top: 37.6%;
 }
-#colorBlindBtn {
+#rewardBox2{
+  position: absolute;
+  top: -1.2%;  
 }
 #completed .taskEditBtns {
   display: none;
+}
+
+/* Reset reward tag and button */
+
+#resetReward{
+  position: absolute;
+  left: 70%;
+  bottom: 21%;
+}
+#rewardLogg{
+  position: absolute;
+  left: 10%;
+  bottom: 13%
 }
 
 /*Fungerer ikke enda*/
