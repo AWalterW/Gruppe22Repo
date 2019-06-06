@@ -214,10 +214,19 @@ function renderPageVars() {
   let projectLiAddproject = document.createElement("a");
   projectLiAddproject.innerHTML = 'Nytt prosjekt <i class="fas fa-plus"></i>';
   projectLiAddproject.id = "newProjectBtn";
-  document.getElementById("projectDropdown").appendChild(projectLiAddproject); 
+  document.getElementById("projectDropdown").appendChild(projectLiAddproject);
 
-  if (projects[currentProject].log){
-    document.getElementById("rewardLog").innerText = projects[currentProject].log;
+  if (projects[currentProject].log) {
+    document.getElementById("rewardLog").innerText =
+      projects[currentProject].log;
+  }
+
+  if (currentProject > 2) {
+    document.getElementById("doingHeader").innerText = "Holder på";
+    document.getElementById("completeHeader").innerText = "Ferdig";
+  } else {
+    document.getElementById("doingHeader").innerText = "Ferdig";
+    document.getElementById("completeHeader").innerText = "Godkjent";
   }
 
   addProgressbarPoint();
@@ -277,7 +286,7 @@ function renderGroupMembers() {
 function addNewGroupMember() {
   let newMember = document.getElementById("addGroupMember").value;
   console.log(newMember);
-  projects[currentProject].members.push(newMember);
+  projects[currentProject].members.push(parseInt(newMember));
   renderGroupMembers();
   taskUpdated();
 }
@@ -532,23 +541,25 @@ document.getElementById("header").addEventListener("click", e => {
 
 //Reset rewards
 
-function resetReward(){
-
+function resetReward() {
   let logMessage;
 
-  if(projects[currentProject].points >= 5){
-    logMessage = "Forrige uke nådde du første belønning. Stå på!"
+  if (projects[currentProject].points >= 5) {
+    logMessage = "Forrige uke nådde du første belønning. Stå på!";
   }
-  if(projects[currentProject].points == 10){
-    logMessage = "Forrige uke nådde du både første og andre belønning. Gratulerer!"
+  if (projects[currentProject].points == 10) {
+    logMessage =
+      "Forrige uke nådde du både første og andre belønning. Gratulerer!";
   }
 
+  projects[currentProject].reward1 = "";
+  projects[currentProject].reward2 = "";
   projects[currentProject].log = logMessage;
   projects[currentProject].points = 0;
 
   taskUpdated();
 }
-function resetRewardVisibility(){
+function resetRewardVisibility() {
   document.getElementById("arrow1").style.visibility = "hidden";
   document.getElementById("rewardBox1").style.visibility = "hidden";
   document.getElementById("arrow2").style.visibility = "hidden";
