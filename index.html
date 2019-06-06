@@ -171,12 +171,30 @@
                         <input id="addRewardModalBtn" type="button" value="Legg til" onclick="addReward('addRewardForm'), closeModal('addRewardModal')">
                     </div>
                 </form>
+            </div> 
+
+            <div id="addProjectModal" class="modal">
+                <div class="modalHeader">
+                    <h4>Legg til Prosjekt</h4>
+                    <button class="closeModalBtn" onclick="closeAllModals()">Lukk</button>
+                </div>
+
+                <form id="addProjectForm" onsubmit="return false">
+                    <div id="addProject">
+                        Prosjektnavn:<br><br>
+                        <input type="text" name="newProject" id="newProject"><br><br>
+                        <input id="addProjectModalBtn" type="button" value="Legg til" onclick="addProject('addProjectForm'), closeAllModals()">
+                    </div>
+                </form>
             </div>
 
-        <script src="./script/tasks.js"></script> 
+
+
         <script src="./script/projects.js"></script>
-        <script src="./script/members.js"></script>
-        <script src="./script/script.js"></script>
+        <script src="./script/members.js"></script> 
+        <script src="./script/tasks.js"></script> 
+        <script src="./script/script.js"></script> 
+
 
 </body>
 </html>

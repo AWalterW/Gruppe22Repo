@@ -1,4 +1,7 @@
 let tasks = [];
+let projects = [];
+let members = [];
+
 let currentProject;
 let currentUser;
 let isColorBlind = false;
@@ -11,7 +14,9 @@ function getloginLocal() {
 
 getloginLocal();
 */
+
 let defaultTasks = [
+  /*
   {
     id: 0,
     status: "todo",
@@ -62,21 +67,28 @@ let defaultTasks = [
     description: "Lorem ipsum dolor sit amet",
     deleted: false,
     project: 1
-  }
+  } 
+  */
 ];
 
 function saveToLocal() {
   localStorage.removeItem("tasks");
+  localStorage.removeItem("projects");
+  localStorage.removeItem("members");
+  localStorage.setItem("members", JSON.stringify(members));
   localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("projects", JSON.stringify(projects));
 }
 
 function getFromLocal() {
   tasks = JSON.parse(localStorage.getItem("tasks"));
+  projects = JSON.parse(localStorage.getItem("projects"));
 }
 
 function taskUpdated() {
   saveToLocal();
   sortTasks();
+  renderPageVars();
 }
 
 // initializing webapp
@@ -84,19 +96,44 @@ function startApp() {
   let usercookie = getCookie("user");
   if (usercookie > 0) {
     currentUser = parseInt(usercookie);
+
     // check if item tasks is saved in localstorage
     if (localStorage.getItem("tasks") === null) {
       tasks = defaultTasks;
-      saveToLocal();
     } else {
       if (localStorage.getItem("tasks").length < 1) {
         tasks = defaultTasks;
         console.log("localstorage defined but empty");
-        saveToLocal();
       } else {
         tasks = JSON.parse(localStorage.getItem("tasks"));
       }
     }
+
+    // check if item members is saved in localstorage
+    if (localStorage.getItem("members") === null) {
+      members = defaultMembers;
+    } else {
+      if (localStorage.getItem("members").length < 1) {
+        members = defaultMembers;
+        console.log("localstorage defined but empty");
+      } else {
+        members = JSON.parse(localStorage.getItem("members"));
+      }
+    }
+
+    // check if item projects is saved in localstorage
+    if (localStorage.getItem("projects") === null) {
+      projects = defaultProjects;
+    } else {
+      if (localStorage.getItem("projects").length < 1) {
+        projects = defaultProjects;
+        console.log("localstorage defined but empty");
+      } else {
+        projects = JSON.parse(localStorage.getItem("projects"));
+      }
+    }
+
+    saveToLocal();
 
     if (currentProject === undefined) {
       if (members[currentUser].lastOpenProject) {
@@ -105,9 +142,10 @@ function startApp() {
         currentProject = 0;
       }
     }
+
     renderPageVars();
     childPageView();
-    addProgressbarPoint(currentUser);
+    addProgressbarPoint(currentProject);
     fixDueDate();
 
     addDropListener(todoArea);
@@ -235,27 +273,29 @@ function addReward(form) {
   const reward1 = document.getElementById("addReward1").value;
   const reward2 = document.getElementById("addReward2").value;
 
-  document.getElementById("rewardText1").innerHTML =
-    "&nbsp;&nbsp;&nbsp;&nbsp;" + reward1;
-  document.getElementById("rewardText2").innerHTML =
-    "&nbsp;&nbsp;&nbsp;&nbsp;" + reward2;
-
   projects[currentProject].reward1 = reward1;
   projects[currentProject].reward2 = reward2;
-
-  if(reward1.length > 0){
+  taskUpdated();
+}
+function renderRewards() {
+  const reward1 = projects[currentProject].reward1;
+  const reward2 = projects[currentProject].reward2;
+  if (reward1 && reward1.length > 0) {
+    document.getElementById("rewardText1").innerHTML =
+      "&nbsp;&nbsp;&nbsp;&nbsp;" + reward1;
     document.getElementById("arrow1").style.visibility = "visible";
     document.getElementById("rewardBox1").style.visibility = "visible";
-  }
-  else {
+  } else {
     document.getElementById("arrow1").style.visibility = "hidden";
     document.getElementById("rewardBox1").style.visibility = "hidden";
   }
-  if(reward2.length > 0){
+
+  if (reward2 && reward2.length > 0) {
+    document.getElementById("rewardText2").innerHTML =
+      "&nbsp;&nbsp;&nbsp;&nbsp;" + reward2;
     document.getElementById("arrow2").style.visibility = "visible";
     document.getElementById("rewardBox2").style.visibility = "visible";
-  }
-  else{
+  } else {
     document.getElementById("arrow2").style.visibility = "hidden";
     document.getElementById("rewardBox2").style.visibility = "hidden";
   }
