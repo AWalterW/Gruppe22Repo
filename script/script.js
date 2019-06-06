@@ -55,6 +55,18 @@ function renderTask(task, targetArea) {
         taskEditBtns.appendChild(deleteBtn);
 
         cardDiv.appendChild(taskEditBtns);
+      } else if (currentProject > 2) {
+        let editBtn = document.createElement("i");
+        editBtn.className = "fas fa-edit edit";
+        editBtn.dataset.taskId = task.id;
+        taskEditBtns.appendChild(editBtn);
+
+        let deleteBtn = document.createElement("i");
+        deleteBtn.className = "fas fa-trash-alt close";
+        deleteBtn.dataset.taskId = task.id;
+        taskEditBtns.appendChild(deleteBtn);
+
+        cardDiv.appendChild(taskEditBtns);
       }
 
       //adding dscription to taskCard
@@ -541,8 +553,15 @@ function resetReward() {
   projects[currentProject].log = logMessage;
   projects[currentProject].points = 0;
 
+  tasks.forEach(e => {
+    if (e.project == currentProject && e.status == "completed") {
+      e.deleted = true;
+    }
+  });
+
   taskUpdated();
 }
+
 function resetRewardVisibility() {
   document.getElementById("arrow1").style.visibility = "hidden";
   document.getElementById("rewardBox1").style.visibility = "hidden";

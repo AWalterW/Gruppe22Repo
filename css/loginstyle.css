@@ -1,18 +1,26 @@
-
 /* Background image that covers the entire page */
 body {
-    background: url('https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pixelstalk.net%2Fwp-content%2Fuploads%2F2016%2F03%2FColorful-Wallpapers-HD-desktop-download.jpg&f=1') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+  background: url("https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pixelstalk.net%2Fwp-content%2Fuploads%2F2016%2F03%2FColorful-Wallpapers-HD-desktop-download.jpg&f=1")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 }
 
 /*The div that contains the form and the logo */
 #loginBox {
-    background-color: rgba(10,10,10,0.7);
+  background-color: rgba(10, 10, 10, 0.7);
 }
 
 #loginbtn {
-    background-color: #f7df1e;
+  background-color: #f7df1e;
+}
+
+.bd-tutorial-modal-lg {
+  transform: scale(1.8);
+  margin-top: 400px !important;
+}
+
+.bd-tutorial-modal-lg * {
 }
