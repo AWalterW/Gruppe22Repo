@@ -23,7 +23,7 @@
                 <button id="colorBlindBtn" class="mainBtn" onclick="colorBlind()"><i class="fas fa-low-vision"></i>Fargeblind</button>  
                 <button id="addNewTaskBtn" class="mainBtn" onclick="closeAllModals(), openModal('addTaskModal'), renderMembers('addTaskWorker')"><i class="fas fa-plus"></i>Ny Oppgave</button>
                 <button id="addRewardBtn" class="mainBtn" onclick="closeAllModals(), openModal('addRewardModal')"><i class="fas fa-plus"></i>Ny Belønning</button>
-                <button id="projectBtn" class="mainBtn"><i class="fas fa-user-friends"></i>Gruppe</button> 
+                <button id="projectBtn" class="mainBtn" ><i class="fas fa-user-friends"></i>Gruppe</button> 
                 <div class="dropdown">
                     <h3 id="projects"><i class="fas fa-angle-down"></i></h3>
                     <div id="projectDropdown" class="dropdown-content"> 
@@ -196,8 +196,11 @@
 
                 <form id="groupForm" onsubmit="return false">
                     <div id="editGroup">
-                        Prosjektnavn:<br><br>
-                        <input type="text" name="newProject" id="newProject"><br><br>
+                        Nytt medlem:<br><br>
+                        <select id="addGroupMember"></select><input type="button" onclick="addNewGroupMember()" value="Legg til">
+                        <br><br> 
+                        Medlemmer:
+                        <ul id="groupMembers"></ul>
                         <input id="saveGroupModalBtn" type="button" value="Lukk" onclick="closeAllModals()">
                     </div>
                 </form>

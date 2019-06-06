@@ -236,6 +236,48 @@ function renderMembers(target, currentWorker) {
   });
 }
 
+function renderGroupMembers() {
+  document.getElementById("groupMembers").innerHTML = "";
+  document.getElementById("addGroupMember").innerHTML = "";
+
+  projects[currentProject].members.forEach(m => {
+    let groupMember = document.createElement("li");
+    groupMember.innerText = members[m].name;
+
+    document.getElementById("groupMembers").appendChild(groupMember);
+  });
+  let membersNotInGroup = [];
+
+  members.forEach(e => {
+    let isInGroup = false;
+    for (let i = 0; i < projects[currentProject].members.length; i++) {
+      console.log(projects[currentProject].members[i]);
+
+      if (e.id == projects[currentProject].members[i]) {
+        isInGroup = true;
+      }
+    }
+    if (!isInGroup) {
+      membersNotInGroup.push(e.id);
+    }
+  });
+
+  for (let i = 1; i < membersNotInGroup.length; i++) {
+    let userSelectItem = document.createElement("option");
+    userSelectItem.value = membersNotInGroup[i];
+    userSelectItem.innerText = members[membersNotInGroup[i]].name;
+    document.getElementById("addGroupMember").appendChild(userSelectItem);
+  }
+}
+
+function addNewGroupMember() {
+  let newMember = document.getElementById("addGroupMember").value;
+  console.log(newMember);
+  projects[currentProject].members.push(newMember);
+  renderGroupMembers();
+  taskUpdated();
+}
+
 // Drag and Drop here!
 
 function addDropListener(area) {
@@ -470,11 +512,12 @@ document.getElementById("header").addEventListener("click", e => {
   } else if (e.target.id === "projectBtn") {
     closeAllModals();
     openModal("groupModal");
+    renderGroupMembers();
   }
 });
 
 //Reset rewards
 
-function resetReward(){
+function resetReward() {
   document.getElementsByClassName("grid").style.backgroundColor = "white";
 }
