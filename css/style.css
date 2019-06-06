@@ -568,6 +568,10 @@ main {
   text-shadow: 1px 1px darkgreen;
 }
 
+#addRewardModalBtn:hover {
+  background-color: #5cb85c;
+}
+
 #addProjectModal {
   display: none;
 }
@@ -740,11 +744,14 @@ main {
 
 /* Reset reward tag and button */
 
+/*
 #resetReward {
   position: absolute;
   left: 70%;
   bottom: 21%;
 }
+*/
+
 #rewardLog{
   position: relative;
   left: 10%;
