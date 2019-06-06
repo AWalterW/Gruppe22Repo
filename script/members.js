@@ -35,7 +35,7 @@ let members = [
 
 function childPageView() {
   if (members[currentUser].isChild) {
-    document.getElementById("kanbanTools").style.display = "none";
+    document.getElementById("addNewTaskBtn").style.display = "none";
     document.getElementById("addRewardBtn").style.display = "none";
   }
 }
