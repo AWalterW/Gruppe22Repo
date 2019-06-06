@@ -227,7 +227,6 @@ function renderMembers(target, currentWorker) {
     workerOption.value = e;
 
     if (e === parseInt(currentWorker)) {
-      console.log(e);
       workerOption.selected = true;
     }
     addTaskWorkerList.appendChild(workerOption);
@@ -395,6 +394,7 @@ function closeAllModals() {
   closeModal("addRewardModal");
   closeModal("addTaskModal");
   closeModal("editTaskModal");
+  closeModal("addProjectModal");
 }
 
 // function for changing to colorblind mode
@@ -452,5 +452,10 @@ document.getElementById("header").addEventListener("click", e => {
   if (e.target.id === "logoutBtn") {
     document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.open("./login.html", "_self");
+  }
+
+  if (e.target.id === "newProjectBtn") {
+    closeAllModals();
+    openModal("addProjectModal");
   }
 });

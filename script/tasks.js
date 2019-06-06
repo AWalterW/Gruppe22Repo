@@ -1,4 +1,7 @@
 let tasks = [];
+let projects = [];
+let members = [];
+
 let currentProject;
 let currentUser;
 let isColorBlind = false;
@@ -67,16 +70,22 @@ let defaultTasks = [
 
 function saveToLocal() {
   localStorage.removeItem("tasks");
+  localStorage.removeItem("projects");
+  localStorage.removeItem("members");
+  localStorage.setItem("members", JSON.stringify(members));
   localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("projects", JSON.stringify(projects));
 }
 
 function getFromLocal() {
   tasks = JSON.parse(localStorage.getItem("tasks"));
+  projects = JSON.parse(localStorage.getItem("projects"));
 }
 
 function taskUpdated() {
   saveToLocal();
   sortTasks();
+  renderPageVars();
 }
 
 // initializing webapp
@@ -84,19 +93,44 @@ function startApp() {
   let usercookie = getCookie("user");
   if (usercookie > 0) {
     currentUser = parseInt(usercookie);
+
     // check if item tasks is saved in localstorage
     if (localStorage.getItem("tasks") === null) {
       tasks = defaultTasks;
-      saveToLocal();
     } else {
       if (localStorage.getItem("tasks").length < 1) {
         tasks = defaultTasks;
         console.log("localstorage defined but empty");
-        saveToLocal();
       } else {
         tasks = JSON.parse(localStorage.getItem("tasks"));
       }
     }
+
+    // check if item members is saved in localstorage
+    if (localStorage.getItem("members") === null) {
+      members = defaultMembers;
+    } else {
+      if (localStorage.getItem("members").length < 1) {
+        members = defaultMembers;
+        console.log("localstorage defined but empty");
+      } else {
+        members = JSON.parse(localStorage.getItem("members"));
+      }
+    }
+
+    // check if item projects is saved in localstorage
+    if (localStorage.getItem("projects") === null) {
+      projects = defaultProjects;
+    } else {
+      if (localStorage.getItem("projects").length < 1) {
+        projects = defaultProjects;
+        console.log("localstorage defined but empty");
+      } else {
+        projects = JSON.parse(localStorage.getItem("projects"));
+      }
+    }
+
+    saveToLocal();
 
     if (currentProject === undefined) {
       if (members[currentUser].lastOpenProject) {
@@ -105,6 +139,7 @@ function startApp() {
         currentProject = 0;
       }
     }
+
     renderPageVars();
     childPageView();
     addProgressbarPoint(currentUser);

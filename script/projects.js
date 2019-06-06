@@ -1,4 +1,4 @@
-let projects = [
+let defaultProjects = [
   {
     id: 0,
     name: "Ingen prosjekter",
@@ -20,6 +20,19 @@ let projects = [
     members: [1, 3]
   }
 ];
+// add new project
+function addProject() {
+  const newProjectName = document.getElementById("newProject").value;
+  if (newProjectName.length > 0) {
+    let newProject = {};
+    newProject.id = projects.length;
+    newProject.name = newProjectName;
+    newProject.members = [];
+    newProject.members.push(currentUser);
+    projects.push(newProject);
+    taskUpdated();
+  }
+}
 
 // change project eventlistener
 function changeProjectListener() {

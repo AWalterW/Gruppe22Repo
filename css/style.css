@@ -3,7 +3,7 @@
   --main-background-color: #ffffff;
   --header-text-color: #ffffff;
   --kanbanlist-background-color: #f7f7f7;
-  --main-color-opacity:rgba(0,22,48,0.5);
+  --main-color-opacity: rgba(0, 22, 48, 0.5);
 
   --todo-card-color: rgb(251, 63, 63);
   --doing-card-color: rgb(255, 255, 55);
@@ -16,8 +16,8 @@
   --btn-border-color: #4ad7d1;
   --btn-hover-color: #365d88;
 
-  --sidebar-background-color: #1E90FF;
-  --gridGained-background-color: #00FF00;
+  --sidebar-background-color: #1e90ff;
+  --gridGained-background-color: #00ff00;
 }
 
 html {
@@ -87,7 +87,7 @@ header * {
 #userTools {
   display: flex;
 }
-#username{
+#username {
   position: relative;
   right: 40%;
 }
@@ -137,7 +137,6 @@ main {
   text-align: center;
 }
 
-
 .listHeader {
   color: white;
   position: relative;
@@ -174,7 +173,7 @@ main {
     "taskDescription taskDescription taskDescription"
     "taskWorker taskDate taskDate";
 }
-#addNewTaskBtn{
+#addNewTaskBtn {
   position: relative;
   left: 15%;
 }
@@ -298,7 +297,7 @@ main {
 .mainBtn:hover {
   background-color: var(--btn-hover-color);
 }
-#projectBtn{
+#projectBtn {
   position: relative;
   left: 30%;
 }
@@ -528,6 +527,33 @@ main {
   border: 1px solid darkgreen;
   text-shadow: 1px 1px darkgreen;
 }
+
+#addProjectModal {
+  display: none;
+}
+
+#addProjectBtn {
+  position: absolute;
+  top: -12%;
+  left: 20%;
+}
+
+#addProjectForm {
+  padding: 10px 30px;
+  background-color: #eaeaee;
+}
+#addProject {
+  border-radius: 5px;
+}
+
+#addProjectModalBtn {
+  background-color: #5cb85c;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  border: 1px solid darkgreen;
+  text-shadow: 1px 1px darkgreen;
+}
 /*Keyframes*/
 
 @keyframes modalShow {
@@ -540,7 +566,6 @@ main {
     opacity: 1;
   }
 }
-
 
 /* Progress Bar !!!!!hardcoded!!!!! */
 
@@ -571,7 +596,7 @@ main {
   margin-bottom: -1px;
   /*border-bottom: 2px solid #001730s;*/
 }
-.gainedGrid{
+.gainedGrid {
   background-color: var(--gridGained-background-color);
 }
 
@@ -589,7 +614,7 @@ main {
   top: -1%;
   visibility: hidden;
 }
-.rewardText{
+.rewardText {
   color: white;
   z-index: 50;
   font-weight: normal;
@@ -601,7 +626,7 @@ main {
   position: absolute;
   top: -10%;
 }
-.rewardBox{
+.rewardBox {
   position: relative;
   left: 120px;
   width: 45%;
@@ -614,16 +639,16 @@ main {
   padding-left: 0%;
   visibility: hidden;
 }
-#rewardBox1{
+#rewardBox1 {
   top: 38%;
 }
-#rewardBox2{
-  top: -7%;  
+#rewardBox2 {
+  top: -7%;
 }
-#colorBlindBtn{
+#colorBlindBtn {
   position: relative;
   left: -5%;
 }
-#completed .taskEditBtns{
-  display:none;
+#completed .taskEditBtns {
+  display: none;
 }

@@ -1,4 +1,4 @@
-let members = [
+let defaultMembers = [
   {
     id: 0,
     email: "admin@admin.io",
