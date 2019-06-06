@@ -242,74 +242,23 @@ function addReward(form) {
 
   projects[currentProject].reward1 = reward1;
   projects[currentProject].reward2 = reward2;
-}
-function displayReward() {
-  var reward1 = document.getElementById("addReward1").value;
-  var reward2 = document.getElementById("addReward2").value;
 
-  document.getElementById("arrow1").style.visibility = "visible";
-  document.getElementById("rewardBox1").style.visibility = "visible";
-  document.getElementById("arrow2").style.visibility = "visible";
-  document.getElementById("rewardBox2").style.visibility = "visible";
-
-  /*if(reward1.length !== ""){
+  if(reward1.length > 0){
     document.getElementById("arrow1").style.visibility = "visible";
     document.getElementById("rewardBox1").style.visibility = "visible";
   }
-  else{
-    alert("fuck you");
-  }*/
-
-  /*function checkBox1(reward1){
-    if(reward1 != ""){
-      return true;
-    }
-    else{
-      return false;
-    }
+  else {
+    document.getElementById("arrow1").style.visibility = "hidden";
+    document.getElementById("rewardBox1").style.visibility = "hidden";
   }
-  function checkBox2(reward2){
-    if(reward2 != ""){
-      return true;
-    }
-      else{
-      return false;
-     }
-  }
-
-  if(checkBox1() = true){
-    document.getElementById("arrow1").style.visibility = "visible";
-    document.getElementById("rewardBox1").style.visibility = "visible";
-    document.getElementById("arrow2").style.visibility = "hidden";
-    document.getElementById("rewardBox2").style.visibility = "hidden";
-  }
-  else if (checkBox2() = true){
+  if(reward2.length > 0){
     document.getElementById("arrow2").style.visibility = "visible";
     document.getElementById("rewardBox2").style.visibility = "visible";
-    document.getElementById("arrow1").style.visibility = "hidden";
-    document.getElementById("rewardBox1").style.visibility = "hidden";
   }
   else{
-    document.getElementById("arrow1").style.visibility = "hidden";
-    document.getElementById("rewardBox1").style.visibility = "hidden";
     document.getElementById("arrow2").style.visibility = "hidden";
     document.getElementById("rewardBox2").style.visibility = "hidden";
   }
- /* if(){
-    document.getElementById("arrow1").style.visibility = "visible";
-    document.getElementById("rewardBox1").style.visibility = "visible";
-    document.getElementById("arrow2").style.visibility = "hidden";
-    document.getElementById("rewardBox2").style.visibility = "hidden";
-  }
-  else if(){
-    document.getElementById("arrow2").style.visibility = "visible";
-    document.getElementById("rewardBox2").style.visibility = "visible";
-    document.getElementById("arrow1").style.visibility = "hidden";
-    document.getElementById("rewardBox1").style.visibility = "hidden";
-  }
-   else{ alert("fuck you");
-  }
-*/
 }
 
 function getCookie(cname) {
