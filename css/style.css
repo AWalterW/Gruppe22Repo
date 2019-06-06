@@ -1,3 +1,4 @@
+/***COLOR VARIABLES***/
 :root {
   --main-color: #001730;
   --main-background-color: #FFFFFF;
@@ -20,6 +21,7 @@
   --sidebar-background-color: #1E90FF;
   --gridGained-background-color: #00FF00;
 }
+
 
 html {
   box-sizing: border-box;
@@ -54,6 +56,8 @@ img {
     "main sidebar";
   overflow: hidden;
 }
+
+/***HEADER***/
 
 header {
   grid-area: header;
@@ -91,8 +95,8 @@ header * {
 } 
 
 #projects {
-  margin-top:7%;
-  margin-left:px;
+  margin-left:0px;
+  position: relative;
 }
 
 #userTools {
@@ -113,6 +117,7 @@ header * {
   margin-left: 0;
 }
 
+/*** MAIN BODY ***/
 
 main {
   grid-area: main;
@@ -197,7 +202,6 @@ main {
   color: var(--card-text-color);
   cursor: move;
   border-radius: 10px;
-  animation: pop 0.15s ease-in-out 0s forwards;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   grid-template-rows: 20px auto auto;
@@ -206,6 +210,14 @@ main {
     "taskDescription taskDescription taskDescription"
     "taskWorker taskDate taskDate";
 }
+
+
+/*Hvis vi vil ha animasjoner på drop cards, legg til denne ett sted i script: cardDiv.className = "popCard";*/
+/*
+.popCard {
+  animation: pop 0.15s ease-in-out 0s forwards;
+}
+*/
 
 .taskTitle {
   grid-area: taskTitle;
@@ -366,7 +378,7 @@ main {
   background-color: #3e8e41;
 }
 
-@media (max-width: 1162px) {
+@media (max-width: 862px) {
 
   .container {
     grid-template-columns: 1fr;
@@ -379,7 +391,7 @@ main {
   }
 }
 
-/* modals */
+/*** MODALS ***/
 
 .modal {
   position: absolute;
@@ -447,6 +459,7 @@ main {
   transform: scale(1.05);
 }
 
+/***TASKMODAL***/
 
 #addTaskModal {
   display: none;
@@ -538,6 +551,8 @@ main {
   background-color: #fcfcfc;
 }
 
+/***REWARDMODAL***/
+
 #addRewardModal {
   display: none;
 }
@@ -565,7 +580,8 @@ main {
 #addRewardModalBtn:hover {
   background-color: #5cb85c;
 }
-/*Keyframes*/
+
+/*** KEYFRAMES ***/
 
 @keyframes modalShow {
   0% {
@@ -606,7 +622,7 @@ main {
 }
 
 
-/* Progress Bar !!!!!hardcoded!!!!! */
+/*** Progress Bar !!!!!hardcoded!!!!! ***/
 
 #progressBar {
   position: relative;
@@ -639,7 +655,7 @@ main {
   background-color: var(--gridGained-background-color);
 }
 
-/* Reward divs and arrows */
+/*** REWARDS DIVS AND ARROWS ***/
 
 #arrow1 {
   position: absolute;
@@ -647,6 +663,7 @@ main {
   top: 39%;
   visibility: hidden;
 }
+
 #arrow2 {
   position: absolute;
   left: 100px;
