@@ -103,7 +103,6 @@ function startApp() {
     } else {
       if (localStorage.getItem("tasks").length < 1) {
         tasks = defaultTasks;
-        console.log("localstorage defined but empty");
       } else {
         tasks = JSON.parse(localStorage.getItem("tasks"));
       }
@@ -115,7 +114,6 @@ function startApp() {
     } else {
       if (localStorage.getItem("members").length < 1) {
         members = defaultMembers;
-        console.log("localstorage defined but empty");
       } else {
         members = JSON.parse(localStorage.getItem("members"));
       }
@@ -127,7 +125,6 @@ function startApp() {
     } else {
       if (localStorage.getItem("projects").length < 1) {
         projects = defaultProjects;
-        console.log("localstorage defined but empty");
       } else {
         projects = JSON.parse(localStorage.getItem("projects"));
       }

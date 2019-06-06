@@ -10,7 +10,6 @@ if (localStorage.getItem("members") === null) {
 } else {
   if (localStorage.getItem("members").length < 1) {
     members = defaultMembers;
-    console.log("localstorage defined but empty");
   } else {
     members = JSON.parse(localStorage.getItem("members"));
   }

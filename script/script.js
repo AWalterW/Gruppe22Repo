@@ -264,8 +264,6 @@ function renderGroupMembers() {
   members.forEach(e => {
     let isInGroup = false;
     for (let i = 0; i < projects[currentProject].members.length; i++) {
-      console.log(projects[currentProject].members[i]);
-
       if (e.id == projects[currentProject].members[i]) {
         isInGroup = true;
       }
@@ -285,7 +283,6 @@ function renderGroupMembers() {
 
 function addNewGroupMember() {
   let newMember = document.getElementById("addGroupMember").value;
-  console.log(newMember);
   projects[currentProject].members.push(parseInt(newMember));
   renderGroupMembers();
   taskUpdated();
@@ -321,23 +318,13 @@ function changeTaskStatus(taskId, target) {
     ) {
       if (!members[currentUser].isChild) {
         projects[currentProject].points += 1;
-        console.log(projects[currentProject].points);
         projectpointAdded(currentProject);
-        console.log(
-          `${projects[currentProject].name} får 1 poeng og har nå 
-          ${projects[currentProject].points} poeng!`
-        );
         task.completed = true;
         task.status = target;
         taskUpdated();
       } else if (currentProject > 2) {
         projects[currentProject].points += 1;
-        console.log(projects[currentProject].points);
         projectpointAdded(currentProject);
-        console.log(
-          `${projects[currentProject].name} får 1 poeng og har nå 
-          ${projects[currentProject].points} poeng!`
-        );
         task.completed = true;
         task.status = target;
       } else {
@@ -379,7 +366,6 @@ function openModal(target) {
   document.getElementById("modalDiv").style.display = "block";
 
   document.getElementById("modalDiv").addEventListener("click", e => {
-    console.log(e);
     closeAllModals();
   });
 }
