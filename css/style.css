@@ -100,7 +100,7 @@ header * {
 
 .dropdown {
   position: absolute;
-  margin-top:10px;
+  margin-top: 10px;
 }
 
 #userTools {
@@ -126,8 +126,20 @@ header * {
 main {
   grid-area: main;
   background-color: var(--main-background-color);
-  /*background-image: url('http://papers.co/wallpaper/papers.co-vo66-blocks-rainbow-lego-art-pattern-pastel-40-wallpaper.jpg');
-  */
+}
+
+#harold {
+  position: absolute;
+  bottom: 3%;
+  left: 5%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0;
+}
+
+#harold:checked {
+  opacity: 0.3;
 }
 
 /*Scrollbar, only supported by certain browsers*/
@@ -213,7 +225,6 @@ main {
     "taskDescription taskDescription taskDescription"
     "taskWorker taskDate taskDate";
 }
-
 
 .taskTitle {
   grid-area: taskTitle;
@@ -376,7 +387,6 @@ main {
 }
 
 @media (max-width: 862px) {
-
   .container {
     grid-template-columns: 1fr;
     grid-template-rows: 70px 100vh 100vh;
@@ -726,7 +736,7 @@ main {
   position: relative;
   font-size: 75%;
 }
-.rewardBox{
+.rewardBox {
   position: absolute;
   left: 52%;
   width: 45%;
@@ -763,14 +773,14 @@ main {
 }
 */
 
-#rewardLog{
+#rewardLog {
   position: relative;
   left: 10%;
   bottom: 13%;
   animation: scroll1 10s linear infinite;
   color: #001730;
 }
-#logBackdrop{
+#logBackdrop {
   position: absolute;
   overflow: hidden;
   white-space: nowrap;
@@ -780,12 +790,12 @@ main {
 
 /* Keyframes for log */
 @keyframes scroll1 {
-  0% { 
-      transform: translateX(100%); 
-      }
+  0% {
+    transform: translateX(100%);
+  }
   100% {
-      transform: translateX(-120%); 
-      }
+    transform: translateX(-120%);
+  }
 }
 
 /*Fungerer ikke enda*/

@@ -242,6 +242,14 @@ function renderPageVars() {
     document.getElementById("completeHeader").innerText = "Godkjent";
   }
 
+  if (document.getElementById("harold").checked) {
+    document.getElementById("main").style.backgroundImage =
+      'url("../images/harold.jpg")';
+  } else {
+    document.getElementById("main").style.backgroundImage = "none";
+    document.getElementById("main").style.backgroundColor = "#ffffff";
+  }
+
   addProgressbarPoint();
   renderRewards();
 }
