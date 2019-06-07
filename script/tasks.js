@@ -6,61 +6,7 @@ let currentProject;
 let currentUser;
 let isColorBlind = false;
 
-let defaultTasks = [
-  /*
-  {
-    id: 0,
-    status: "todo",
-    title: "First task",
-    description: "Lorem ipsum dolor sit amet",
-    worker: 0,
-    checkList: [
-      {
-        listTask: "Noe du må gjøre",
-        isDone: false
-      },
-      {
-        listTask: "Noe du må gjøre",
-        isDone: false
-      },
-      {
-        listTask: "Noe du må gjøre",
-        isDone: true
-      }
-    ],
-    deleted: false,
-    completed: false,
-    project: 0
-  },
-  {
-    id: 1,
-    status: "doing",
-    title: "Second task",
-    description: "Lorem ipsum dolor sit amet",
-    worker: 1,
-    deleted: false,
-    completed: false,
-    project: 0
-  },
-  {
-    id: 2,
-    status: "todo",
-    title: "Third task",
-    description: "Lorem ipsum dolor sit amet",
-    deleted: false,
-    completed: false,
-    project: 0
-  },
-  {
-    id: 3,
-    status: "completed",
-    title: "Fourth task",
-    description: "Lorem ipsum dolor sit amet",
-    deleted: false,
-    project: 1
-  } 
-  */
-];
+let defaultTasks = [];
 
 //Saving and getting to/from local storage
 

@@ -528,7 +528,8 @@ main {
   background-color: #eaeaee;
 }
 
-#editTitle {
+/*DOES NOT WORK*/
+#editTaskId {
   border-radius: 5px;
   background-color: #fcfcfc;
 }
